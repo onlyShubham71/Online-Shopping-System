@@ -1,6 +1,6 @@
  *{ box-sizing: border-box; margin: 0; padding: 0; }
 
-  :root {
+:root {
     --yellow: #FFCA28;
     --yellow-dark: #F4A900;
     --navy: #1A1F36;
@@ -16,8 +16,12 @@
     --font-body: 'DM Sans', system-ui, sans-serif;
   }
 
-  body { font-family: var(--font-body); color: var(--text); background: var(--white); font-size: 15px; line-height: 1.6; }
-
+body { font-family: var(--font-body); color: var(--text); background: var(--white); font-size: 15px; line-height: 1.6; }
+ul{padding: 0;margin: 0;text-decoration: none;list-style-type: none;}
+a{transition: 0.5s;text-decoration: none;}
+h1,h2,h3,h4,h5,h6{margin: 0;line-height: 100%;}
+p{text-align: center;}
+img{max-width: 100%;height: auto;}
   /* NAV */
   nav {
     display: flex; align-items: center; justify-content: space-between;
@@ -26,7 +30,7 @@
   }
   .logo { font-family: var(--font-display); font-size: 22px; color: var(--navy); font-weight: 600; display: flex; align-items: center; gap: 8px; }
   .logo-dot { width: 10px; height: 10px; background: var(--yellow); border-radius: 50%; }
-  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links { display: flex; gap: 32px; list-style: none;align-items: center; }
   .nav-links a { text-decoration: none; color: var(--muted); font-size: 14px; font-weight: 500; transition: color .2s; }
   .nav-links a:hover { color: var(--text); }
   .nav-right { display: flex; align-items: center; gap: 12px; }
@@ -36,13 +40,10 @@
   .btn-primary:hover { background: var(--yellow-dark); }
 
   /* HERO */
-  .hero {
-    padding: 56px 5% 40px;
-    display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;
-  }
+  .hero {padding: 56px 5% 40px;display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;background: url(../assets/travel-hero-bg.jpg) no-repeat center center; background-size: cover;}
   .hero-label { font-size: 12px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
   .hero h1 { font-family: var(--font-display); font-size: 52px; line-height: 1.1; color: var(--navy); margin-bottom: 20px; }
-  .hero p { color: var(--muted); font-size: 16px; line-height: 1.7; margin-bottom: 30px; max-width: 400px; }
+  .hero p { color: var(--text); font-size: 16px; line-height: 1.7; margin-bottom: 30px; max-width: 400px; text-align: left;}
   .hero-cta { display: flex; gap: 12px; align-items: center; }
   .btn-large { padding: 13px 30px; font-size: 15px; border-radius: 50px; font-weight: 600; cursor: pointer; font-family: var(--font-body); transition: all .2s; }
   .btn-large.primary { background: var(--yellow); border: none; color: var(--navy); }
