@@ -169,7 +169,7 @@
                             </div>
                             <div class="settings-divider"></div>
                             <div class="settings-panel-header">Account</div>
-                            <a class="settings-link-item" href="visual/template/login.html">
+                            <a class="settings-link-item" href="{{ url_for('login') }}">
                                 <div class="settings-item-icon"><i class="bi bi-person-circle"></i></div><span>My
                                     Profile</span><i class="bi bi-chevron-right ms-auto" style="font-size:0.7rem;"></i>
                             </a>
@@ -196,7 +196,7 @@
                         <i class="bi bi-bag"></i>
                         <span class="cart-badge" id="cart-badge">0</span>
                     </button>
-                    <a id="login-nav-btn" class="nav-login-btn" href="visual/template/login.html"><i class="bi bi-person-circle"></i>
+                    <a id="login-nav-btn" class="nav-login-btn" href="{{ url_for('login') }}"><i class="bi bi-person-circle"></i>
                         Login</a>
                     <a id="user-profile-btn" class="nav-login-btn d-none" href="visual/template/account.html"><i class="bi bi-person-circle"></i>
                         <span id="user-nav-name">Profile</span></a>
@@ -257,7 +257,7 @@
         <a class="mobile-nav-link" href="#shop" onclick="closeAll()"><i class="bi bi-bag"></i> Shop</a>
         <a class="mobile-nav-link" href="visual/template/seller.html"><i class="bi bi-shop"></i> Partner with us</a>
         <div class="mobile-nav-divider"></div>
-        <a id="login-nav-btn-mobile" class="mobile-fab-btn login" href="visual/template/login.html" style="border-radius:12px;"><i
+        <a id="login-nav-btn-mobile" class="mobile-fab-btn login" href="{{ url_for('login') }}" style="border-radius:12px;"><i
                 class="bi bi-person-circle"></i> Login</a>
         <a id="user-profile-btn-mobile" class="mobile-fab-btn login d-none" href="visual/template/account.html" style="border-radius:12px;"><i
                 class="bi bi-person-circle"></i> <span id="user-nav-name-mobile">Profile</span></a>
@@ -514,7 +514,7 @@
                         <button type="submit"
                             class="btn btn-success w-100 py-3 rounded-pill fw-bold shadow-sm mb-3">Sign In</button>
                     </form>
-                    <p class="small text-muted mb-0">New here? <a href="visual/template/login.html"
+                    <p class="small text-muted mb-0">New here? <a href="{{ url_for('login') }}"
                             style="color: var(--primary-nature);" class="fw-bold text-decoration-none">Create an
                             account</a></p>
                 </div>
