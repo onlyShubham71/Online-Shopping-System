@@ -4,16 +4,37 @@ from db_config import get_db_connection
 app = Flask(__name__)
 app.secret_key = 'pbssd_ecommerce_secret' # Required for session-based flash messages
 
+# @app.route('/')
+# def index():
+#     products = []  # fallback
+
+#     try:
+#         conn = get_db_connection()
+#         cursor = conn.cursor(dictionary=True)
+#         cursor.execute("SELECT * FROM products")
+#         products = cursor.fetchall()
+#         cursor.close()
+#         conn.close()
+#     except Exception as e:
+#         print("DB Error:", e)  # sirf terminal me dikhega
+
+#     return render_template('index.html', products=products)
+
 @app.route('/')
 def index():
-    conn = get_db_connection()
-    cursor = conn.cursor(dictionary=True)
-    cursor.execute("SELECT * FROM products")
-    products = cursor.fetchall()
-    cursor.close()
-    conn.close()
-    return render_template('index.html')
+    products = []
 
+    try:
+        conn = get_db_connection()
+        cursor = conn.cursor(dictionary=True)
+        cursor.execute("SELECT * FROM products")
+        products = cursor.fetchall()
+        cursor.close()
+        conn.close()
+    except Exception as e:
+        print("DB Error:", e)
+
+    return render_template('index.html', products=products)
 @app.route('/login')
 def login():
     return render_template('login.html')

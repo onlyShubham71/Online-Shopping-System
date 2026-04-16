@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -718,12 +718,76 @@
         }
 
         // --- CORE LOGIC from index.html ---
+        const PRODUCTS_PER_CAT = 7;
+
+        // =====================================================================
+        // 🔗 CATEGORY PAGE LINKS — Add your page paths below for each category
+        // =====================================================================
+        const CAT_PAGE_LINKS = {
+            'Grocery':     'visual/template/grocery.html',          // TODO: LINK → Grocery
+            'Fashion':     'visual/template/fashion.html',          // TODO: LINK → Fashion
+            'Mobiles':     '#',                                      // TODO: LINK → Mobiles
+            'Beauty':      'visual/template/beauty.html',           // TODO: LINK → Beauty
+            'Electronics': '#',                                      // TODO: LINK → Electronics
+            'Home':        '#',                                      // TODO: LINK → Home
+            'Appliances':  '#',                                      // TODO: LINK → Appliances
+            'Toys':        '#',                                      // TODO: LINK → Toys
+            'Food':        '#',                                      // TODO: LINK → Food
+            'Auto':        '#',                                      // TODO: LINK → Auto
+            '2 Wheelers':  'visual/template/2_Wheelers.html',       // TODO: LINK → 2 Wheelers
+            'Books':       '#',                                      // TODO: LINK → Books
+            'Furniture':   '#',                                      // TODO: LINK → Furniture
+            'Sports':      '#',                                      // TODO: LINK → Sports
+            'Medicines':   '#',                                      // TODO: LINK → Medicines
+        };
+        // =====================================================================
+
+        function renderProductCard(p) {
+            const isFav = favourites.includes(p.id);
+            return `
+                <div class="pcard" onclick="window.location.href='product_detail.html?id=${p.id}'">
+                    <div class="pcard-img-wrap">
+                        <img src="${p.image}" class="pcard-img" alt="${p.name}" loading="lazy">
+                        <button class="pcard-wish ${isFav ? 'active' : ''}" id="wish-${p.id}" onclick="event.stopPropagation(); toggleFavourite(${p.id}, this)" title="Add to favourites">
+                            <i class="bi ${isFav ? 'bi-heart-fill' : 'bi-heart'}"></i>
+                        </button>
+                    </div>
+                    <div class="pcard-body">
+                        <h6 class="pcard-name" title="${p.name}">${p.name}</h6>
+                        <div class="pcard-stars mb-2">
+                            ${'<i class="bi bi-star-fill"></i>'.repeat(p.rating)}
+                            ${'<i class="bi bi-star" style="color:#e5e5e0;"></i>'.repeat(5 - p.rating)}
+                        </div>
+                        <div class="pcard-footer">
+                            <div class="pcard-price">${p.price}</div>
+                            <button class="pcard-add-btn" onclick="event.stopPropagation(); addToCart(${p.id})" title="Add to cart">
+                                <i class="bi bi-plus-lg"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
         function renderProducts() {
             const container = document.getElementById('product-sections');
             if (!container) return;
             container.innerHTML = categories.map(cat => {
                 const catProducts = products.filter(p => p.section === cat);
                 const sectionId = cat.replace(/\s+/g, '-');
+                const visibleProducts = catProducts.slice(0, PRODUCTS_PER_CAT);
+                const hasMore = catProducts.length > PRODUCTS_PER_CAT;
+                const pageLink = CAT_PAGE_LINKS[cat] || '#';
+
+                const viewAllCard = hasMore ? `
+                    <div class="viewall-card" onclick="window.location.href='${pageLink}'">
+                        <div class="viewall-card-inner">
+                            <div class="viewall-icon"><i class="bi bi-grid-3x3-gap-fill"></i></div>
+                            <div class="viewall-count">+${catProducts.length - PRODUCTS_PER_CAT} more</div>
+                            <div class="viewall-label">View All</div>
+                        </div>
+                    </div>` : '';
+
                 return `
                     <div class="cat-section" id="${sectionId}-section" data-aos="fade-up">
                         <div class="cat-section-head">
@@ -737,27 +801,9 @@
                             <div class="cat-section-line"></div>
                         </div>
                         <div class="cat-scroll-wrap">
-                            <div class="cat-scroll">
-                                ${catProducts.map(p => `
-                                    <div class="pcard" onclick="window.location.href='product_detail.html?id=${p.id}'">
-                                        <div class="pcard-img-wrap">
-                                            <img src="${p.image}" class="pcard-img" alt="${p.name}" loading="lazy">
-                                        </div>
-                                        <div class="pcard-body">
-                                            <h6 class="pcard-name" title="${p.name}">${p.name}</h6>
-                                            <div class="pcard-stars mb-2">
-                                                ${'<i class="bi bi-star-fill"></i>'.repeat(p.rating)}
-                                                ${'<i class="bi bi-star" style="color:#e5e5e0;"></i>'.repeat(5 - p.rating)}
-                                            </div>
-                                            <div class="pcard-footer">
-                                                <div class="pcard-price">${p.price}</div>
-                                                <button class="pcard-add-btn" onclick="event.stopPropagation(); addToCart(${p.id})" title="Add to cart">
-                                                    <i class="bi bi-plus-lg"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                `).join('')}
+                            <div class="cat-scroll" id="cat-scroll-${sectionId}">
+                                ${visibleProducts.map(p => renderProductCard(p)).join('')}
+                                ${viewAllCard}
                             </div>
                         </div>
                     </div>
@@ -915,22 +961,43 @@
             document.getElementById('favDrawer')?.classList.toggle('open', favDrawerOpen);
             document.getElementById('favBackdrop')?.classList.toggle('open', favDrawerOpen);
         }
+        function toggleFavourite(productId, btn) {
+            const isFav = favourites.includes(productId);
+            if (isFav) {
+                // Remove from favourites
+                favourites = favourites.filter(id => id !== productId);
+                if (btn) {
+                    btn.classList.remove('active');
+                    const icon = btn.querySelector('i');
+                    if (icon) icon.className = 'bi bi-heart';
+                }
+                const iconBadge = document.getElementById('favIconBadge');
+                if (iconBadge) {
+                    iconBadge.textContent = favourites.length;
+                    iconBadge.style.display = favourites.length === 0 ? 'none' : 'flex';
+                }
+                renderFavDrawer();
+                Swal.fire({ title: 'Removed from Favourites', toast: true, position: 'top-end', showConfirmButton: false, timer: 1200, icon: 'info', background: '#FAFAF7', color: '#1A1A1A' });
+            } else {
+                // Add to favourites
+                favourites.push(productId);
+                if (btn) {
+                    btn.classList.add('active');
+                    const icon = btn.querySelector('i');
+                    if (icon) icon.className = 'bi bi-heart-fill';
+                }
+                const iconBadge = document.getElementById('favIconBadge');
+                if (iconBadge) {
+                    iconBadge.textContent = favourites.length;
+                    iconBadge.style.display = 'flex';
+                }
+                renderFavDrawer();
+                Swal.fire({ title: 'Saved to Favourites!', toast: true, position: 'top-end', showConfirmButton: false, timer: 1400, icon: 'success', background: '#FAFAF7', color: '#1A1A1A' });
+            }
+        }
         function addToFavourites(productId, btn) {
             if (favourites.includes(productId)) return;
-            favourites.push(productId);
-            if (btn) {
-                const icon = btn.querySelector('i');
-                if (icon) icon.className = 'bi bi-heart-fill';
-                btn.style.color = '#e11d48';
-                btn.style.background = 'white';
-            }
-            const iconBadge = document.getElementById('favIconBadge');
-            if (iconBadge) {
-                iconBadge.textContent = favourites.length;
-                iconBadge.style.display = 'flex';
-            }
-            renderFavDrawer();
-            Swal.fire({ title: 'Saved to Favourites!', toast: true, position: 'top-end', showConfirmButton: false, timer: 1400, icon: 'success', background: '#FAFAF7', color: '#1A1A1A' });
+            toggleFavourite(productId, btn);
         }
         function removeFromFavourites(productId) {
             favourites = favourites.filter(id => id !== productId);
