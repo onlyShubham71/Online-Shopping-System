@@ -52,18 +52,43 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- ADD TO CART SYNC ---
     const atcBtn = document.getElementById('pd-atc-btn');
     atcBtn.addEventListener('click', () => {
-        // IndexedDB Logic for persistence (matching grocery.html)
-        const request = indexedDB.open('PBSSDCartDB', 1);
+        if (!localStorage.getItem('pbssd_user')) {
+            Swal.fire({
+                title: 'Login Required',
+                text: 'Please sign in to add items to your bag.',
+                icon: 'info',
+                confirmButtonColor: '#5A8A5A'
+            });
+            return;
+        }
+
+        // IndexedDB Logic for persistence (matching grocery.html - Version 2)
+        const request = indexedDB.open('PBSSDCartDB', 2);
+        
+        request.onupgradeneeded = (e) => {
+            const db = e.target.result;
+            if (!db.objectStoreNames.contains('cart_state')) db.createObjectStore('cart_state');
+            if (!db.objectStoreNames.contains('cart_items')) {
+                db.createObjectStore('cart_items', { keyPath: 'id', autoIncrement: true });
+            }
+        };
+
         request.onsuccess = (e) => {
             const db = e.target.result;
-            const tx = db.transaction(['cart_state'], 'readwrite');
-            const store = tx.objectStore('cart_state');
+            const tx = db.transaction(['cart_items'], 'readwrite');
+            const store = tx.objectStore('cart_items');
             
-            const getReq = store.get('count');
+            const getReq = store.getAll();
             getReq.onsuccess = () => {
-                let count = getReq.result || 0;
-                count++;
-                store.put(count, 'count');
+                const items = getReq.result;
+                const existingItem = items.find(i => i.name === name);
+                
+                if (existingItem) {
+                    existingItem.quantity = (existingItem.quantity || 1) + 1;
+                    store.put(existingItem);
+                } else {
+                    store.add({ name, price, img, quantity: 1, timestamp: Date.now() });
+                }
                 
                 // Visual Feedback
                 atcBtn.innerHTML = '<i class="fas fa-check"></i> ADDED';
@@ -86,11 +111,25 @@ document.addEventListener('DOMContentLoaded', () => {
                     atcBtn.style.color = '';
                 }, 2000);
             };
+
+            tx.oncomplete = () => {
+                // Update cart state count
+                const countTx = db.transaction(['cart_items'], 'readonly');
+                const countStore = countTx.objectStore('cart_items');
+                const getAllReq = countStore.getAll();
+                getAllReq.onsuccess = () => {
+                    const total = getAllReq.result.reduce((acc, item) => acc + (item.quantity || 1), 0);
+                    const finalTx = db.transaction(['cart_state'], 'readwrite');
+                    finalTx.objectStore('cart_state').put(total, 'count');
+                };
+
+                // Update legacy localStorage
+                let lsCart = JSON.parse(localStorage.getItem('pbssd_cart') || '[]');
+                const exLs = lsCart.find(i => i.name === name);
+                if (exLs) exLs.quantity = (exLs.quantity || 1) + 1;
+                else lsCart.push({ id: Date.now(), name, price, image: img, quantity: 1 });
+                localStorage.setItem('pbssd_cart', JSON.stringify(lsCart));
+            };
         };
-        
-        // Also store actual items in localStorage if cart.html expects it
-        let cartItems = JSON.parse(localStorage.getItem('pbssd_cart') || '[]');
-        cartItems.push({ name, price, img, id: Date.now() });
-        localStorage.setItem('pbssd_cart', JSON.stringify(cartItems));
     });
 });

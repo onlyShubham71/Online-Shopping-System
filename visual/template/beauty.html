@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lumière — Glow Naturally, Shine Confidently</title>
+  <title>Beauty</title>
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
@@ -196,131 +196,96 @@
       box-shadow: 0 12px 36px rgba(45, 90, 68, .35)
     }
 
-    .btn-white {
-      background: #fff;
-      color: var(--pk600);
-      border: 1.5px solid rgba(45, 90, 68, .28);
-      box-shadow: var(--ssm)
-    }
-
-    .btn-white:hover {
-      background: var(--pk100);
-      transform: translateY(-2px)
-    }
-
-    .btn-op {
-      border: 1.5px solid var(--pk400);
-      color: var(--pk500);
-      background: transparent
-    }
-
-    .btn-op:hover {
-      background: var(--pk400);
-      color: #fff;
-      transform: translateY(-2px)
-    }
-
-
-    /* Product Details Modal */
-    #pd-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(26, 10, 16, .45);
-      backdrop-filter: blur(12px);
-      z-index: 2500;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      pointer-events: none;
-      transition: var(--ease)
-    }
-
-    #pd-overlay.open {
-      opacity: 1;
-      pointer-events: all
-    }
-
-    .pd-modal {
-      width: min(940px, 94vw);
-      background: #fff;
-      border-radius: var(--rmd);
-      display: grid;
-      grid-template-columns: 1fr 1.1fr;
-      overflow: hidden;
-      position: relative;
-      box-shadow: var(--slg);
-      transform: scale(.9);
-      transition: var(--ease)
-    }
-
-    #pd-overlay.open .pd-modal {
-      transform: scale(1)
-    }
-
-    .pd-img-box {
-      background: var(--pk50);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 3rem
-    }
-
-    .pd-img-box img {
-      max-width: 100%;
-      height: auto;
-      filter: drop-shadow(0 20px 40px rgba(0, 0, 0, .1))
-    }
-
-    .pd-info {
-      padding: 3.5rem 3.5rem 3.5rem 1rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: center
-    }
-
-    .pd-close {
+    /* Wishlist Button */
+    .pwish {
       position: absolute;
-      top: 1.5rem;
-      right: 1.5rem;
-      width: 40px;
-      height: 40px;
+      top: 1rem;
+      right: 1rem;
+      width: 36px;
+      height: 36px;
       border-radius: 50%;
       background: #fff;
       display: flex;
       align-items: center;
       justify-content: center;
+      font-size: 1rem;
+      color: var(--ts);
       box-shadow: var(--ssm);
-      color: var(--ts);
+      transition: all var(--ease);
+      cursor: pointer;
       z-index: 10;
-      transition: all var(--ease)
+      border: 1px solid var(--border);
     }
 
-    .pd-close:hover {
-      background: var(--pk400);
-      color: #fff
+    .pwish:hover, .pwish.active {
+      background: #fff0f3;
+      color: #e11d48;
+      transform: scale(1.1);
+      border-color: #fecdd3;
     }
 
-    .pd-desc {
-      margin: 1.5rem 0 2rem;
-      font-size: .95rem;
-      color: var(--ts);
-      line-height: 1.8
+    /* Favourites Drawer */
+    .fav-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 2900;
+      background: rgba(0, 0, 0, 0.35);
+      backdrop-filter: blur(4px);
+    }
+    .fav-backdrop.open { display: block; }
+
+    .fav-drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 400px;
+      max-width: 90vw;
+      background: var(--offwhite);
+      z-index: 3000;
+      display: flex;
+      flex-direction: column;
+      transform: translateX(100%);
+      transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: -10px 0 40px rgba(0, 0, 0, 0.1);
+    }
+    .fav-drawer.open { transform: translateX(0); }
+
+    .fav-drawer-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px;
+      border-bottom: 1px solid var(--border);
     }
 
-    @media(max-width:850px) {
-      .pd-modal {
-        grid-template-columns: 1fr
-      }
-
-      .pd-info {
-        padding: 2.5rem
-      }
-
-      .pd-img-box {
-        padding: 2.5rem
-      }
+    .fav-drawer-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 12px;
     }
+
+    .fav-drawer-count {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.75rem;
+      background: #e11d48;
+      color: white;
+      border-radius: 50px;
+      padding: 2px 10px;
+    }
+
+    .fav-drawer-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 24px;
+    }
+
+    .fav-empty { text-align: center; padding: 60px 20px; color: var(--ts); }
+    .fav-empty-icon { font-size: 3rem; margin-bottom: 15px; opacity: 0.3; }
 
     /* Toast */
     #toast {
@@ -1051,40 +1016,6 @@
 
     .pcard:hover .pimg {
       transform: scale(1.1) translateY(-8px)
-    }
-
-    .pview {
-      position: absolute;
-      inset: 0;
-      background: rgba(255, 255, 255, .7);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      transition: var(--ease);
-      z-index: 5;
-      cursor: pointer
-    }
-
-    .pview span {
-      background: #fff;
-      padding: .6rem 1.2rem;
-      border-radius: 99px;
-      font-size: .75rem;
-      font-weight: 600;
-      box-shadow: var(--ssm);
-      transform: translateY(10px);
-      transition: var(--ease)
-    }
-
-    .pcard:hover .pview,
-    .tcard:hover .pview {
-      opacity: 1
-    }
-
-    .pcard:hover .pview span,
-    .tcard:hover .pview span {
-      transform: translateY(0)
     }
 
     .pcirc {
@@ -2104,25 +2035,6 @@
   <!-- TOAST -->
   <div id="toast"><i class="bi bi-bag-check"></i><span id="tmsg">Added!</span></div>
 
-  <!-- PRODUCT DETAILS OVERLAY -->
-  <div id="pd-overlay">
-    <div class="pd-modal">
-      <button class="pd-close" id="pd-close"><i class="fa-solid fa-xmark"></i></button>
-      <div class="pd-img-box"><img id="pd-img" src="" alt=""></div>
-      <div class="pd-info">
-        <div id="pd-cat" class="eyebrow" style="margin-bottom:1rem">Category</div>
-        <h2 id="pd-name" style="margin-bottom:.5rem">Product Name</h2>
-        <div id="pd-price" class="pcur color-nature" style="font-size:1.6rem"></div>
-        <p id="pd-desc" class="pd-desc">High-performance formula designed for maximum results. Crafted with botanical
-          extracts to nourish and protect your skin while providing a luxurious, glowing experience.</p>
-        <div style="display:flex;gap:1rem">
-          <button id="pd-atc" class="btn btn-pink" style="flex:1;justify-content:center">Add to Bag <i
-              class="bi bi-bag-plus"></i></button>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <!-- ================================================
      HERO SLIDER — 4 SLIDES
      ================================================ -->
@@ -2497,15 +2409,14 @@
       <div class="pgrid">
 
         <div class="pcard rev rd1">
-          <div class="pimgw" onclick="openPD('Velvet Rose Serum', 48, 'Velvet Serum.jpg', 'Skincare')">
-            <div class="pview"><span>View Details</span></div>
+          <div class="pimgw" data-name="Velvet Rose Serum" data-price="48" data-img="Velvet Serum.jpg" data-cat="Skincare">
             <div class="part pa1">
               <div class="pcirc pctla pcp"></div><img src="../assets/Velvet Serum.jpg" alt="Velvet Rose Serum"
                 class="pimg">
               <div class="pcirc pcbra pcg"></div>
             </div>
             <div class="pbadges"><span class="badge bn">New</span></div>
-            <div class="pwish" onclick="tw(this)"><i class="bi bi-heart"></i></div>
+            <div class="pwish" onclick="event.stopPropagation(); tw(this)"><i class="bi bi-heart"></i></div>
           </div>
           <div class="pinfo">
             <div class="pcat">Skincare</div>
@@ -2519,15 +2430,14 @@
         </div>
 
         <div class="pcard rev rd2">
-          <div class="pimgw" onclick="openPD('Golden Glow Moisturiser', 38, 'Golden Glow Moisturiser.jpg', 'Skincare')">
-            <div class="pview"><span>View Details</span></div>
+          <div class="pimgw" data-name="Golden Glow Moisturiser" data-price="38" data-img="Golden Glow Moisturiser.jpg" data-cat="Skincare">
             <div class="part pa2">
               <div class="pcirc pctla pcg"></div><img src="../assets/Golden Glow Moisturiser.jpg"
                 alt="Golden Glow Moisturiser" class="pimg">
               <div class="pcirc pcbra pcp"></div>
             </div>
             <div class="pbadges"><span class="badge bh">🔥 Hot</span></div>
-            <div class="pwish" onclick="tw(this)"><i class="bi bi-heart"></i></div>
+            <div class="pwish" onclick="event.stopPropagation(); tw(this)"><i class="bi bi-heart"></i></div>
           </div>
           <div class="pinfo">
             <div class="pcat">Skincare</div>
@@ -2541,15 +2451,14 @@
         </div>
 
         <div class="pcard rev rd3">
-          <div class="pimgw" onclick="openPD('Petal Lip & Blush Duo', 52, 'Velvet Lip.jpg', 'Makeup')">
-            <div class="pview"><span>View Details</span></div>
+          <div class="pimgw" data-name="Petal Lip & Blush Duo" data-price="52" data-img="Velvet Lip.jpg" data-cat="Makeup">
             <div class="part pa6">
               <div class="pcirc pctla pcp"></div><img src="../assets/Velvet Lip.jpg" alt="Petal Lip & Blush Duo"
                 class="pimg">
               <div class="pcirc pcbra pcu"></div>
             </div>
             <div class="pbadges"><span class="badge bs">−20%</span></div>
-            <div class="pwish" onclick="tw(this)"><i class="bi bi-heart"></i></div>
+            <div class="pwish" onclick="event.stopPropagation(); tw(this)"><i class="bi bi-heart"></i></div>
           </div>
           <div class="pinfo">
             <div class="pcat">Makeup</div>
@@ -2563,15 +2472,14 @@
         </div>
 
         <div class="pcard rev rd4">
-          <div class="pimgw" onclick="openPD('Emerald Hair Elixir', 42, 'Argan Elixir.jpg', 'Haircare')">
-            <div class="pview"><span>View Details</span></div>
+          <div class="pimgw" data-name="Emerald Hair Elixir" data-price="42" data-img="Argan Elixir.jpg" data-cat="Haircare">
             <div class="part pa4">
               <div class="pcirc pctla pcn"></div><img src="../assets/Argan Elixir.jpg" alt="Emerald Hair Elixir"
                 class="pimg">
               <div class="pcirc pcbra pcg"></div>
             </div>
             <div class="pbadges"><span class="badge bn">New</span></div>
-            <div class="pwish" onclick="tw(this)"><i class="bi bi-heart"></i></div>
+            <div class="pwish" onclick="event.stopPropagation(); tw(this)"><i class="bi bi-heart"></i></div>
           </div>
           <div class="pinfo">
             <div class="pcat">Haircare</div>
@@ -2585,15 +2493,14 @@
         </div>
 
         <div class="pcard rev rd1">
-          <div class="pimgw" onclick="openPD('Lavender Cloud Cream', 55, 'Lavender Cloud Cream.jpg', 'Skincare')">
-            <div class="pview"><span>View Details</span></div>
+          <div class="pimgw" data-name="Lavender Cloud Cream" data-price="55" data-img="Lavender Cloud Cream.jpg" data-cat="Skincare">
             <div class="part pa7">
               <div class="pcirc pctla pcu"></div><img src="../assets/Lavender Cloud Cream.jpg"
                 alt="Lavender Cloud Cream" class="pimg">
               <div class="pcirc pcbra pcp"></div>
             </div>
             <div class="pbadges"><span class="badge bv">⭐ VIP</span></div>
-            <div class="pwish" onclick="tw(this)"><i class="bi bi-heart"></i></div>
+            <div class="pwish" onclick="event.stopPropagation(); tw(this)"><i class="bi bi-heart"></i></div>
           </div>
           <div class="pinfo">
             <div class="pcat">Skincare</div>
@@ -2607,15 +2514,14 @@
         </div>
 
         <div class="pcard rev rd2">
-          <div class="pimgw" onclick="openPD('Santal Bloom EDP', 88, 'Santal Bloom.jpg', 'Fragrance')">
-            <div class="pview"><span>View Details</span></div>
+          <div class="pimgw" data-name="Santal Bloom EDP" data-price="88" data-img="Santal Bloom.jpg" data-cat="Fragrance">
             <div class="part pa9">
               <div class="pcirc pctla pcg"></div><img src="../assets/Santal Bloom.jpg" alt="Santal Bloom EDP"
                 class="pimg">
               <div class="pcirc pcbra pcp"></div>
             </div>
             <div class="pbadges"><span class="badge bh">⭐ Top Pick</span></div>
-            <div class="pwish" onclick="tw(this)"><i class="bi bi-heart"></i></div>
+            <div class="pwish" onclick="event.stopPropagation(); tw(this)"><i class="bi bi-heart"></i></div>
           </div>
           <div class="pinfo">
             <div class="pcat">Fragrance</div>
@@ -2629,15 +2535,14 @@
         </div>
 
         <div class="pcard rev rd3">
-          <div class="pimgw" onclick="openPD('Glow Drops SPF 50', 36, 'White Tea EDP.jpg', 'Skincare')">
-            <div class="pview"><span>View Details</span></div>
+          <div class="pimgw" data-name="Glow Drops SPF 50" data-price="36" data-img="White Tea EDP.jpg" data-cat="Skincare">
             <div class="part pa5">
               <div class="pcirc pctla pcp"></div><img src="../assets/White Tea EDP.jpg" alt="Glow Drops SPF 50"
                 class="pimg">
               <div class="pcirc pcbra pcg"></div>
             </div>
             <div class="pbadges"><span class="badge bn">New</span></div>
-            <div class="pwish" onclick="tw(this)"><i class="bi bi-heart"></i></div>
+            <div class="pwish" onclick="event.stopPropagation(); tw(this)"><i class="bi bi-heart"></i></div>
           </div>
           <div class="pinfo">
             <div class="pcat">Skincare</div>
@@ -2651,15 +2556,14 @@
         </div>
 
         <div class="pcard rev rd4">
-          <div class="pimgw" onclick="openPD('Micellar Bubble Cleanser', 28, 'Sea Salt Scrub.jpg', 'Skincare')">
-            <div class="pview"><span>View Details</span></div>
+          <div class="pimgw" data-name="Micellar Bubble Cleanser" data-price="28" data-img="Sea Salt Scrub.jpg" data-cat="Skincare">
             <div class="part pa10">
               <div class="pcirc pctla pcp"></div><img src="../assets/Sea Salt Scrub.jpg" alt="Micellar Bubble Cleanser"
                 class="pimg">
               <div class="pcirc pcbra pcu"></div>
             </div>
             <div class="pbadges"><span class="badge bs">−15%</span></div>
-            <div class="pwish" onclick="tw(this)"><i class="bi bi-heart"></i></div>
+            <div class="pwish" onclick="event.stopPropagation(); tw(this)"><i class="bi bi-heart"></i></div>
           </div>
           <div class="pinfo">
             <div class="pcat">Skincare</div>
@@ -2673,15 +2577,14 @@
         </div>
 
         <div class="pcard rev rd1">
-          <div class="pimgw" onclick="openPD('Retinol Night Repair', 62, 'Keratin Mask.jpg', 'Skincare')">
-            <div class="pview"><span>View Details</span></div>
+          <div class="pimgw" data-name="Retinol Night Repair" data-price="62" data-img="Keratin Mask.jpg" data-cat="Skincare">
             <div class="part pa11">
               <div class="pcirc pctla pcu"></div><img src="../assets/Retinol Night Repair.jpg"
                 alt="Retinol Night Repair" class="pimg">
               <div class="pcirc pcbra pcn"></div>
             </div>
             <div class="pbadges"><span class="badge bh">🔥 Hot</span></div>
-            <div class="pwish" onclick="tw(this)"><i class="bi bi-heart"></i></div>
+            <div class="pwish" onclick="event.stopPropagation(); tw(this)"><i class="bi bi-heart"></i></div>
           </div>
           <div class="pinfo">
             <div class="pcat">Skincare</div>
@@ -2695,15 +2598,14 @@
         </div>
 
         <div class="pcard rev rd2">
-          <div class="pimgw" onclick="openPD('Blur & Perfect Primer', 44, 'Jade Roller.jpg', 'Makeup')">
-            <div class="pview"><span>View Details</span></div>
+          <div class="pimgw" data-name="Blur & Perfect Primer" data-price="44" data-img="Jade Roller.jpg" data-cat="Makeup">
             <div class="part pa3">
               <div class="pcirc pctla pcu"></div><img src="../assets/Jade Roller.jpg" alt="Blur & Perfect Primer"
                 class="pimg">
               <div class="pcirc pcbra pcp"></div>
             </div>
             <div class="pbadges"><span class="badge bv">⭐ VIP</span></div>
-            <div class="pwish" onclick="tw(this)"><i class="bi bi-heart"></i></div>
+            <div class="pwish" onclick="event.stopPropagation(); tw(this)"><i class="bi bi-heart"></i></div>
           </div>
           <div class="pinfo">
             <div class="pcat">Makeup</div>
@@ -2717,15 +2619,14 @@
         </div>
 
         <div class="pcard rev rd3">
-          <div class="pimgw" onclick="openPD('Hydra-Boost Hair Mask', 34, 'Silk Eye Mask.jpg', 'Haircare')">
-            <div class="pview"><span>View Details</span></div>
+          <div class="pimgw" data-name="Hydra-Boost Hair Mask" data-price="34" data-img="Silk Eye Mask.jpg" data-cat="Haircare">
             <div class="part pa8">
               <div class="pcirc pctla pcn"></div><img src="../assets/Silk Eye Mask.jpg" alt="Hydra-Boost Hair Mask"
                 class="pimg">
               <div class="pcirc pcbra pcg"></div>
             </div>
             <div class="pbadges"><span class="badge bn">New</span></div>
-            <div class="pwish" onclick="tw(this)"><i class="bi bi-heart"></i></div>
+            <div class="pwish" onclick="event.stopPropagation(); tw(this)"><i class="bi bi-heart"></i></div>
           </div>
           <div class="pinfo">
             <div class="pcat">Haircare</div>
@@ -2739,16 +2640,14 @@
         </div>
 
         <div class="pcard rev rd4">
-          <div class="pimgw"
-            onclick="openPD('Diamond Mist Body Spray', 45, 'Diamond Mist Body Spray.jpg', 'Fragrance')">
-            <div class="pview"><span>View Details</span></div>
+          <div class="pimgw" data-name="Diamond Mist Body Spray" data-price="45" data-img="Diamond Mist Body Spray.jpg" data-cat="Fragrance">
             <div class="part pa12">
               <div class="pcirc pctla pcg"></div><img src="../assets/Diamond Mist Body Spray.jpg"
                 alt="Diamond Mist Body Spray" class="pimg">
               <div class="pcirc pcbra pcu"></div>
             </div>
             <div class="pbadges"><span class="badge bs">−25%</span></div>
-            <div class="pwish" onclick="tw(this)"><i class="bi bi-heart"></i></div>
+            <div class="pwish" onclick="event.stopPropagation(); tw(this)"><i class="bi bi-heart"></i></div>
           </div>
           <div class="pinfo">
             <div class="pcat">Fragrance</div>
@@ -2825,11 +2724,11 @@
 
           <div class="cslide">
             <div class="tcard">
-              <div class="timg pa1" style="height:210px"
-                onclick="openPD('Glow Essence Drops', 58, 'Cloud Foundation.jpg', 'Skincare')">
-                <div class="pview"><span>View Details</span></div><img src="../assets/Cloud Foundation.jpg"
+              <div class="timg pa1" style="height:210px" data-name="Glow Essence Drops" data-price="58" data-img="Cloud Foundation.jpg" data-cat="Skincare">
+                <img src="../assets/Cloud Foundation.jpg"
                   alt="Glow Essence Drops" class="pimg">
                 <div class="tbadge"><i class="bi bi-fire"></i> #1 Best Seller</div>
+                <div class="pwish" onclick="event.stopPropagation(); tw(this)"><i class="bi bi-heart"></i></div>
               </div>
               <div class="tinf">
                 <div class="tname">Glow Essence Drops</div>
@@ -2841,11 +2740,11 @@
 
           <div class="cslide">
             <div class="tcard">
-              <div class="timg pa2" style="height:210px"
-                onclick="openPD('Honey Butter Eye Cream', 44, 'Rose Elixir.jpg', 'Skincare')">
-                <div class="pview"><span>View Details</span></div><img src="../assets/Honey Butter Eye Cream.jpg"
+              <div class="timg pa2" style="height:210px" data-name="Honey Butter Eye Cream" data-price="44" data-img="Rose Elixir.jpg" data-cat="Skincare">
+                <img src="../assets/Honey Butter Eye Cream.jpg"
                   alt="Honey Butter Eye Cream" class="pimg">
                 <div class="tbadge"><i class="bi bi-star"></i> Staff Pick</div>
+                <div class="pwish" onclick="event.stopPropagation(); tw(this)"><i class="bi bi-heart"></i></div>
               </div>
               <div class="tinf">
                 <div class="tname">Honey Butter Eye Cream</div>
@@ -2857,11 +2756,11 @@
 
           <div class="cslide">
             <div class="tcard">
-              <div class="timg pa6" style="height:210px"
-                onclick="openPD('Velvet Matte Lipstick', 32, 'Velvet Lip.jpg', 'Makeup')">
-                <div class="pview"><span>View Details</span></div><img src="../assets/Velvet Matte Lipstick.jpg"
+              <div class="timg pa6" style="height:210px" data-name="Velvet Matte Lipstick" data-price="32" data-img="Velvet Lip.jpg" data-cat="Makeup">
+                <img src="../assets/Velvet Matte Lipstick.jpg"
                   alt="Velvet Matte Lipstick" class="pimg">
                 <div class="tbadge"><i class="bi bi-trophy"></i> Iconic</div>
+                <div class="pwish" onclick="event.stopPropagation(); tw(this)"><i class="bi bi-heart"></i></div>
               </div>
               <div class="tinf">
                 <div class="tname">Velvet Matte Lipstick</div>
@@ -2873,11 +2772,11 @@
 
           <div class="cslide">
             <div class="tcard">
-              <div class="timg pa4" style="height:210px"
-                onclick="openPD('Argan Repair Treatment', 46, 'Argan Elixir.jpg', 'Haircare')">
-                <div class="pview"><span>View Details</span></div><img src="../assets/Argan Elixir.jpg"
+              <div class="timg pa4" style="height:210px" data-name="Argan Repair Treatment" data-price="46" data-img="Argan Elixir.jpg" data-cat="Haircare">
+                <img src="../assets/Argan Elixir.jpg"
                   alt="Argan Repair Treatment" class="pimg">
                 <div class="tbadge"><i class="bi bi-flower1"></i> Eco Choice</div>
+                <div class="pwish" onclick="event.stopPropagation(); tw(this)"><i class="bi bi-heart"></i></div>
               </div>
               <div class="tinf">
                 <div class="tname">Argan Repair Treatment</div>
@@ -2889,11 +2788,11 @@
 
           <div class="cslide">
             <div class="tcard">
-              <div class="timg pa9" style="height:210px"
-                onclick="openPD('White Tea Parfum', 98, 'White Tea EDP.jpg', 'Fragrance')">
-                <div class="pview"><span>View Details</span></div><img src="../assets/White Tea EDP.jpg"
+              <div class="timg pa9" style="height:210px" data-name="White Tea Parfum" data-price="98" data-img="White Tea EDP.jpg" data-cat="Fragrance">
+                <img src="../assets/White Tea EDP.jpg"
                   alt="White Tea Parfum" class="pimg">
                 <div class="tbadge"><i class="bi bi-gem"></i> Luxe</div>
+                <div class="pwish" onclick="event.stopPropagation(); tw(this)"><i class="bi bi-heart"></i></div>
               </div>
               <div class="tinf">
                 <div class="tname">White Tea Parfum</div>
@@ -2905,11 +2804,11 @@
 
           <div class="cslide">
             <div class="tcard">
-              <div class="timg pa5" style="height:210px"
-                onclick="openPD('Illuminating Highlighter', 39, 'Cloud Foundation.jpg', 'Makeup')">
-                <div class="pview"><span>View Details</span></div><img src="../assets/Illuminating Highlighter.jpg"
+              <div class="timg pa5" style="height:210px" data-name="Illuminating Highlighter" data-price="39" data-img="Cloud Foundation.jpg" data-cat="Makeup">
+                <img src="../assets/Illuminating Highlighter.jpg"
                   alt="Illuminating Highlighter" class="pimg">
                 <div class="tbadge"><i class="bi bi-lightning-charge"></i> Trending</div>
+                <div class="pwish" onclick="event.stopPropagation(); tw(this)"><i class="bi bi-heart"></i></div>
               </div>
               <div class="tinf">
                 <div class="tname">Illuminating Highlighter</div>
@@ -2921,11 +2820,11 @@
 
           <div class="cslide">
             <div class="tcard">
-              <div class="timg pa11" style="height:210px"
-                onclick="openPD('Peptide Night Cream', 72, 'Keratin Mask.jpg', 'Skincare')">
-                <div class="pview"><span>View Details</span></div><img src="../assets/Peptide Night Cream.jpg"
+              <div class="timg pa11" style="height:210px" data-name="Peptide Night Cream" data-price="72" data-img="Keratin Mask.jpg" data-cat="Skincare">
+                <img src="../assets/Peptide Night Cream.jpg"
                   alt="Peptide Night Cream" class="pimg">
                 <div class="tbadge"><i class="bi bi-moon"></i> Night Hero</div>
+                <div class="pwish" onclick="event.stopPropagation(); tw(this)"><i class="bi bi-heart"></i></div>
               </div>
               <div class="tinf">
                 <div class="tname">Peptide Night Cream</div>
@@ -2937,11 +2836,11 @@
 
           <div class="cslide">
             <div class="tcard">
-              <div class="timg pa3" style="height:210px"
-                onclick="openPD('12-Pan Eyeshadow Palette', 65, 'Santal Bloom.jpg', 'Makeup')">
-                <div class="pview"><span>View Details</span></div><img src="../assets/Pan Eyeshadow Palette.jpg"
+              <div class="timg pa3" style="height:210px" data-name="12-Pan Eyeshadow Palette" data-price="65" data-img="Santal Bloom.jpg" data-cat="Makeup">
+                <img src="../assets/Pan Eyeshadow Palette.jpg"
                   alt="12-Pan Eyeshadow Palette" class="pimg">
                 <div class="tbadge"><i class="bi bi-palette"></i> Colour Pop</div>
+                <div class="pwish" onclick="event.stopPropagation(); tw(this)"><i class="bi bi-heart"></i></div>
               </div>
               <div class="tinf">
                 <div class="tname">12-Pan Eyeshadow Palette</div>
@@ -2953,11 +2852,11 @@
 
           <div class="cslide">
             <div class="tcard">
-              <div class="timg pa8" style="height:210px"
-                onclick="openPD('HA Plumping Toner', 36, 'Sea Salt Scrub.jpg', 'Skincare')">
-                <div class="pview"><span>View Details</span></div><img src="../assets/HA Plumping Toner.jpg"
+              <div class="timg pa8" style="height:210px" data-name="HA Plumping Toner" data-price="36" data-img="Sea Salt Scrub.jpg" data-cat="Skincare">
+                <img src="../assets/HA Plumping Toner.jpg"
                   alt="HA Plumping Toner" class="pimg">
                 <div class="tbadge"><i class="bi bi-droplet"></i> Hydration+</div>
+                <div class="pwish" onclick="event.stopPropagation(); tw(this)"><i class="bi bi-heart"></i></div>
               </div>
               <div class="tinf">
                 <div class="tname">HA Plumping Toner</div>
@@ -2969,11 +2868,11 @@
 
           <div class="cslide">
             <div class="tcard">
-              <div class="timg pa10" style="height:210px"
-                onclick="openPD('Vitamin C Brightening Kit', 85, 'Jade Roller.jpg', 'Skincare')">
-                <div class="pview"><span>View Details</span></div><img src="../assets/Vitamin C Brightening Kit.jpg"
+              <div class="timg pa10" style="height:210px" data-name="Vitamin C Brightening Kit" data-price="85" data-img="Jade Roller.jpg" data-cat="Skincare">
+                <img src="../assets/Vitamin C Brightening Kit.jpg"
                   alt="Vitamin C Brightening Kit" class="pimg">
                 <div class="tbadge"><i class="bi bi-stars"></i> Clean Beauty</div>
+                <div class="pwish" onclick="event.stopPropagation(); tw(this)"><i class="bi bi-heart"></i></div>
               </div>
               <div class="tinf">
                 <div class="tname">Vitamin C Brightening Kit</div>
@@ -3069,12 +2968,7 @@
       <button class="fav-drawer-close" onclick="toggleFavDrawer()"><i class="bi bi-x-lg"></i></button>
     </div>
     <div class="fav-drawer-body" id="favDrawerBody">
-      <div class="fav-empty" id="favEmpty">
-        <div class="fav-empty-icon"><i class="bi bi-heart"></i></div>
-        <h5>Nothing saved yet</h5>
-        <p>Tap the heart on any product to save it here.</p>
-      </div>
-      <div class="fav-grid" id="favGrid"></div>
+      <!-- Content populated by JS -->
     </div>
   </div>
 
@@ -3083,7 +2977,7 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
   <script>
-    /* ── UI Logic from style.css/index.html ── */
+       /* ── UI Logic from style.css/index.html ── */
     let settingsOpen = false;
     function toggleSettings() {
       settingsOpen = !settingsOpen;
@@ -3164,6 +3058,85 @@
       }
     }
 
+    /* ── Wishlist Logic ── */
+    let wishlist = JSON.parse(localStorage.getItem('pbssd_wishlist') || '[]');
+
+    function tw(el) {
+      const pcard = el.closest('.pcard') || el.closest('.tcard');
+      const dataEl = pcard.querySelector('[data-name]');
+      
+      if (dataEl) {
+        const name = dataEl.dataset.name;
+        const price = dataEl.dataset.price;
+        const imgFilename = dataEl.dataset.img;
+        const img = imgFilename.startsWith('../') ? imgFilename : `../assets/${imgFilename}`;
+        
+        const product = { name, price: `$${price}.00`, img };
+        const index = wishlist.findIndex(item => item.name === name);
+        
+        if (index === -1) {
+          wishlist.push(product);
+          showT(`${name} added to wishlist`);
+        } else {
+          wishlist.splice(index, 1);
+          showT(`${name} removed from wishlist`);
+        }
+        
+        localStorage.setItem('pbssd_wishlist', JSON.stringify(wishlist));
+        updateWishlistUI();
+        syncWishlistButtons();
+      }
+    }
+
+    function updateWishlistUI() {
+      const drawerBody = document.getElementById('favDrawerBody');
+      const badge = document.getElementById('favIconBadge');
+      const drawerCount = document.getElementById('favDrawerCount');
+      
+      if (!drawerBody || !badge) return;
+
+      badge.innerText = wishlist.length;
+      badge.style.display = wishlist.length > 0 ? 'flex' : 'none';
+      if (drawerCount) drawerCount.innerText = wishlist.length;
+
+      if (wishlist.length === 0) {
+        drawerBody.innerHTML = `
+          <div class="fav-empty">
+            <div class="fav-empty-icon"><i class="bi bi-heart"></i></div>
+            <h5>Nothing saved yet</h5>
+            <p>Tap the heart on any product to save it here.</p>
+          </div>
+        `;
+      } else {
+        drawerBody.innerHTML = `
+          <div class="fav-grid" style="display: flex; flex-direction: column; gap: 12px;">
+            ${wishlist.map((item, idx) => `
+              <div class="fav-item" style="display: flex; align-items: center; gap: 14px; background: white; border: 0.5px solid var(--border); border-radius: 14px; padding: 12px;">
+                <img src="${item.img}" style="width: 60px; height: 60px; border-radius: 10px; object-fit: cover;" alt="${item.name}">
+                <div style="flex:1;">
+                  <h6 style="font-weight:600;margin:0;font-size:0.85rem;">${item.name}</h6>
+                  <p style="color:var(--pk500);font-weight:700;margin:4px 0 0;font-size:0.8rem;">${item.price}</p>
+                </div>
+                <button onclick="removeFromWishlist(${idx})" style="background:none;border:none;color:var(--ts);cursor:pointer;font-size:1.1rem;padding:5px;"><i class="bi bi-trash"></i></button>
+              </div>
+            `).join('')}
+          </div>
+        `;
+      }
+    }
+
+    window.removeFromWishlist = (index) => {
+      wishlist.splice(index, 1);
+      localStorage.setItem('pbssd_wishlist', JSON.stringify(wishlist));
+      updateWishlistUI();
+      syncWishlistButtons();
+    };
+
+    function toggleFavDrawer() {
+      document.getElementById('favDrawer')?.classList.toggle('open');
+      document.getElementById('favBackdrop')?.classList.toggle('open');
+    }
+
     /* ── Beauty Specific Hero Slider ── */
     const htrack = document.getElementById('htrack');
     const hslides = document.querySelectorAll('.hslide');
@@ -3186,20 +3159,6 @@
     htrack.addEventListener('touchend', e => { const dx = e.changedTouches[0].clientX - htx; if (Math.abs(dx) > 40) { goH(hi + (dx < 0 ? 1 : -1)); startH() } }, { passive: true });
     startH();
 
-    /* ── Product Details ── */
-    const pdOverlay = document.getElementById('pd-overlay');
-    const pdClose = document.getElementById('pd-close');
-    function openPD(name, price, img, cat) {
-      document.getElementById('pd-name').textContent = name;
-      document.getElementById('pd-price').textContent = `$${price.toFixed(2)}`;
-      document.getElementById('pd-img').src = img;
-      document.getElementById('pd-cat').textContent = cat;
-      document.getElementById('pd-atc').onclick = function () { atc(this, name, price); };
-      pdOverlay.classList.add('open');
-    }
-    pdClose.addEventListener('click', () => pdOverlay.classList.remove('open'));
-    pdOverlay.addEventListener('click', e => { if (e.target === pdOverlay) pdOverlay.classList.remove('open'); });
-
     function atc(btn, name, price) {
       // Update badge count in UI
       const badge = document.getElementById('cart-badge');
@@ -3220,16 +3179,22 @@
       setTimeout(() => { btn.classList.remove('added', 'pop'); btn.innerHTML = '<i class="bi bi-plus"></i>' }, 2000);
     }
 
-    /* ── Wishlist ── */
-    function tw(el) {
-      el.classList.toggle('active');
-      el.querySelector('i').className = el.classList.contains('active') ? 'bi bi-heart-fill' : 'bi bi-heart';
-      showT(el.classList.contains('active') ? 'Added to wishlist' : 'Removed from wishlist');
-    }
-
     /* ── Toast ── */
     let tt;
     function showT(msg) { clearTimeout(tt); document.getElementById('tmsg').textContent = msg; document.getElementById('toast').classList.add('show'); tt = setTimeout(() => document.getElementById('toast').classList.remove('show'), 2800) }
+
+    function syncWishlistButtons() {
+      document.querySelectorAll('.pwish').forEach(btn => {
+        const pcard = btn.closest('.pcard') || btn.closest('.tcard');
+        const dataEl = pcard.querySelector('[data-name]');
+        if (dataEl) {
+          const name = dataEl.dataset.name;
+          const isWishlisted = wishlist.some(item => item.name === name);
+          btn.classList.toggle('active', isWishlisted);
+          btn.querySelector('i').className = isWishlisted ? 'bi bi-heart-fill' : 'bi bi-heart';
+        }
+      });
+    }
 
     /* ── Product Carousel ── */
     const ctrack = document.getElementById('ctrack');
@@ -3267,6 +3232,29 @@
       setTimeout(() => { if (preloader) { preloader.style.opacity = '0'; preloader.style.visibility = 'hidden'; } }, 1000);
       AOS.init({ duration: 900, once: true, offset: 80, easing: 'ease-out-cubic' });
       checkAuth();
+      
+      updateWishlistUI();
+      syncWishlistButtons();
+
+      // --- REDIRECT TO DETAILS PAGE ON CARD CLICK ---
+      document.querySelectorAll('.pcard, .tcard').forEach(card => {
+        card.addEventListener('click', (e) => {
+          // Don't redirect if clicking buttons
+          if (e.target.closest('.pwish') || e.target.closest('.atc')) return;
+
+          const dataEl = card.querySelector('[data-name]');
+          if (!dataEl) return;
+
+          const name = dataEl.dataset.name;
+          const price = dataEl.dataset.price;
+          const imgFilename = dataEl.dataset.img;
+          const img = imgFilename.startsWith('../') ? imgFilename : `../assets/${imgFilename}`;
+          const cat = dataEl.dataset.cat;
+          const badge = card.querySelector('.badge, .tbadge')?.innerText || '';
+
+          window.location.href = `beauty_productDetails.html?name=${encodeURIComponent(name)}&price=${encodeURIComponent(price)}&img=${encodeURIComponent(img)}&cat=${encodeURIComponent(cat)}&badge=${encodeURIComponent(badge)}`;
+        });
+      });
 
       const nav = document.querySelector('.navbar');
       const catBar = document.getElementById('categoryNavBar');
@@ -3282,8 +3270,10 @@
       window.addEventListener('scroll', updatePos);
       updatePos();
     });
+  
   </script>
   <script src="../js/navbar.js" defer></script>
+  <script src="visual/js/beauty.js"></script>
 </body>
 
 </html>
