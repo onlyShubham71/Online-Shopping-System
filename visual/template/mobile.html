@@ -1,1138 +1,1291 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MOBILĒ — Premium Smartphones</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-<style>
-/* ── CSS RESET & VARIABLES ──────────────────────── */
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --g1:#95D5B2;--g2:#52B788;--g3:#40916C;--g4:#1B4332;
-  --bg:#F8FBF8;--bg2:#EFF7F0;--dark:#0D1F15;
-  --white:#FFFFFF;--text:#1A2E22;--muted:#6B8F71;
-  --accent:#2D6A4F;--sale:#E76F51;
-  --font-head:'Cormorant Garamond',serif;
-  --font-body:'DM Sans',sans-serif;
-  --rad:14px;--rad-sm:8px;
-  --shadow:0 4px 24px rgba(27,67,50,.10);
-  --shadow-lg:0 12px 48px rgba(27,67,50,.16);
-}
-html{scroll-behavior:smooth}
-body{font-family:var(--font-body);background:var(--bg);color:var(--text);overflow-x:hidden}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UrbanMart — Mobile & Gadgets</title>
 
-/* ── LOADER ──────────────────────────────────────── */
-#loader{position:fixed;inset:0;background:var(--dark);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;transition:opacity .7s,visibility .7s}
-#loader.hidden{opacity:0;visibility:hidden}
-.loader-icon{width:64px;height:64px;margin-bottom:20px;animation:loaderSpin 2s linear infinite}
-@keyframes loaderSpin{to{transform:rotate(360deg)}}
-.loader-brand{font-family:var(--font-head);font-size:2.8rem;font-weight:300;color:var(--white);letter-spacing:.3em;margin-bottom:8px}
-.loader-brand span{color:var(--g1)}
-.loader-track{width:200px;height:2px;background:rgba(255,255,255,.15);border-radius:4px;overflow:hidden;margin-bottom:12px}
-.loader-fill{height:100%;background:linear-gradient(90deg,var(--g1),var(--g2));width:0;animation:loaderBar 2.2s ease forwards}
-@keyframes loaderBar{to{width:100%}}
-.loader-tagline{font-size:.75rem;color:rgba(255,255,255,.45);letter-spacing:.2em;text-transform:uppercase}
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Lora:wght@500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link rel="stylesheet" href="../css/navbar.css">
 
-/* ── NAV ─────────────────────────────────────────── */
-nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 40px;height:72px;display:flex;align-items:center;justify-content:space-between;background:rgba(248,251,248,.85);backdrop-filter:blur(16px);border-bottom:1px solid rgba(82,183,136,.12);transition:all .3s}
-nav.scrolled{background:rgba(248,251,248,.97);box-shadow:var(--shadow)}
-.nav-brand{font-family:var(--font-head);font-size:1.6rem;font-weight:600;color:var(--dark);letter-spacing:.15em;text-decoration:none}
-.nav-brand span{color:var(--g2)}
-.nav-links{display:flex;gap:28px;list-style:none}
-.nav-links a{font-size:.82rem;font-weight:500;color:var(--muted);text-decoration:none;letter-spacing:.04em;text-transform:uppercase;transition:color .2s}
-.nav-links a:hover{color:var(--g3)}
-.nav-right{display:flex;align-items:center;gap:14px}
-.nav-icon{width:40px;height:40px;border-radius:50%;border:1.5px solid rgba(82,183,136,.25);background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.95rem;transition:all .2s;color:var(--dark)}
-.nav-icon:hover{background:var(--g2);border-color:var(--g2);color:#fff}
-.cart-badge{position:relative}
-.badge-count{position:absolute;top:-5px;right:-5px;background:var(--sale);color:#fff;font-size:9px;font-weight:700;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center}
-.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
-.hamburger span{display:block;width:22px;height:1.5px;background:var(--dark);transition:all .3s}
-@media(max-width:768px){
-  nav{padding:0 20px}
-  .nav-links{display:none}
-  .hamburger{display:flex}
-}
+  <style>
+    /* ── MOBILE SPECIFIC STYLES ── */
+    *, *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-/* ── MOBILE MENU ─────────────────────────────────── */
-.mob-menu{position:fixed;inset:0;background:var(--dark);z-index:9000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:32px;transform:translateY(-100%);transition:transform .5s cubic-bezier(.76,0,.24,1)}
-.mob-menu.open{transform:translateY(0)}
-.mob-menu a{font-family:var(--font-head);font-size:2.5rem;color:var(--white);text-decoration:none;letter-spacing:.05em;transition:color .2s}
-.mob-menu a:hover{color:var(--g1)}
-.mob-close{position:absolute;top:24px;right:24px;background:none;border:none;color:var(--white);font-size:1.5rem;cursor:pointer}
+    :root {
+      --ivory: #FAFAF7;
+      --white: #FFFFFF;
+      --primary-mobile: #5A8A5A; /* UrbanMart Sage Green */
+      --secondary-mobile: #3A6A3A; /* Deep Green */
+      --accent-mobile: #5A8A5A; 
+      --sage: #5A8A5A; /* Keeping branding color from grocery for continuity */
+      --deep: #3A6A3A;
+      --black: #1A1A1A;
+      --gray: #777777;
+      --border: #E5E5E0;
+      --radius: 16px;
+    }
 
-/* ── HERO ─────────────────────────────────────────── */
-.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:100px 60px 60px;gap:40px;position:relative;overflow:hidden}
-.hero-canvas{position:absolute;inset:0;pointer-events:none}
-.blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.18}
-.blob1{width:600px;height:600px;background:var(--g1);top:-150px;right:-100px;animation:blobDrift 8s ease-in-out infinite alternate}
-.blob2{width:400px;height:400px;background:var(--g2);bottom:-80px;left:-80px;animation:blobDrift 10s ease-in-out infinite alternate-reverse}
-.blob3{width:300px;height:300px;background:var(--g3);top:40%;right:30%;animation:blobDrift 12s ease-in-out infinite alternate}
-@keyframes blobDrift{to{transform:translate(40px,30px) scale(1.05)}}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(82,183,136,.12);border:1px solid rgba(82,183,136,.3);border-radius:30px;padding:6px 16px;font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--g3);margin-bottom:24px}
-.hero-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--g2);animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
-.hero-title{font-family:var(--font-head);font-size:clamp(2.8rem,5vw,4.5rem);font-weight:300;line-height:1.1;color:var(--dark);margin-bottom:20px}
-.hero-title .italic{font-style:italic;color:var(--g3)}
-.hero-title .line2{display:block;font-size:clamp(3.5rem,6vw,5.5rem);font-weight:600}
-.hero-sub{font-size:.95rem;line-height:1.7;color:var(--muted);max-width:440px;margin-bottom:32px}
-.hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:40px}
-.btn-fill{display:inline-flex;align-items:center;gap:8px;background:var(--dark);color:#fff;padding:14px 28px;border-radius:40px;text-decoration:none;font-size:.82rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;transition:all .3s;position:relative;overflow:hidden}
-.btn-fill::before{content:'';position:absolute;inset:0;background:var(--g2);transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(.76,0,.24,1)}
-.btn-fill:hover::before{transform:scaleX(1)}
-.btn-fill span{position:relative;z-index:1}
-.btn-ghost{display:inline-flex;align-items:center;padding:14px 28px;border-radius:40px;border:1.5px solid rgba(27,67,50,.2);font-size:.82rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--dark);text-decoration:none;transition:all .3s}
-.btn-ghost:hover{border-color:var(--g2);color:var(--g3)}
-.hero-trust{display:flex;gap:28px}
-.trust-item{display:flex;flex-direction:column}
-.trust-num{font-family:var(--font-head);font-size:1.8rem;font-weight:600;color:var(--dark);line-height:1}
-.trust-label{font-size:.7rem;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
+    html {
+      scroll-behavior: smooth;
+    }
 
-/* ── HERO RIGHT ──────────────────────────────────── */
-.hero-right{position:relative;display:flex;align-items:center;justify-content:center;min-height:520px}
-.hero-scene-3d{position:relative;width:100%;max-width:440px}
-.float-chip{position:absolute;background:var(--white);border-radius:30px;padding:8px 16px;font-size:.72rem;font-weight:600;display:flex;align-items:center;gap:7px;box-shadow:var(--shadow);border:1px solid rgba(82,183,136,.15);color:var(--dark);z-index:10}
-.chip-dot{width:7px;height:7px;border-radius:50%}
-.chip-dot.green{background:#52B788}.chip-dot.lime{background:#95D5B2}.chip-dot.yellow{background:#F9C74F}
-.chip1{top:10%;left:-10%;animation:floatY 3s ease-in-out infinite}
-.chip2{top:55%;left:-12%;animation:floatY 3.5s 1s ease-in-out infinite}
-.chip3{top:75%;right:-5%;animation:floatY 4s .5s ease-in-out infinite}
-@keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
-.card-main{background:var(--white);border-radius:24px;box-shadow:var(--shadow-lg);overflow:hidden;border:1px solid rgba(82,183,136,.1);transform-style:preserve-3d;transition:transform .5s}
-.card-main-bg{height:280px;background:linear-gradient(135deg,#D8F3DC,#B7E4C7,#95D5B2);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
-.phone-3d-wrap{display:flex;align-items:center;justify-content:center;gap:20px}
-.phone-mockup{width:80px;height:150px;background:var(--dark);border-radius:14px;position:relative;box-shadow:0 8px 30px rgba(0,0,0,.3)}
-.phone-mockup::before{content:'';position:absolute;top:8px;left:50%;transform:translateX(-50%);width:24px;height:5px;background:rgba(255,255,255,.2);border-radius:4px}
-.phone-mockup::after{content:'';position:absolute;inset:12px 6px 14px;background:linear-gradient(160deg,#1a2e22,#2d6a4f);border-radius:8px}
-.phone-mockup.big{width:96px;height:180px;transform:scale(1.1)}
-.phone-shine{position:absolute;inset:0;background:linear-gradient(120deg,transparent 40%,rgba(255,255,255,.18) 60%,transparent);border-radius:24px}
-.card-main-info{padding:20px 24px}
-.card-main-info h4{font-family:var(--font-head);font-size:1.2rem;font-weight:600;color:var(--dark);margin-bottom:4px}
-.card-main-info p{font-size:.78rem;color:var(--muted);margin-bottom:12px}
-.price-row{display:flex;align-items:center;gap:12px}
-.price{font-family:var(--font-head);font-size:1.4rem;font-weight:700;color:var(--dark)}
-.add-quick{background:var(--g2);color:#fff;border:none;padding:8px 16px;border-radius:30px;font-size:.72rem;font-weight:700;cursor:pointer;transition:all .2s}
-.add-quick:hover{background:var(--g3);transform:scale(1.05)}
-.hero-scroll{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
-.scroll-bar{width:1px;height:50px;background:linear-gradient(to bottom,var(--g2),transparent);animation:scrollAnim 2s ease-in-out infinite}
-@keyframes scrollAnim{0%,100%{transform:scaleY(1);transform-origin:top}50%{transform:scaleY(.5);transform-origin:bottom}}
-@media(max-width:900px){
-  .hero{grid-template-columns:1fr;padding:80px 24px 40px;text-align:center}
-  .hero-sub{max-width:100%;margin-left:auto;margin-right:auto}
-  .hero-actions{justify-content:center}
-  .hero-trust{justify-content:center}
-  .hero-right{min-height:auto}
-  .chip1,.chip2,.chip3{display:none}
-}
+    body {
+      background: var(--ivory);
+      font-family: 'DM Sans', sans-serif;
+      color: var(--black);
+      font-size: 15px;
+      line-height: 1.6;
+    }
 
-/* ── TICKER ──────────────────────────────────────── */
-.ticker{overflow:hidden;background:var(--dark);padding:12px 0;border-top:1px solid rgba(82,183,136,.15);border-bottom:1px solid rgba(82,183,136,.15)}
-.ticker-track{display:flex;gap:0;animation:tickerRoll 28s linear infinite;width:max-content}
-.ticker-item{font-size:.72rem;font-weight:500;color:rgba(255,255,255,.75);letter-spacing:.08em;text-transform:uppercase;padding:0 32px;white-space:nowrap}
-.ticker-sep{color:var(--g1);padding:0 8px;opacity:.6}
-@keyframes tickerRoll{to{transform:translateX(-50%)}}
+    h1, h2, h3, .section-title {
+      font-family: 'Lora', serif;
+    }
 
-/* ── SECTION SHARED ──────────────────────────────── */
-.section{padding:100px 60px}
-.section-alt{background:var(--bg2)}
-.section-dark{background:var(--dark);padding:80px 60px}
-.sec-header{max-width:560px}
-.sec-header.center{max-width:100%;text-align:center}
-.sec-tag{display:inline-block;font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--g3);margin-bottom:12px}
-.sec-tag-white{color:var(--g1)}
-.sec-title{font-family:var(--font-head);font-size:clamp(2rem,4vw,3rem);font-weight:300;line-height:1.15;color:var(--dark);margin-bottom:12px}
-.sec-title-white{color:var(--white)}
-.ital{font-style:italic;color:var(--g3)}
-.ital-white{font-style:italic;color:var(--g1)}
-.sec-sub{font-size:.9rem;color:var(--muted);line-height:1.7;max-width:520px}
-.sec-sub-white{color:rgba(255,255,255,.6);max-width:480px}
-@media(max-width:768px){.section,.section-alt,.section-dark{padding:60px 20px}}
+    /* ── ANNOUNCEMENT ── */
+    .announcement {
+      background: var(--accent-mobile);
+      color: white;
+      text-align: center;
+      padding: 0.55rem;
+      margin-top: 15px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
 
-/* ── REVEAL ──────────────────────────────────────── */
-.reveal{opacity:0;transform:translateY(32px);transition:opacity .7s,transform .7s}
-.reveal.in{opacity:1;transform:none}
-.reveal-d1{transition-delay:.1s}.reveal-d2{transition-delay:.2s}.reveal-d3{transition-delay:.3s}.reveal-d4{transition-delay:.4s}
-.reveal-d5{transition-delay:.5s}.reveal-d6{transition-delay:.6s}.reveal-d7{transition-delay:.7s}.reveal-d8{transition-delay:.8s}
+    /* ── HERO SLIDER ── */
+    .hero-slider {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      height: 540px;
+      background: #f8faf7;
+    }
 
-/* ── CATEGORIES (BRANDS) ─────────────────────────── */
-.cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:48px}
-.cat-card{border-radius:var(--rad);overflow:hidden;position:relative;cursor:pointer;min-height:220px;display:flex;flex-direction:column;justify-content:flex-end;transition:transform .4s,box-shadow .4s}
-.cat-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-lg)}
-.cat-bg-layer{position:absolute;inset:0;background:linear-gradient(160deg,var(--bg2) 0%,#c8e6c9 100%);transition:transform .6s}
-.cat-card:hover .cat-bg-layer{transform:scale(1.05)}
-.cat-apple .cat-bg-layer{background:linear-gradient(160deg,#e8f5e9,#a5d6a7)}
-.cat-samsung .cat-bg-layer{background:linear-gradient(160deg,#e0f2f1,#80cbc4)}
-.cat-oneplus .cat-bg-layer{background:linear-gradient(160deg,#fce4ec,#f48fb1)}
-.cat-xiaomi .cat-bg-layer{background:linear-gradient(160deg,#fff8e1,#ffe082)}
-.cat-vivo .cat-bg-layer{background:linear-gradient(160deg,#e8eaf6,#9fa8da)}
-.cat-oppo .cat-bg-layer{background:linear-gradient(160deg,#e0f7fa,#80deea)}
-.cat-realme .cat-bg-layer{background:linear-gradient(160deg,#fff3e0,#ffcc80)}
-.cat-google .cat-bg-layer{background:linear-gradient(160deg,#e8f5e9,#a5d6a7)}
-.cat-pattern{position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.3) 1px,transparent 1px);background-size:20px 20px;opacity:.4}
-.cat-icon-wrap{position:absolute;top:20px;right:20px;font-size:2rem;opacity:.7}
-.cat-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,31,21,.65) 0%,transparent 60%);opacity:0;transition:opacity .4s}
-.cat-card:hover .cat-overlay{opacity:1}
-.cat-info{position:relative;z-index:2;padding:18px 20px}
-.cat-eyebrow{font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
-.cat-name{font-family:var(--font-head);font-size:1.5rem;font-weight:600;color:var(--dark);line-height:1}
-.cat-count{font-size:.72rem;color:var(--muted);margin:4px 0 8px}
-.cat-link{font-size:.72rem;font-weight:700;color:var(--g3);text-transform:uppercase;letter-spacing:.08em;opacity:0;transform:translateY(8px);transition:all .3s;display:inline-block}
-.cat-card:hover .cat-link,.cat-card:hover .cat-name,.cat-card:hover .cat-count{color:var(--white)}
-.cat-card:hover .cat-link{opacity:1;transform:none}
-.cat-card:hover .cat-eyebrow{color:rgba(255,255,255,.7)}
-@media(max-width:1100px){.cat-grid{grid-template-columns:repeat(4,1fr)}}
-@media(max-width:768px){.cat-grid{grid-template-columns:repeat(2,1fr);gap:14px}}
-@media(max-width:480px){.cat-grid{grid-template-columns:repeat(2,1fr)}}
+    .slides-track {
+      display: flex;
+      height: 100%;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      will-change: transform;
+    }
 
-/* ── PRODUCTS ─────────────────────────────────────── */
-.filter-row{display:flex;gap:10px;flex-wrap:wrap;margin:24px 0 40px;justify-content:center}
-.f-tab{background:transparent;border:1.5px solid rgba(27,67,50,.15);border-radius:30px;padding:8px 20px;font-family:var(--font-body);font-size:.78rem;font-weight:500;cursor:pointer;color:var(--muted);transition:all .2s}
-.f-tab:hover{border-color:var(--g2);color:var(--g3)}
-.f-tab.on{background:var(--dark);border-color:var(--dark);color:#fff}
-.prod-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
-.prod-card{background:var(--white);border-radius:var(--rad);overflow:hidden;border:1px solid rgba(82,183,136,.1);transition:transform .3s,box-shadow .3s;cursor:pointer}
-.prod-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
-.prod-img{height:180px;background:linear-gradient(135deg,var(--bg2),#d8f3dc);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
-.prod-img-inner{width:100%;height:100%;object-fit:contain;padding:15px;transition:transform .4s}
-.prod-badge-row{position:absolute;top:10px;left:10px;display:flex;gap:6px;flex-wrap:wrap}
-.prod-badge{padding:4px 10px;border-radius:20px;font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em}
-.badge-new{background:#D8F3DC;color:#1B4332}
-.badge-sale{background:#FFE8E0;color:#C34A2C}
-.badge-hot{background:#FFF3CD;color:#8B5E00}
-.badge-5g{background:#E3EEFF;color:#1a356b}
-.prod-body{padding:14px 16px}
-.prod-brand{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--g3);margin-bottom:3px}
-.prod-name{font-family:var(--font-head);font-size:1.05rem;font-weight:600;color:var(--dark);margin-bottom:3px;line-height:1.2}
-.prod-spec{font-size:.72rem;color:var(--muted);margin-bottom:10px}
-.prod-rating{display:flex;align-items:center;gap:4px;margin-bottom:10px}
-.stars{color:#F9C74F;font-size:.72rem;letter-spacing:1px}
-.rat-count{font-size:.65rem;color:var(--muted)}
-.prod-foot{display:flex;align-items:center;justify-content:space-between}
-.prod-prices{display:flex;flex-direction:column}
-.prod-price{font-family:var(--font-head);font-size:1.2rem;font-weight:700;color:var(--dark);line-height:1}
-.prod-mrp{font-size:.72rem;color:var(--muted);text-decoration:line-through}
-.prod-disc{font-size:.65rem;color:var(--sale);font-weight:700;margin-left:4px}
-.prod-add{width:36px;height:36px;background:var(--g2);border:none;border-radius:50%;color:#fff;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
-.prod-add:hover{background:var(--g3);transform:scale(1.1)}
-.prod-wl{position:absolute;top:10px;right:10px;width:30px;height:30px;background:rgba(255,255,255,.85);border-radius:50%;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.85rem;transition:all .2s}
-.prod-wl:hover{background:var(--white);transform:scale(1.1)}
-@media(max-width:1100px){.prod-grid{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:768px){.prod-grid{grid-template-columns:repeat(2,1fr);gap:14px}}
-@media(max-width:380px){.prod-grid{grid-template-columns:1fr}}
+    .slide {
+      min-width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 8%;
+      position: relative;
+      overflow: hidden;
+    }
 
-/* ── SPECS HIGHLIGHT ──────────────────────────────── */
-.specs-section{background:var(--dark);padding:80px 60px}
-.specs-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;margin-top:48px}
-.spec-phone-visual{display:flex;justify-content:center;align-items:center;gap:16px}
-.spec-phone{width:110px;height:220px;background:linear-gradient(160deg,#1a2e22,#2d6a4f);border-radius:20px;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.5)}
-.spec-phone::before{content:'';position:absolute;top:10px;left:50%;transform:translateX(-50%);width:28px;height:6px;background:rgba(255,255,255,.15);border-radius:4px}
-.spec-phone::after{content:'';position:absolute;inset:14px 8px 18px;background:linear-gradient(160deg,#0d1f15,#1b4332);border-radius:12px;display:flex;align-items:center;justify-content:center}
-.spec-phone-glow{position:absolute;bottom:-20px;left:50%;transform:translateX(-50%);width:80px;height:20px;background:var(--g2);border-radius:50%;filter:blur(15px);opacity:.5}
-.spec-list{display:flex;flex-direction:column;gap:20px}
-.spec-item{display:flex;gap:16px;align-items:flex-start}
-.spec-ico{width:44px;height:44px;background:rgba(82,183,136,.12);border:1px solid rgba(82,183,136,.2);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
-.spec-text h4{font-family:var(--font-head);font-size:1.05rem;font-weight:600;color:var(--white);margin-bottom:3px}
-.spec-text p{font-size:.8rem;color:rgba(255,255,255,.5);line-height:1.5}
-@media(max-width:768px){.specs-section{padding:60px 20px}.specs-grid{grid-template-columns:1fr;gap:40px}}
+    .slide-0 {
+      background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://images.unsplash.com/photo-1604671871544-c523154333c7?auto=format&fit=crop&q=80&w=2000');
+      background-size: cover;
+      background-position: center;
+    }
 
-/* ── PROMO STRIP ──────────────────────────────────── */
-.promo-strip{background:linear-gradient(135deg,var(--g3),var(--g4));padding:70px 60px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
-.promo-eyebrow{font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--g1);margin-bottom:12px}
-.promo-title{font-family:var(--font-head);font-size:clamp(2rem,4vw,3rem);font-weight:300;color:var(--white);line-height:1.15;margin-bottom:16px}
-.promo-title em{font-style:italic;color:var(--g1)}
-.promo-desc{font-size:.88rem;color:rgba(255,255,255,.75);line-height:1.7;margin-bottom:28px;max-width:420px}
-.btn-white{display:inline-flex;align-items:center;gap:8px;background:var(--white);color:var(--dark);padding:13px 26px;border-radius:40px;text-decoration:none;font-size:.8rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;transition:all .3s}
-.btn-white:hover{background:var(--g1);color:var(--dark)}
-.promo-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:32px;text-align:center}
-.promo-badge{font-family:var(--font-head);font-size:5rem;font-weight:700;color:var(--g1);line-height:1}
-.promo-badge-sub{font-size:.78rem;font-weight:600;color:rgba(255,255,255,.6);letter-spacing:.1em;text-transform:uppercase;margin-bottom:24px}
-.countdown-row{display:flex;gap:10px;justify-content:center}
-.cd-box{background:rgba(0,0,0,.25);border-radius:10px;padding:12px 14px;min-width:60px;text-align:center}
-.cd-n{font-family:var(--font-head);font-size:1.8rem;font-weight:700;color:var(--white);display:block;line-height:1}
-.cd-l{font-size:.58rem;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.1em;margin-top:4px}
-@media(max-width:768px){.promo-strip{grid-template-columns:1fr;padding:50px 20px}}
+    .slide-1 {
+      background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://images.unsplash.com/photo-1546054454-aa26a3479857?auto=format&fit=crop&q=80&w=2000');
+      background-size: cover;
+      background-position: center;
+    }
 
-/* ── TRENDING ──────────────────────────────────────── */
-.trend-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px}
-.trend-card{border-radius:var(--rad);min-height:280px;position:relative;overflow:hidden;cursor:none;transition:transform .4s,box-shadow .4s}
-.trend-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
-.trend-bg{position:absolute;inset:0;transition:transform .6s}
-.trend-card:hover .trend-bg{transform:scale(1.06)}
-.tc1 .trend-bg{background:linear-gradient(135deg,#D8F3DC,#95D5B2)}
-.tc2 .trend-bg{background:linear-gradient(135deg,#1a2e22,#2d6a4f)}
-.tc3 .trend-bg{background:linear-gradient(135deg,#B7E4C7,#52B788)}
-.trend-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,31,21,.8) 0%,transparent 55%)}
-.trend-badge{position:absolute;top:16px;left:16px;background:rgba(255,255,255,.15);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:5px 12px;font-size:.65rem;font-weight:700;color:var(--white)}
-.trend-deco{position:absolute;top:16px;right:16px;width:36px;height:36px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--white);font-size:.9rem;transition:all .3s}
-.trend-card:hover .trend-deco{background:var(--white);color:var(--dark)}
-.trend-info{position:absolute;bottom:20px;left:20px;right:20px}
-.trend-cat{font-size:.65rem;font-weight:600;color:rgba(255,255,255,.65);letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}
-.trend-name{font-family:var(--font-head);font-size:1.4rem;font-weight:600;color:var(--white);margin-bottom:4px}
-.trend-price{font-size:.8rem;color:var(--g1);font-weight:600}
-@media(max-width:768px){.trend-grid{grid-template-columns:1fr;gap:14px}}
+    .slide-2 {
+      background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://images.unsplash.com/photo-1592840331052-16e15c2c6f95?auto=format&fit=crop&q=80&w=2000');
+      background-size: cover;
+      background-position: center;
+    }
 
-/* ── FEATURES ──────────────────────────────────────── */
-.features-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:40px}
-.feat-card{background:rgba(255,255,255,.04);border:1px solid rgba(82,183,136,.1);border-radius:var(--rad);padding:28px 20px;text-align:center;transition:all .3s;cursor:pointer}
-.feat-card:hover{background:rgba(82,183,136,.08);border-color:rgba(82,183,136,.25);transform:translateY(-4px)}
-.feat-ico{font-size:2rem;display:block;margin-bottom:14px}
-.feat-title{font-family:var(--font-head);font-size:1.1rem;font-weight:600;color:var(--white);margin-bottom:8px}
-.feat-desc{font-size:.78rem;color:rgba(255,255,255,.5);line-height:1.6}
-@media(max-width:768px){.features-grid{grid-template-columns:repeat(2,1fr)}}
+    .slide-content {
+      flex: 1;
+      z-index: 2;
+      animation: slideIn 0.6s ease both;
+    }
 
-/* ── TESTIMONIALS ──────────────────────────────────── */
-.test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px}
-.test-card{background:var(--white);border-radius:var(--rad);padding:28px;border:1px solid rgba(82,183,136,.1);transition:all .3s}
-.test-card:hover{box-shadow:var(--shadow);transform:translateY(-4px)}
-.test-stars{color:#F9C74F;font-size:.9rem;letter-spacing:2px;margin-bottom:16px}
-.test-quote{font-size:.9rem;color:var(--muted);line-height:1.7;margin-bottom:20px;font-style:italic}
-.test-author{display:flex;align-items:center;gap:12px}
-.test-av{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.1rem}
-.test-name{font-size:.85rem;font-weight:600;color:var(--dark)}
-.test-role{font-size:.7rem;color:var(--muted)}
-@media(max-width:768px){.test-grid{grid-template-columns:1fr}}
+    .slide-tag {
+      display: inline-block;
+      background: var(--primary-mobile);
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.85rem;
+      border-radius: 20px;
+      margin-bottom: 1.2rem;
+    }
 
-/* ── NEWSLETTER ──────────────────────────────────────── */
-.nl-inner{background:linear-gradient(135deg,#D8F3DC,#B7E4C7);border-radius:24px;padding:60px 40px;text-align:center;border:1px solid rgba(82,183,136,.2)}
-.nl-inner h2{font-family:var(--font-head);font-size:clamp(1.8rem,4vw,2.8rem);font-weight:300;color:var(--dark);margin-bottom:12px}
-.nl-inner h2 em{font-style:italic;color:var(--g3)}
-.nl-inner p{font-size:.9rem;color:var(--muted);margin-bottom:28px;max-width:440px;margin-left:auto;margin-right:auto;line-height:1.6}
-.nl-form{display:flex;gap:10px;max-width:420px;margin:0 auto;flex-wrap:wrap}
-.nl-form input{flex:1;min-width:200px;padding:13px 18px;border:1.5px solid rgba(27,67,50,.2);border-radius:40px;font-family:var(--font-body);font-size:.85rem;background:var(--white);color:var(--dark);outline:none;transition:border .2s}
-.nl-form input:focus{border-color:var(--g2)}
-.nl-form button{background:var(--dark);color:#fff;border:none;padding:13px 26px;border-radius:40px;font-family:var(--font-body);font-size:.8rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;transition:all .3s}
-.nl-form button:hover{background:var(--g3)}
+    .slide-content h1 {
+      font-size: clamp(2.2rem, 3.5vw, 3.4rem);
+      font-weight: 600;
+      line-height: 1.18;
+      color: var(--white);
+      margin-bottom: 0.9rem;
+    }
 
-/* ── FOOTER ──────────────────────────────────────────── */
-footer{background:var(--dark);padding:70px 60px 30px}
-.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:50px}
-.footer-brand{font-family:var(--font-head);font-size:1.8rem;font-weight:600;color:var(--white);letter-spacing:.15em;margin-bottom:14px}
-.footer-brand .dot{color:var(--g1)}
-.footer-desc{font-size:.82rem;color:rgba(255,255,255,.45);line-height:1.7;max-width:260px;margin-bottom:20px}
-.socials{display:flex;gap:10px;flex-wrap:wrap}
-.soc-btn{width:36px;height:36px;border-radius:50%;border:1px solid rgba(82,183,136,.2);background:transparent;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.5);font-size:.75rem;text-decoration:none;transition:all .2s}
-.soc-btn:hover{background:var(--g2);border-color:var(--g2);color:#fff}
-.footer-col h5{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:rgba(255,255,255,.35);margin-bottom:16px}
-.footer-links{list-style:none;display:flex;flex-direction:column;gap:9px}
-.footer-links a{font-size:.82rem;color:rgba(255,255,255,.5);text-decoration:none;transition:color .2s}
-.footer-links a:hover{color:var(--g1)}
-.footer-bottom{border-top:1px solid rgba(255,255,255,.07);padding-top:24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:gap;gap:16px}
-.footer-copy{font-size:.75rem;color:rgba(255,255,255,.3)}
-.pay-icons{display:flex;gap:8px;flex-wrap:wrap}
-.pay-ic{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:6px;padding:4px 10px;font-size:.65rem;font-weight:700;color:rgba(255,255,255,.4)}
-@media(max-width:768px){footer{padding:50px 20px 24px}.footer-grid{grid-template-columns:1fr 1fr;gap:30px}.footer-bottom{flex-direction:column;text-align:center}}
-@media(max-width:480px){.footer-grid{grid-template-columns:1fr}}
+    .slide-content h1 em {
+      color: var(--accent-mobile);
+      font-style: normal;
+    }
 
-/* ── CART DRAWER ─────────────────────────────────────── */
-.cart-veil{position:fixed;inset:0;background:rgba(13,31,21,.5);z-index:7000;opacity:0;visibility:hidden;transition:all .3s;backdrop-filter:blur(4px)}
-.cart-veil.open{opacity:1;visibility:visible}
-.cart-panel{position:fixed;top:0;right:0;bottom:0;width:380px;background:var(--white);z-index:7001;transform:translateX(100%);transition:transform .45s cubic-bezier(.76,0,.24,1);display:flex;flex-direction:column;box-shadow:-8px 0 40px rgba(0,0,0,.15)}
-.cart-panel.open{transform:none}
-.cart-hdr{padding:20px 24px;border-bottom:1px solid rgba(82,183,136,.12);display:flex;align-items:center;justify-content:space-between}
-.cart-hdr-title{font-family:var(--font-head);font-size:1.3rem;font-weight:600;color:var(--dark)}
-.cart-hdr-close{background:none;border:1.5px solid rgba(27,67,50,.15);width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:.9rem;color:var(--dark);display:flex;align-items:center;justify-content:center;transition:all .2s}
-.cart-hdr-close:hover{background:var(--g2);border-color:var(--g2);color:#fff}
-.cart-body{flex:1;overflow-y:auto;padding:16px 24px}
-.cart-empty{text-align:center;padding:60px 20px;color:var(--muted)}
-.cart-empty .empty-ico{font-size:3rem;margin-bottom:12px}
-.cart-item{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid rgba(82,183,136,.08)}
-.ci-img{width:60px;height:60px;background:var(--bg2);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0}
-.ci-info{flex:1}
-.ci-name{font-size:.88rem;font-weight:600;color:var(--dark);margin-bottom:3px}
-.ci-sub{font-size:.72rem;color:var(--muted);margin-bottom:8px}
-.ci-qty{display:flex;align-items:center;gap:8px}
-.qty-btn{width:24px;height:24px;border-radius:50%;border:1px solid rgba(27,67,50,.2);background:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.9rem;color:var(--dark);transition:all .2s}
-.qty-btn:hover{background:var(--g2);border-color:var(--g2);color:#fff}
-.qty-n{font-size:.82rem;font-weight:600;color:var(--dark)}
-.ci-price{font-family:var(--font-head);font-size:1rem;font-weight:700;color:var(--dark);white-space:nowrap}
-.ci-rm{background:none;border:none;color:var(--muted);cursor:pointer;font-size:.85rem;transition:color .2s}
-.ci-rm:hover{color:var(--sale)}
-.cart-ftr{padding:20px 24px;border-top:1px solid rgba(82,183,136,.12)}
-.cart-total-row{display:flex;justify-content:space-between;margin-bottom:14px;align-items:center}
-.ctl{font-size:.82rem;color:var(--muted);font-weight:500}
-.ctv{font-family:var(--font-head);font-size:1.6rem;font-weight:700;color:var(--dark)}
-.checkout-btn{width:100%;background:var(--dark);color:#fff;border:none;padding:16px;border-radius:40px;font-family:var(--font-body);font-size:.85rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:all .3s}
-.checkout-btn:hover{background:var(--g3)}
-@media(max-width:480px){.cart-panel{width:100%}}
+    .slide-content p {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 1rem;
+      max-width: 400px;
+      margin-bottom: 1.8rem;
+      line-height: 1.7;
+    }
 
-/* ── SEARCH OVERLAY ──────────────────────────────────── */
-.search-veil{position:fixed;inset:0;background:rgba(13,31,21,.95);z-index:8000;display:flex;align-items:flex-start;justify-content:center;padding-top:120px;opacity:0;visibility:hidden;transition:all .3s;backdrop-filter:blur(8px)}
-.search-veil.open{opacity:1;visibility:visible}
-.search-wrap{width:100%;max-width:600px;padding:0 20px}
-.search-wrap input{width:100%;background:none;border:none;border-bottom:2px solid rgba(82,183,136,.4);padding:16px 0;font-family:var(--font-head);font-size:2rem;color:var(--white);outline:none;letter-spacing:.02em}
-.search-wrap input::placeholder{color:rgba(255,255,255,.3)}
-.search-x{position:fixed;top:24px;right:32px;background:none;border:1.5px solid rgba(255,255,255,.2);width:44px;height:44px;border-radius:50%;cursor:pointer;font-size:1rem;color:var(--white);display:flex;align-items:center;justify-content:center;transition:all .2s}
-.search-x:hover{background:var(--g2);border-color:var(--g2)}
-.search-tags{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
-.s-tag{display:inline-block;padding:7px 16px;border:1px solid rgba(82,183,136,.25);border-radius:20px;font-size:.72rem;color:rgba(255,255,255,.6);cursor:pointer;transition:all .2s}
-.s-tag:hover{border-color:var(--g1);color:var(--g1)}
+    .btn-primary-mobile {
+      background: var(--primary-mobile);
+      color: #fff;
+      border: none;
+      padding: 0.8rem 1.8rem;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
 
-/* ── TOAST & WISHLIST FLASH ──────────────────────────── */
-.toast{position:fixed;bottom:32px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--dark);color:#fff;border-radius:40px;padding:12px 24px;font-size:.8rem;font-weight:600;display:flex;align-items:center;gap:8px;z-index:9998;transition:transform .4s cubic-bezier(.34,1.56,.64,1);box-shadow:var(--shadow-lg)}
-.toast.show{transform:translateX(-50%) translateY(0)}
-.toast-ic{background:var(--g2);width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.7rem}
-.wl-flash{position:fixed;top:90px;right:20px;background:var(--g2);color:#fff;border-radius:30px;padding:10px 20px;font-size:.78rem;font-weight:600;z-index:9997;transform:translateX(150%);transition:transform .4s cubic-bezier(.34,1.56,.64,1);box-shadow:var(--shadow)}
-.wl-flash.show{transform:translateX(0)}
-</style>
+    .btn-primary-mobile:hover {
+      filter: brightness(1.1);
+      transform: translateY(-1px);
+    }
+
+    /* Product cards inside slider */
+    .slide-products {
+      flex: 0 0 auto;
+      display: flex;
+      gap: 1rem;
+      z-index: 2;
+      align-items: center;
+    }
+
+    .slide-pcard {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 14px;
+      padding: 1.2rem 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.45rem;
+      width: 140px;
+      text-align: center;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      transition: transform 0.25s;
+      cursor: pointer;
+    }
+
+    .slide-pcard:hover {
+      transform: translateY(-5px);
+    }
+
+    .slide-pcard .sp-emoji {
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .slide-pcard .sp-emoji img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .slide-pcard .sp-name {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--black);
+    }
+
+    .slide-pcard .sp-price {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--primary-mobile);
+    }
+
+    .slider-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: white;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      color: var(--primary-mobile);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    .slider-dots {
+      position: absolute;
+      bottom: 1.4rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 0.5rem;
+      z-index: 10;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.4);
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .dot.active {
+      width: 24px;
+      background: var(--accent-mobile);
+    }
+
+    /* ── CATEGORY PILLS ── */
+    .section {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 3rem 5%;
+    }
+
+    .section-label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--secondary-mobile);
+      margin-bottom: 0.6rem;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--black);
+      margin-bottom: 1.5rem;
+    }
+
+    .pills {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
+
+    .pill {
+      background: var(--white);
+      color: var(--black);
+      border: 1px solid var(--border);
+      padding: 0.5rem 1.2rem;
+      border-radius: 25px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .pill:hover,
+    .pill.active {
+      background: var(--secondary-mobile);
+      color: #fff;
+      border-color: var(--secondary-mobile);
+    }
+
+    /* ── PRODUCT GRID ── */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .product-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+
+    .product-card:hover {
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+      transform: translateY(-5px);
+    }
+
+    .product-img {
+      background: #f8f9fa;
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .product-img img {
+      width: 80%;
+      height: 80%;
+      object-fit: contain;
+    }
+
+    .product-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: var(--primary-mobile);
+      color: #fff;
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 0.2rem 0.6rem;
+      border-radius: 8px;
+    }
+
+    .product-info {
+      padding: 1.2rem;
+    }
+
+    .product-info h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+
+    .product-info .sub {
+      font-size: 0.8rem;
+      color: var(--gray);
+      margin-bottom: 1rem;
+    }
+
+    .price {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--primary-mobile);
+    }
+
+    .add-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--secondary-mobile);
+      border: none;
+      color: #fff;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s;
+    }
+
+    .add-btn:hover {
+      transform: scale(1.1);
+    }
+
+    /* ── PROMO BANNER ── */
+    .banner {
+      background: linear-gradient(135deg, var(--primary-mobile) 0%, var(--secondary-mobile) 100%);
+      border-radius: 24px;
+      padding: 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #fff;
+      margin: 2rem 0;
+    }
+
+    .banner h2 {
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+    }
+
+    /* ── WISHLIST BUTTON ── */
+    .wishlist-btn {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #fff;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gray);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: all 0.2s;
+    }
+
+    .wishlist-btn.active {
+      color: #e11d48;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .hero-slider { height: 400px; }
+      .slide-products { display: none; }
+      .banner { flex-direction: column; text-align: center; gap: 1.5rem; padding: 2rem; }
+    }
+  </style>
 </head>
+
 <body>
-<!-- ── LOADER ─────────────────────────────────── -->
-<div id="loader">
-  <div class="loader-icon">
-    <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg" width="64" height="64">
-      <rect x="22" y="8" width="28" height="56" rx="6" stroke="#95D5B2" stroke-width="2"/>
-      <rect x="28" y="58" width="16" height="4" rx="2" fill="#52B788"/>
-      <rect x="29" y="14" width="14" height="2" rx="1" fill="#52B788" opacity=".4"/>
-      <circle cx="36" cy="58" r="2" fill="#95D5B2"/>
-    </svg>
-  </div>
-  <div class="loader-brand">MOBIL<span>Ē</span></div>
-  <div class="loader-track"><div class="loader-fill"></div></div>
-  <div class="loader-tagline">Next-Gen Devices — Delivered Fast</div>
-</div>
 
-<!-- ══════════════════════════════════════════════
-     NAV
-══════════════════════════════════════════════ -->
-<nav id="mainNav">
-  <a class="nav-brand" href="#hero">MOBIL<span>Ē</span></a>
-  <ul class="nav-links">
-    <li><a href="#categories">Brands</a></li>
-    <li><a href="#products">Phones</a></li>
-    <li><a href="#specs">Features</a></li>
-    <li><a href="#trending">Trending</a></li>
-    <li><a href="#about">Offers</a></li>
-  </ul>
-  <div class="nav-right">
-    <button class="nav-icon" onclick="openSearch()">🔍</button>
-    <button class="nav-icon cart-badge" onclick="openCart()">
-      🛒<span class="badge-count" id="cartCount">0</span>
-    </button>
-    <button class="nav-icon" onclick="toggleMenu()">💚</button>
-    <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
-  </div>
-</nav>
-
-<!-- ── MOBILE MENU ─────────────────────────────── -->
-<div class="mob-menu" id="mobMenu">
-  <button class="mob-close" onclick="toggleMenu()">✕</button>
-  <a href="#categories" onclick="toggleMenu()">Brands</a>
-  <a href="#products" onclick="toggleMenu()">Phones</a>
-  <a href="#specs" onclick="toggleMenu()">Features</a>
-  <a href="#trending" onclick="toggleMenu()">Trending</a>
-  <a href="#about" onclick="toggleMenu()">Offers</a>
-</div>
-
-<!-- ══════════════════════════════════════════════
-     HERO
-══════════════════════════════════════════════ -->
-<section class="hero" id="hero">
-  <div class="hero-canvas">
-    <div class="blob blob1"></div>
-    <div class="blob blob2"></div>
-    <div class="blob blob3"></div>
-  </div>
-
-  <div class="hero-left">
-    <div class="hero-badge">Free Shipping &amp; No-Cost EMI</div>
-    <h1 class="hero-title">
-      Your Next Phone,<br>
-      <span class="italic">Smarter &amp;</span>
-      <span class="line2">Greener</span>
-    </h1>
-    <p class="hero-sub">Curated smartphones from the world's best brands — delivered fast, priced right. Find your perfect match at MOBILĒ.</p>
-    <div class="hero-actions">
-      <a href="#products" class="btn-fill"><span>Explore Phones</span></a>
-      <a href="#categories" class="btn-ghost">Browse Brands</a>
-    </div>
-    <div class="hero-trust">
-      <div class="trust-item"><span class="trust-num">80K+</span><span class="trust-label">Happy Buyers</span></div>
-      <div class="trust-item"><span class="trust-num">500+</span><span class="trust-label">Models Listed</span></div>
-      <div class="trust-item"><span class="trust-num">Zero</span><span class="trust-label">Hidden Charges</span></div>
+  <!-- ── PRELOADER ── -->
+  <div id="preloader">
+    <div class="loader-content">
+      <div class="loader-logo">UrbanMart</div>
+      <div class="text-secondary small mt-2">Curating the Best for You...</div>
     </div>
   </div>
 
-  <div class="hero-right">
-    <div class="hero-scene-3d">
-      <div class="float-chip chip1"><div class="chip-dot green"></div>5G Ready</div>
-      <div class="float-chip chip2"><div class="chip-dot lime"></div>No-Cost EMI</div>
-      <div class="float-chip chip3"><div class="chip-dot yellow"></div>2 Yr Warranty</div>
-      <div class="card-main">
-        <div class="card-main-bg">
-          <div class="phone-3d-wrap">
-            <div class="spec-phone" style="width:80px;height:160px;border-radius:16px;animation:floatY 4s ease-in-out infinite"></div>
-            <div class="spec-phone big" style="animation:floatY 3.5s .5s ease-in-out infinite"></div>
-            <div class="spec-phone" style="width:80px;height:160px;border-radius:16px;animation:floatY 4s 1s ease-in-out infinite"></div>
+  <!-- ── SEARCH OVERLAY ── -->
+  <div class="search-overlay" id="searchOverlay">
+    <div class="search-overlay-inner">
+      <button class="search-close-btn" onclick="toggleSearch()"><i class="bi bi-x-lg"></i></button>
+      <input type="text" id="searchInput" placeholder="Search for phones, tablets, accessories..." autofocus>
+      <button class="nav-icon-btn" onclick="toggleSearch()"
+        style="background:var(--primary-mobile);color:white;border-color:var(--primary-mobile);"><i
+          class="bi bi-search"></i></button>
+    </div>
+  </div>
+
+  <div class="nav-backdrop" id="navBackdrop" onclick="closeAll()"></div>
+
+  <!-- ── NAVBAR ── -->
+  <nav class="navbar animate__animated animate__fadeInDown">
+    <div class="container">
+      <div class="navbar-inner w-100">
+        <a class="navbar-brand fw-bold" href="../../index.html"
+          style="display:flex;align-items:center;gap:0;text-decoration:none;">
+          <svg width="148" height="36" viewBox="0 0 148 36" fill="none" xmlns="http://www.w3.org/2000/svg"
+            style="flex-shrink:0;">
+            <rect x="2" y="10" width="22" height="20" rx="3.5" fill="#5A8A5A" />
+            <path d="M8 10 C8 6.5 10.5 4 13 4 C15.5 4 18 6.5 18 10" stroke="#5A8A5A" stroke-width="2.2"
+              stroke-linecap="round" fill="none" />
+            <path d="M9 17 L17 17" stroke="white" stroke-width="1.8" stroke-linecap="round" />
+            <circle cx="9.5" cy="17" r="1.2" fill="white" />
+            <circle cx="16.5" cy="17" r="1.2" fill="white" />
+            <text x="29" y="24" font-family="'Lora', Georgia, serif" font-weight="700" font-size="15.5" fill="#1A1A1A"
+              letter-spacing="-0.3">Urban</text>
+            <text x="80" y="24" font-family="'Lora', Georgia, serif" font-weight="700" font-size="15.5" fill="#5A8A5A"
+              letter-spacing="-0.3">mart</text>
+            <circle cx="144" cy="23" r="2.5" fill="#5A8A5A" />
+          </svg>
+        </a>
+        <ul class="nav-links ms-3">
+          <li><a class="nav-link" href="../../index.html#shop">Shop</a></li>
+        </ul>
+        <div class="nav-search-bar">
+          <i class="bi bi-search nav-search-icon"></i>
+          <input type="text" id="navSearchInput" class="nav-search-input" placeholder="Search devices, brands...">
+          <button class="nav-search-clear" id="navSearchClear" onclick="clearNavSearch()" title="Clear"><i
+              class="bi bi-x"></i></button>
+        </div>
+        <div class="nav-right">
+          <button class="nav-icon-btn" id="fav-btn" onclick="toggleFavDrawer()" title="Favourites" style="position:relative;">
+            <i class="bi bi-heart"></i>
+            <span class="cart-badge" id="favIconBadge" style="display:none;background:#e11d48;">0</span>
+          </button>
+          <div class="settings-wrapper">
+            <button class="nav-icon-btn" onclick="toggleSettings()" title="Settings" id="settingsBtn"><i
+                class="bi bi-gear"></i></button>
+            <div class="settings-panel" id="settingsPanel">
+              <div class="settings-panel-header">Preferences</div>
+              <div class="settings-item" onclick="toggleSetting('notifications')">
+                <div class="settings-item-left">
+                  <div class="settings-item-icon"><i class="bi bi-bell"></i></div>
+                  <div>
+                    <div class="settings-item-label">Notifications</div>
+                    <div class="settings-item-sub">Deals &amp; order updates</div>
+                  </div>
+                </div>
+                <button class="s-toggle on" id="toggle-notifications"></button>
+              </div>
+              <div class="settings-item" onclick="toggleSetting('darkmode')">
+                <div class="settings-item-left">
+                  <div class="settings-item-icon"><i class="bi bi-moon"></i></div>
+                  <div>
+                    <div class="settings-item-label">Dark Mode</div>
+                    <div class="settings-item-sub">Switch appearance</div>
+                  </div>
+                </div>
+                <button class="s-toggle" id="toggle-darkmode"></button>
+              </div>
+              <div class="settings-item" onclick="toggleSetting('offers')">
+                <div class="settings-item-left">
+                  <div class="settings-item-icon"><i class="bi bi-tag"></i></div>
+                  <div>
+                    <div class="settings-item-label">Personalised Offers</div>
+                    <div class="settings-item-sub">Based on your activity</div>
+                  </div>
+                </div>
+                <button class="s-toggle on" id="toggle-offers"></button>
+              </div>
+              <div class="settings-divider"></div>
+              <div class="settings-panel-header">Account</div>
+              <a class="settings-link-item" href="login.html">
+                <div class="settings-item-icon"><i class="bi bi-person-circle"></i></div><span>My
+                  Profile</span><i class="bi bi-chevron-right ms-auto" style="font-size:0.7rem;"></i>
+              </a>
+              <a class="settings-link-item" href="#">
+                <div class="settings-item-icon"><i class="bi bi-box-seam"></i></div><span>My
+                  Orders</span><i class="bi bi-chevron-right ms-auto" style="font-size:0.7rem;"></i>
+              </a>
+              <a class="settings-link-item" href="seller.html">
+                <div class="settings-item-icon" style="background:rgba(90,138,90,0.1);color:var(--primary-nature);"><i
+                    class="bi bi-shop"></i></div><span style="color:var(--primary-nature);">Partner
+                  with Us</span><i class="bi bi-chevron-right ms-auto"
+                  style="font-size:0.7rem;color:var(--primary-nature);"></i>
+              </a>
+              <a class="settings-link-item" href="about.html">
+                <div class="settings-item-icon"><i class="bi bi-info-circle"></i></div><span>About
+                  UrbanMart</span><i class="bi bi-chevron-right ms-auto" style="font-size:0.7rem;"></i>
+              </a>
+            </div>
           </div>
-          <div class="phone-shine"></div>
+          <button class="nav-icon-btn" onclick="window.location.href='cart.html'" title="Cart">
+            <i class="bi bi-bag"></i>
+            <span class="cart-badge" id="cart-badge">0</span>
+          </button>
+          <a id="login-nav-btn" class="nav-login-btn" href="login.html"><i class="bi bi-person-circle"></i>
+            Login</a>
+          <a id="user-profile-btn" class="nav-login-btn d-none" href="account.html"><i class="bi bi-person-circle"></i>
+            <span id="user-nav-name">Profile</span></a>
+          <button class="nav-hamburger" id="hamburgerBtn" onclick="toggleMobile()" title="Menu"><i class="bi bi-list"
+              id="hamburgerIcon"></i></button>
         </div>
-        <div class="card-main-info">
-          <h4>iPhone 16 Pro Max</h4>
-          <p>Apple · 256GB · Titanium Black</p>
-          <div class="price-row">
-            <span class="price">₹1,39,900</span>
-            <button class="add-quick" onclick="addToCart(0)">+ Add</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ── CATEGORY NAV BAR ── -->
+  <div class="category-nav-bar" id="categoryNavBar">
+    <div class="category-nav-overflow-wrap" id="catOverflowWrap">
+      <div class="category-nav-scroll" id="category-filters">
+        <div class="cat-pill" data-cat="For You" onclick="window.location.href='../../index.html#shop'"><i
+            class="bi bi-grid-fill"></i> For You</div>
+        <div class="cat-pill" data-cat="Grocery" onclick="window.location.href='grocery.html'"><i
+            class="bi bi-cart"></i> Grocery</div>
+        <div class="cat-pill" data-cat="Fashion" onclick="window.location.href='fashion.html'"><i
+            class="bi bi-bag-heart"></i> Fashion</div>
+        <div class="cat-pill active" data-cat="Mobiles" onclick="window.location.href='mobile.html'"><i
+            class="bi bi-phone"></i> Mobiles</div>
+        <div class="cat-pill" data-cat="Beauty" onclick="window.location.href='beauty.html'"><i
+            class="bi bi-stars"></i> Beauty</div>
+        <div class="cat-pill" data-cat="Electronics" onclick="window.location.href='electronic.html'"><i
+            class="bi bi-cpu"></i> Electronics</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── MOBILE PANEL ── -->
+  <div class="nav-mobile-panel" id="mobilePanel">
+    <a class="mobile-nav-link" href="../../index.html#home" onclick="closeAll()"><i class="bi bi-house"></i> Home</a>
+    <a class="mobile-nav-link" href="../../index.html#shop" onclick="closeAll()"><i class="bi bi-bag"></i> Shop</a>
+    <a class="mobile-nav-link" href="seller.html"><i class="bi bi-shop"></i> Partner with us</a>
+    <div class="mobile-nav-divider"></div>
+    <a id="login-nav-btn-mobile" class="mobile-fab-btn login" href="login.html" style="border-radius:12px;"><i
+        class="bi bi-person-circle"></i> Login</a>
+  </div>
+
+  <!-- ── ANNOUNCEMENT ── -->
+  <div class="announcement">⚡ Flash Sale: Up to 30% off on selected smartphones & accessories &nbsp;|&nbsp; Free express delivery on all orders</div>
+
+  <!-- ── HERO SLIDER ── -->
+  <div class="hero-slider">
+    <div class="slides-track" id="slidesTrack">
+
+      <!-- SLIDE 1 — Latest Smartphones -->
+      <div class="slide slide-0">
+        <div class="slide-content">
+          <span class="slide-tag">🚀 Unleash the Future</span>
+          <h1>Experience the next<br /><em>generation of mobile</em>.</h1>
+          <p>Discover cutting-edge smartphones with advanced cameras, powerful processors, and stunning displays.</p>
+          <div class="slide-actions">
+            <button class="btn-primary-mobile" data-target="smartphones">Shop Smartphones →</button>
+          </div>
+        </div>
+        <div class="slide-products">
+          <div class="slide-pcard">
+            <div class="sp-emoji"><img src="https://images.unsplash.com/photo-1604671871544-c523154333c7?auto=format&fit=crop&w=100&q=80" alt="Smartphone"></div>
+            <div class="sp-name">Flagship Pro</div>
+            <div class="sp-price">₹79,999</div>
+          </div>
+          <div class="slide-pcard">
+            <div class="sp-emoji"><img src="https://images.unsplash.com/photo-1592840331052-16e15c2c6f95?auto=format&fit=crop&w=100&q=80" alt="Smartphone"></div>
+            <div class="sp-name">Ultra Max</div>
+            <div class="sp-price">₹1,09,999</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 2 — Wearable Tech -->
+      <div class="slide slide-1">
+        <div class="slide-content">
+          <span class="slide-tag">⌚ Wearable Tech</span>
+          <h1>Stay connected,<br /><em>stay active</em>.</h1>
+          <p>Explore smartwatches and fitness trackers that seamlessly integrate into your digital life.</p>
+          <div class="slide-actions">
+            <button class="btn-primary-mobile" data-target="wearables">Explore Wearables →</button>
+          </div>
+        </div>
+        <div class="slide-products">
+          <div class="slide-pcard">
+            <div class="sp-emoji"><img src="https://images.unsplash.com/photo-1546054454-aa26a3479857?auto=format&fit=crop&w=100&q=80" alt="Smartwatch"></div>
+            <div class="sp-name">SmartWatch X</div>
+            <div class="sp-price">₹18,999</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 3 — Pro Tablets -->
+      <div class="slide slide-2">
+        <div class="slide-content">
+          <span class="slide-tag">💻 Pro Productivity</span>
+          <h1>Work and play<br /><em>anywhere</em>.</h1>
+          <p>Unmatched performance and portability with our range of high-end tablets and hybrid devices.</p>
+          <div class="slide-actions">
+            <button class="btn-primary-mobile" data-target="tablets">Explore Tablets →</button>
+          </div>
+        </div>
+        <div class="slide-products">
+          <div class="slide-pcard">
+            <div class="sp-emoji"><img src="https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&q=80&w=100&q=80" alt="Tablet"></div>
+            <div class="sp-name">Tab Air M2</div>
+            <div class="sp-price">₹54,900</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <button class="slider-arrow arrow-prev" id="arrowPrev">&#8592;</button>
+    <button class="slider-arrow arrow-next" id="arrowNext">&#8594;</button>
+    <div class="slider-dots" id="sliderDots"></div>
+  </div>
+
+  <!-- ── CATEGORY PILLS + PRODUCTS ── -->
+  <div class="section">
+    <p class="section-label">Find Your Device</p>
+    <h2 class="section-title">Shop by Category</h2>
+    <div class="pills">
+      <button class="pill active" data-target="all">📱 All Mobiles</button>
+      <button class="pill" data-target="smartphones">📲 Smartphones</button>
+      <button class="pill" data-target="tablets">Tablets</button>
+      <button class="pill" data-target="accessories">🎧 Accessories</button>
+      <button class="pill" data-target="wearables">⌚ Wearables</button>
+      <button class="pill">🔊 Audio</button>
+    </div>
+
+    <!-- SMARTPHONES -->
+    <p id="smartphones" class="section-label">Smartphones</p>
+    <h3 class="section-title" style="font-size:1.3rem;">Latest & Greatest</h3>
+    <div class="product-grid">
+      <div class="product-card">
+        <div class="product-img"><img src="https://images.unsplash.com/photo-1604671871544-c523154333c7?auto=format&fit=crop&q=80&w=400" alt="Smartphone"><span class="product-badge">NEW</span></div>
+        <div class="product-info">
+          <h3>Flagship Pro 2024</h3>
+          <div class="sub">12GB RAM · 256GB Storage</div>
+          <div class="product-footer">
+            <span class="price">₹79,999</span>
+            <button class="add-btn">+</button>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img"><img src="https://images.unsplash.com/photo-1592840331052-16e15c2c6f95?auto=format&fit=crop&q=80&w=400" alt="Smartphone"></div>
+        <div class="product-info">
+          <h3>Ultra Max 5G</h3>
+          <div class="sub">16GB RAM · 512GB Storage</div>
+          <div class="product-footer">
+            <span class="price">₹1,09,999</span>
+            <button class="add-btn">+</button>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img"><img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&q=80&w=400" alt="Smartphone"></div>
+        <div class="product-info">
+          <h3>Galaxy Pro S24</h3>
+          <div class="sub">8GB RAM · 128GB Storage</div>
+          <div class="product-footer">
+            <span class="price">₹64,999</span>
+            <button class="add-btn">+</button>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img"><img src="https://images.unsplash.com/photo-1546054454-aa26a3479857?auto=format&fit=crop&q=80&w=400" alt="Smartphone"></div>
+        <div class="product-info">
+          <h3>Pixel Infinity</h3>
+          <div class="sub">12GB RAM · 256GB Storage</div>
+          <div class="product-footer">
+            <span class="price">₹72,999</span>
+            <button class="add-btn">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TABLETS -->
+    <p id="tablets" class="section-label" style="margin-top:3rem;">Tablets</p>
+    <h3 class="section-title" style="font-size:1.3rem;">Work & Play</h3>
+    <div class="product-grid">
+      <div class="product-card">
+        <div class="product-img"><img src="https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&q=80&w=400" alt="Tablet"><span class="product-badge">TRENDING</span></div>
+        <div class="product-info">
+          <h3>Tab Air M2</h3>
+          <div class="sub">11-inch Display · 128GB</div>
+          <div class="product-footer">
+            <span class="price">₹54,900</span>
+            <button class="add-btn">+</button>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img"><img src="https://images.unsplash.com/photo-1585790050230-5dd28404ccb9?auto=format&fit=crop&q=80&w=400" alt="Tablet"></div>
+        <div class="product-info">
+          <h3>Tab Ultra Pro</h3>
+          <div class="sub">12.9-inch Display · 256GB</div>
+          <div class="product-footer">
+            <span class="price">₹1,09,900</span>
+            <button class="add-btn">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WEARABLES -->
+    <p id="wearables" class="section-label" style="margin-top:3rem;">Wearables</p>
+    <h3 class="section-title" style="font-size:1.3rem;">Stay Connected</h3>
+    <div class="product-grid">
+      <div class="product-card">
+        <div class="product-img"><img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&q=80&w=400" alt="Smartwatch"><span class="product-badge">BEST VALUE</span></div>
+        <div class="product-info">
+          <h3>Active Watch SE</h3>
+          <div class="sub">GPS · Heart Rate Monitor</div>
+          <div class="product-footer">
+            <span class="price">₹24,900</span>
+            <button class="add-btn">+</button>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img"><img src="https://images.unsplash.com/photo-1544117519-31a4b719223d?auto=format&fit=crop&q=80&w=400" alt="Smartwatch"></div>
+        <div class="product-info">
+          <h3>Pro Watch Series 9</h3>
+          <div class="sub">Always-on Display · Health Suite</div>
+          <div class="product-footer">
+            <span class="price">₹41,900</span>
+            <button class="add-btn">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ACCESSORIES -->
+    <p id="accessories" class="section-label" style="margin-top:3rem;">Accessories</p>
+    <h3 class="section-title" style="font-size:1.3rem;">Enhance Your Experience</h3>
+    <div class="product-grid">
+      <div class="product-card">
+        <div class="product-img"><img src="https://images.unsplash.com/photo-1585338107529-13afc5f0141f?auto=format&fit=crop&q=80&w=400" alt="Headphones"><span class="product-badge">BESTSELLER</span></div>
+        <div class="product-info">
+          <h3>Noise Cancelling Headphones</h3>
+          <div class="sub">Wireless · 30H Battery</div>
+          <div class="product-footer">
+            <span class="price">₹12,499</span>
+            <button class="add-btn">+</button>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="hero-scroll"><div class="scroll-bar"></div>Scroll</div>
-</section>
-
-<!-- ── TICKER ─────────────────────────────────── -->
-<div class="ticker">
-  <div class="ticker-track" id="tickerTrack">
-    <span class="ticker-item">Free Shipping on All Orders</span>
-    <span class="ticker-sep">✦</span>
-    <span class="ticker-item">No-Cost EMI on 6 / 12 Months</span>
-    <span class="ticker-sep">✦</span>
-    <span class="ticker-item">Latest 5G Smartphones</span>
-    <span class="ticker-sep">✦</span>
-    <span class="ticker-item">2-Year Brand Warranty</span>
-    <span class="ticker-sep">✦</span>
-    <span class="ticker-item">Certified Pre-Owned Available</span>
-    <span class="ticker-sep">✦</span>
-    <span class="ticker-item">Free Shipping on All Orders</span>
-    <span class="ticker-sep">✦</span>
-    <span class="ticker-item">No-Cost EMI on 6 / 12 Months</span>
-    <span class="ticker-sep">✦</span>
-    <span class="ticker-item">Latest 5G Smartphones</span>
-    <span class="ticker-sep">✦</span>
-    <span class="ticker-item">2-Year Brand Warranty</span>
-    <span class="ticker-sep">✦</span>
-    <span class="ticker-item">Certified Pre-Owned Available</span>
-    <span class="ticker-sep">✦</span>
-  </div>
-</div>
-
-<!-- ══════════════════════════════════════════════
-     CATEGORIES (BRANDS)
-══════════════════════════════════════════════ -->
-<section class="section" id="categories">
-  <div class="sec-header reveal">
-    <span class="sec-tag">Shop By Brand</span>
-    <h2 class="sec-title">Find Your <span class="ital">Perfect Brand</span></h2>
-    <p class="sec-sub">From flagship iPhones to budget-friendly Realme — explore top mobile brands curated for every lifestyle and budget.</p>
-  </div>
-  <div class="cat-grid">
-
-    <div class="cat-card cat-apple reveal reveal-d1" onclick="filterByBrand('apple')">
-      <div class="cat-bg-layer"></div><div class="cat-pattern"></div>
-      <div class="cat-icon-wrap">🍎</div>
-      <div class="cat-overlay"></div>
-      <div class="cat-info">
-        <div class="cat-eyebrow">Brand</div>
-        <div class="cat-name">Apple</div>
-        <div class="cat-count">iPhone 15 · 16 · Pro · Max</div>
-        <span class="cat-link">Shop Apple →</span>
+  <!-- ── PROMO BANNER ── -->
+  <div class="container">
+    <div class="banner">
+      <div>
+        <h2>Upgrade Your Tech</h2>
+        <p>Get exclusive deals on the latest devices and accessories. Don't miss out!</p>
+        <button class="btn btn-light rounded-pill mt-3 px-4 py-2 fw-bold">Explore Offers</button>
       </div>
-    </div>
-
-    <div class="cat-card cat-samsung reveal reveal-d2" onclick="filterByBrand('samsung')">
-      <div class="cat-bg-layer"></div><div class="cat-pattern"></div>
-      <div class="cat-icon-wrap">💠</div>
-      <div class="cat-overlay"></div>
-      <div class="cat-info">
-        <div class="cat-eyebrow">Brand</div>
-        <div class="cat-name">Samsung</div>
-        <div class="cat-count">Galaxy S · A · M · Fold Series</div>
-        <span class="cat-link">Shop Samsung →</span>
-      </div>
-    </div>
-
-    <div class="cat-card cat-oneplus reveal reveal-d3" onclick="filterByBrand('oneplus')">
-      <div class="cat-bg-layer"></div><div class="cat-pattern"></div>
-      <div class="cat-icon-wrap">🔴</div>
-      <div class="cat-overlay"></div>
-      <div class="cat-info">
-        <div class="cat-eyebrow">Brand</div>
-        <div class="cat-name">OnePlus</div>
-        <div class="cat-count">Nord · 12 · 12R Series</div>
-        <span class="cat-link">Shop OnePlus →</span>
-      </div>
-    </div>
-
-    <div class="cat-card cat-xiaomi reveal reveal-d4" onclick="filterByBrand('xiaomi')">
-      <div class="cat-bg-layer"></div><div class="cat-pattern"></div>
-      <div class="cat-icon-wrap">⚡</div>
-      <div class="cat-overlay"></div>
-      <div class="cat-info">
-        <div class="cat-eyebrow">Brand</div>
-        <div class="cat-name">Xiaomi</div>
-        <div class="cat-count">14 · Redmi · POCO Series</div>
-        <span class="cat-link">Shop Xiaomi →</span>
-      </div>
-    </div>
-
-    <div class="cat-card cat-vivo reveal reveal-d5" onclick="filterByBrand('vivo')">
-      <div class="cat-bg-layer"></div><div class="cat-pattern"></div>
-      <div class="cat-icon-wrap">📷</div>
-      <div class="cat-overlay"></div>
-      <div class="cat-info">
-        <div class="cat-eyebrow">Brand</div>
-        <div class="cat-name">Vivo</div>
-        <div class="cat-count">X100 · V30 · Y Series</div>
-        <span class="cat-link">Shop Vivo →</span>
-      </div>
-    </div>
-
-    <div class="cat-card cat-oppo reveal reveal-d6" onclick="filterByBrand('oppo')">
-      <div class="cat-bg-layer"></div><div class="cat-pattern"></div>
-      <div class="cat-icon-wrap">🌊</div>
-      <div class="cat-overlay"></div>
-      <div class="cat-info">
-        <div class="cat-eyebrow">Brand</div>
-        <div class="cat-name">OPPO</div>
-        <div class="cat-count">Find X · Reno · A Series</div>
-        <span class="cat-link">Shop OPPO →</span>
-      </div>
-    </div>
-
-    <div class="cat-card cat-realme reveal reveal-d7" onclick="filterByBrand('realme')">
-      <div class="cat-bg-layer"></div><div class="cat-pattern"></div>
-      <div class="cat-icon-wrap">🚀</div>
-      <div class="cat-overlay"></div>
-      <div class="cat-info">
-        <div class="cat-eyebrow">Brand</div>
-        <div class="cat-name">Realme</div>
-        <div class="cat-count">GT · Narzo · Number Series</div>
-        <span class="cat-link">Shop Realme →</span>
-      </div>
-    </div>
-
-    <div class="cat-card cat-google reveal reveal-d8" onclick="filterByBrand('google')">
-      <div class="cat-bg-layer"></div><div class="cat-pattern"></div>
-      <div class="cat-icon-wrap">🌐</div>
-      <div class="cat-overlay"></div>
-      <div class="cat-info">
-        <div class="cat-eyebrow">Brand</div>
-        <div class="cat-name">Google</div>
-        <div class="cat-count">Pixel 9 · Pro · Fold Series</div>
-        <span class="cat-link">Shop Google →</span>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════════════
-     PRODUCTS
-══════════════════════════════════════════════ -->
-<section class="section section-alt" id="products">
-  <div class="sec-header center reveal">
-    <span class="sec-tag">Our Phones</span>
-    <h2 class="sec-title">Top <span class="ital">Picks of 2026</span></h2>
-    <p class="sec-sub">Handpicked smartphones across every segment — flagship, mid-range, and budget — all with best price guarantee.</p>
-  </div>
-  <div class="filter-row reveal">
-    <button class="f-tab on" onclick="filterProd(this,'all')">All</button>
-    <button class="f-tab" onclick="filterProd(this,'flagship')">Flagship</button>
-    <button class="f-tab" onclick="filterProd(this,'midrange')">Mid-Range</button>
-    <button class="f-tab" onclick="filterProd(this,'budget')">Budget</button>
-    <button class="f-tab" onclick="filterProd(this,'foldable')">Foldable</button>
-    <button class="f-tab" onclick="filterProd(this,'gaming')">Gaming</button>
-    <button class="f-tab" onclick="filterProd(this,'sale')">On Sale</button>
-  </div>
-  <div class="prod-grid" id="prodGrid"></div>
-</section>
-
-<!-- ══════════════════════════════════════════════
-     SPECS SECTION
-══════════════════════════════════════════════ -->
-<section class="specs-section" id="specs">
-  <div class="sec-header reveal">
-    <span class="sec-tag sec-tag-white">Why MOBILĒ</span>
-    <h2 class="sec-title sec-title-white">Phones Built for <span class="ital-white">Real Life</span></h2>
-    <p class="sec-sub sec-sub-white">Every device we carry is vetted for performance, camera quality, battery life, and value — so you never regret your purchase.</p>
-  </div>
-  <div class="specs-grid">
-    <div class="spec-phone-visual reveal">
-      <div style="position:relative">
-        <div class="spec-phone" style="width:120px;height:240px;animation:floatY 4s ease-in-out infinite"></div>
-        <div class="spec-phone-glow"></div>
-      </div>
-      <div style="position:relative">
-        <div class="spec-phone big" style="width:140px;height:280px;animation:floatY 3.5s .5s ease-in-out infinite"></div>
-        <div class="spec-phone-glow" style="width:100px"></div>
-      </div>
-    </div>
-    <div class="spec-list reveal reveal-d2">
-      <div class="spec-item">
-        <div class="spec-ico">⚡</div>
-        <div class="spec-text"><h4>Fast Charging</h4><p>All flagships feature 65W+ SuperCharge for 0–100% in under 40 minutes.</p></div>
-      </div>
-      <div class="spec-item">
-        <div class="spec-ico">📷</div>
-        <div class="spec-text"><h4>Pro Cameras</h4><p>From 200MP Samsung to computational AI photography by Pixel — we carry the best camera phones.</p></div>
-      </div>
-      <div class="spec-item">
-        <div class="spec-ico">🌐</div>
-        <div class="spec-text"><h4>5G Ready</h4><p>Every model in our catalog supports 5G connectivity — stay ahead on India's expanding network.</p></div>
-      </div>
-      <div class="spec-item">
-        <div class="spec-ico">🔋</div>
-        <div class="spec-text"><h4>All-Day Battery</h4><p>5000mAh+ cells across our mid-range and flagship picks — power through your entire day.</p></div>
-      </div>
+      <div class="d-none d-md-block" style="font-size: 4rem;">📱💻⌚</div>
     </div>
   </div>
-</section>
 
-<!-- ══════════════════════════════════════════════
-     PROMO / OFFER STRIP
-══════════════════════════════════════════════ -->
-<div class="promo-strip" id="about">
-  <div class="promo-left reveal">
-    <div class="promo-eyebrow">Limited Time Offer</div>
-    <h2 class="promo-title">Mega Phone Fest —<br><em>Up to 35% Off</em></h2>
-    <p class="promo-desc">Upgrade to the latest 5G smartphones at record-low prices. No-cost EMI, free screen protector &amp; case on select models.</p>
-    <a href="#products" class="btn-white">Shop the Sale</a>
-  </div>
-  <div class="promo-right reveal reveal-d2">
-    <div class="promo-card">
-      <div class="promo-badge">35%</div>
-      <div class="promo-badge-sub">OFF Selected Phones</div>
-      <div class="countdown-row">
-        <div class="cd-box"><span class="cd-n" id="cdD">02</span><div class="cd-l">Days</div></div>
-        <div class="cd-box"><span class="cd-n" id="cdH">14</span><div class="cd-l">Hrs</div></div>
-        <div class="cd-box"><span class="cd-n" id="cdM">30</span><div class="cd-l">Min</div></div>
-        <div class="cd-box"><span class="cd-n" id="cdS">00</span><div class="cd-l">Sec</div></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ══════════════════════════════════════════════
-     TRENDING
-══════════════════════════════════════════════ -->
-<section class="section" id="trending">
-  <div class="sec-header reveal">
-    <span class="sec-tag">What's Hot</span>
-    <h2 class="sec-title">Trending <span class="ital">Right Now</span></h2>
-  </div>
-  <div class="trend-grid">
-    <div class="trend-card tc1 reveal reveal-d1">
-      <div class="trend-bg"></div><div class="trend-ov"></div>
-      <div class="trend-badge">🔥 Bestseller</div>
-      <div class="trend-deco">→</div>
-      <div class="trend-info">
-        <div class="trend-cat">Apple · Flagship</div>
-        <div class="trend-name">iPhone 16 Pro Series</div>
-        <div class="trend-price">From ₹1,19,900</div>
-      </div>
-    </div>
-    <div class="trend-card tc2 reveal reveal-d2">
-      <div class="trend-bg"></div><div class="trend-ov"></div>
-      <div class="trend-badge">⭐ Top Rated</div>
-      <div class="trend-deco">→</div>
-      <div class="trend-info">
-        <div class="trend-cat">Samsung · Foldable</div>
-        <div class="trend-name">Galaxy Z Fold 6</div>
-        <div class="trend-price">From ₹1,64,999</div>
-      </div>
-    </div>
-    <div class="trend-card tc3 reveal reveal-d3">
-      <div class="trend-bg"></div><div class="trend-ov"></div>
-      <div class="trend-badge">💚 Best Value</div>
-      <div class="trend-deco">→</div>
-      <div class="trend-info">
-        <div class="trend-cat">OnePlus · Mid-Range</div>
-        <div class="trend-name">OnePlus Nord 4</div>
-        <div class="trend-price">From ₹29,999</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════════════
-     FEATURES / WHY US
-══════════════════════════════════════════════ -->
-<div class="section section-dark">
-  <div class="sec-header center reveal">
-    <span class="sec-tag sec-tag-white">Why MOBILĒ</span>
-    <h2 class="sec-title sec-title-white">Our <span class="ital-white">Promise</span> to You</h2>
-  </div>
-  <div class="features-grid">
-    <div class="feat-card reveal reveal-d1">
-      <span class="feat-ico">🚚</span>
-      <div class="feat-title">Free Delivery</div>
-      <div class="feat-desc">Pan-India free shipping on all orders. Same-day delivery available in 50+ cities.</div>
-    </div>
-    <div class="feat-card reveal reveal-d2">
-      <span class="feat-ico">✅</span>
-      <div class="feat-title">100% Genuine</div>
-      <div class="feat-desc">Every device is brand-sealed, IMEI verified, and comes with official warranty.</div>
-    </div>
-    <div class="feat-card reveal reveal-d3">
-      <span class="feat-ico">💳</span>
-      <div class="feat-title">No-Cost EMI</div>
-      <div class="feat-desc">0% interest EMI available on all major banks for 3, 6, 9 &amp; 12 month tenures.</div>
-    </div>
-    <div class="feat-card reveal reveal-d4">
-      <span class="feat-ico">🔄</span>
-      <div class="feat-title">7-Day Returns</div>
-      <div class="feat-desc">Not satisfied? Return within 7 days, no questions asked. Full refund guaranteed.</div>
-    </div>
-  </div>
-</div>
-
-<!-- ══════════════════════════════════════════════
-     TESTIMONIALS
-══════════════════════════════════════════════ -->
-<section class="section section-alt">
-  <div class="sec-header center reveal">
-    <span class="sec-tag">Real Buyers, Real Reviews</span>
-    <h2 class="sec-title">What Our <span class="ital">Community Says</span></h2>
-  </div>
-  <div class="test-grid">
-    <div class="test-card reveal reveal-d1">
-      <div class="test-stars">★★★★★</div>
-      <p class="test-quote">"Got my Samsung Galaxy S25 Ultra in just 18 hours! Packaging was perfect and the phone is exactly as described. Best deal I found anywhere."</p>
-      <div class="test-author">
-        <div class="test-av" style="background:#E8F5E9;">👨</div>
-        <div><div class="test-name">Rohit Verma</div><div class="test-role">Tech Enthusiast · Delhi</div></div>
-      </div>
-    </div>
-    <div class="test-card reveal reveal-d2">
-      <div class="test-stars">★★★★★</div>
-      <p class="test-quote">"No-cost EMI made buying an iPhone 16 Pro so easy. Zero hidden charges, authentic product, and the IMEI check gave me full confidence."</p>
-      <div class="test-author">
-        <div class="test-av" style="background:#E3EEFF;">👩</div>
-        <div><div class="test-name">Sneha Kulkarni</div><div class="test-role">Design Professional · Pune</div></div>
-      </div>
-    </div>
-    <div class="test-card reveal reveal-d3">
-      <div class="test-stars">★★★★★</div>
-      <p class="test-quote">"Bought a OnePlus 12 and it arrived same day! The trade-in value for my old phone was also very fair. Will definitely shop here again."</p>
-      <div class="test-author">
-        <div class="test-av" style="background:#FFF3E0;">👨‍💻</div>
-        <div><div class="test-name">Karan Mehta</div><div class="test-role">Software Engineer · Hyderabad</div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════════════
-     NEWSLETTER
-══════════════════════════════════════════════ -->
-<section class="section">
-  <div class="nl-inner reveal">
-    <h2>Get <em>Exclusive Deals</em> — Join MOBILĒ Insider</h2>
-    <p>Subscribe for early access to flash sales, launch-day offers, and tech news delivered straight to your inbox.</p>
-    <div class="nl-form">
-      <input type="email" placeholder="Enter your email" id="nlEmail">
-      <button onclick="subscribe()">Subscribe</button>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════════════
-     FOOTER
-══════════════════════════════════════════════ -->
-<footer>
-  <div class="footer-grid">
-    <div>
-      <div class="footer-brand">MOBIL<span class="dot">Ē</span></div>
-      <p class="footer-desc">India's most trusted smartphone destination. Every phone, every budget — delivered fast with zero compromise.</p>
-      <div class="socials">
-        <a class="soc-btn" href="#">f</a>
-        <a class="soc-btn" href="#">in</a>
-        <a class="soc-btn" href="#">tw</a>
-        <a class="soc-btn" href="#">▶</a>
-        <a class="soc-btn" href="#">📷</a>
-      </div>
-    </div>
-    <div class="footer-col">
-      <h5>Shop</h5>
-      <ul class="footer-links">
-        <li><a href="#">Apple iPhone</a></li>
-        <li><a href="#">Samsung Galaxy</a></li>
-        <li><a href="#">OnePlus</a></li>
-        <li><a href="#">Xiaomi / Redmi</a></li>
-        <li><a href="#">Gaming Phones</a></li>
-        <li><a href="#">Foldable Phones</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h5>Help</h5>
-      <ul class="footer-links">
-        <li><a href="#">Phone Finder Quiz</a></li>
-        <li><a href="#">Track Order</a></li>
-        <li><a href="#">Returns & Refunds</a></li>
-        <li><a href="#">EMI Calculator</a></li>
-        <li><a href="#">FAQ</a></li>
-        <li><a href="#">Contact Us</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h5>Company</h5>
-      <ul class="footer-links">
-        <li><a href="#">Our Story</a></li>
-        <li><a href="#">Verified Sellers</a></li>
-        <li><a href="#">Trade-In Programme</a></li>
-        <li><a href="#">Blog & Reviews</a></li>
-        <li><a href="#">Privacy Policy</a></li>
-        <li><a href="#">Terms</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <div class="footer-copy">© 2026 MOBILĒ Store. All rights reserved. Made with 💚 in India.</div>
-    <div class="pay-icons">
-      <div class="pay-ic">VISA</div>
-      <div class="pay-ic">MC</div>
-      <div class="pay-ic">UPI</div>
-      <div class="pay-ic">PayTM</div>
-      <div class="pay-ic">COD</div>
-    </div>
-  </div>
-</footer>
-
-<!-- ── CART DRAWER ─────────────────────────────── -->
-<div class="cart-veil" id="cartVeil" onclick="closeCart()"></div>
-<div class="cart-panel" id="cartPanel">
-  <div class="cart-hdr">
-    <div class="cart-hdr-title">Your Cart 📱</div>
-    <button class="cart-hdr-close" onclick="closeCart()">✕</button>
-  </div>
-  <div class="cart-body" id="cartBody"></div>
-  <div class="cart-ftr" id="cartFtr" style="display:none;">
-    <div class="cart-total-row"><span class="ctl">Total</span><span class="ctv" id="cartTotal">₹0</span></div>
-    <button class="checkout-btn" onclick="checkout()">Checkout Securely</button>
-  </div>
-</div>
-
-<!-- ── SEARCH OVERLAY ─────────────────────────── -->
-<div class="search-veil" id="searchVeil">
-  <div class="search-wrap">
-    <input type="text" placeholder="Search phones…" id="searchInput" oninput="onSearch(this.value)">
-    <button class="search-x" onclick="closeSearch()">✕</button>
-    <div class="search-tags">
-      <span class="s-tag" onclick="qSearch('iPhone 16')">iPhone 16</span>
-      <span class="s-tag" onclick="qSearch('Samsung S25')">Samsung S25</span>
-      <span class="s-tag" onclick="qSearch('OnePlus 12')">OnePlus 12</span>
-      <span class="s-tag" onclick="qSearch('Pixel 9')">Pixel 9</span>
-      <span class="s-tag" onclick="qSearch('Redmi Note 14')">Redmi Note 14</span>
-      <span class="s-tag" onclick="qSearch('Galaxy Fold')">Galaxy Fold</span>
-      <span class="s-tag" onclick="qSearch('Gaming Phone')">Gaming Phone</span>
-    </div>
-  </div>
-</div>
-
-<!-- ── TOAST ──────────────────────────────────── -->
-<div class="toast" id="toast"><span class="toast-ic">✓</span><span id="toastMsg">Done!</span></div>
-<div class="wl-flash" id="wlFlash">📱 Added to Wishlist!</div>
-
-<script>
-/* ── DATA ──────────────────────────────────────── */
-const PRODUCTS = [
-  {id:0,brand:'Apple',name:'iPhone 16 Pro Max',spec:'256GB · Titanium Black · 5G',cat:'flagship',price:139900,mrp:159900,disc:12,rating:4.9,rev:3241,badge:['new','5g'],img:'https://images.unsplash.com/photo-1696446701796-da61225697cc?q=80&w=2070&auto=format&fit=crop'},
-  {id:1,brand:'Samsung',name:'Galaxy S25 Ultra',spec:'512GB · Titanium Gray · 5G',cat:'flagship',price:134999,mrp:154999,disc:13,rating:4.8,rev:2187,badge:['hot','5g'],img:'https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?q=80&w=2070&auto=format&fit=crop'},
-  {id:2,brand:'OnePlus',name:'OnePlus 12 5G',spec:'256GB · Silky Black',cat:'flagship',price:64999,mrp:74999,disc:13,rating:4.7,rev:1892,badge:['new','5g'],img:'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=2080&auto=format&fit=crop'},
-  {id:3,brand:'Google',name:'Pixel 9 Pro',spec:'128GB · Obsidian · 5G',cat:'flagship',price:109999,mrp:124999,disc:12,rating:4.8,rev:987,badge:['new'],img:'https://images.unsplash.com/photo-1598327105666-5b89351aff97?q=80&w=2027&auto=format&fit=crop'},
-  {id:4,brand:'Samsung',name:'Galaxy Z Fold 6',spec:'256GB · Phantom Black',cat:'foldable',price:164999,mrp:189999,disc:13,rating:4.6,rev:654,badge:['hot'],img:'https://images.unsplash.com/photo-1635350736475-c8cef4b21906?q=80&w=2070&auto=format&fit=crop'},
-  {id:5,brand:'Xiaomi',name:'Xiaomi 14 Ultra',spec:'512GB · White · 5G',cat:'flagship',price:99999,mrp:109999,disc:9,rating:4.7,rev:1123,badge:['5g'],img:'https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?q=80&w=2070&auto=format&fit=crop'},
-  {id:6,brand:'OnePlus',name:'Nord 4 5G',spec:'128GB · Mercurial Silver',cat:'midrange',price:29999,mrp:35999,disc:16,rating:4.5,rev:2341,badge:['sale','5g'],img:'https://images.unsplash.com/photo-1580910051074-3eb694886505?q=80&w=2070&auto=format&fit=crop'},
-  {id:7,brand:'Vivo',name:'X100 Pro',spec:'256GB · Asteroid Black · 5G',cat:'flagship',price:89999,mrp:99999,disc:10,rating:4.6,rev:876,badge:['new'],img:'https://images.unsplash.com/photo-1523206489230-c012c64b2b48?q=80&w=1974&auto=format&fit=crop'},
-  {id:8,brand:'Realme',name:'GT 6T 5G',spec:'256GB · Fluid Silver',cat:'gaming',price:35999,mrp:42999,disc:16,rating:4.4,rev:1654,badge:['sale','5g'],img:'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=2080&auto=format&fit=crop'},
-  {id:9,brand:'Samsung',name:'Galaxy A55 5G',spec:'128GB · Awesome Lilac',cat:'midrange',price:37999,mrp:44999,disc:15,rating:4.4,rev:2987,badge:['sale'],img:'https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?q=80&w=2070&auto=format&fit=crop'},
-  {id:10,brand:'Xiaomi',name:'Redmi Note 14 Pro+',spec:'256GB · Midnight Black · 5G',cat:'budget',price:24999,mrp:29999,disc:16,rating:4.3,rev:4321,badge:['hot','5g'],img:'https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?q=80&w=2070&auto=format&fit=crop'},
-  {id:11,brand:'OPPO',name:'Find X8 Pro',spec:'256GB · Spaceship Grey',cat:'flagship',price:104999,mrp:119999,disc:12,rating:4.7,rev:543,badge:['new','5g'],img:'https://images.unsplash.com/photo-1523206489230-c012c64b2b48?q=80&w=1974&auto=format&fit=crop'},
-  {id:12,brand:'Realme',name:'Narzo 70 Pro',spec:'128GB · Glass Gold',cat:'budget',price:18999,mrp:22999,disc:17,rating:4.2,rev:3102,badge:['sale'],img:'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=2080&auto=format&fit=crop'},
-  {id:13,brand:'Google',name:'Pixel 9a',spec:'128GB · Peony · 5G',cat:'midrange',price:49999,mrp:59999,disc:16,rating:4.6,rev:671,badge:['new','sale'],img:'https://images.unsplash.com/photo-1598327105666-5b89351aff97?q=80&w=2027&auto=format&fit=crop'},
-  {id:14,brand:'Vivo',name:'V30 Pro 5G',spec:'256GB · Peacock Green',cat:'midrange',price:49999,mrp:56999,disc:12,rating:4.4,rev:1234,badge:['5g'],img:'https://images.unsplash.com/photo-1523206489230-c012c64b2b48?q=80&w=1974&auto=format&fit=crop'},
-  {id:15,brand:'OPPO',name:'Reno 12 Pro',spec:'256GB · Nebula Silver · 5G',cat:'midrange',price:44999,mrp:49999,disc:10,rating:4.3,rev:876,badge:['5g'],img:'https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?q=80&w=2070&auto=format&fit=crop'},
-];
-
-let cart=[];
-let currentFilter='all';
-
-/* ── RENDER PRODUCTS ───────────────────────────── */
-function renderProducts(list){
-  const grid=document.getElementById('prodGrid');
-  if(!list.length){grid.innerHTML='<p style="grid-column:1/-1;text-align:center;color:var(--muted);padding:40px">No phones found in this category.</p>';return;}
-  grid.innerHTML=list.map(p=>`
-    <div class="prod-card reveal" data-cat="${p.cat}">
-      <div class="prod-img">
-        <img src="${p.img}" alt="${p.name}" class="prod-img-inner">
-        <div class="prod-badge-row">
-          ${p.badge.includes('new')?'<span class="prod-badge badge-new">New</span>':''}
-          ${p.badge.includes('sale')?'<span class="prod-badge badge-sale">Sale</span>':''}
-          ${p.badge.includes('hot')?'<span class="prod-badge badge-hot">Hot</span>':''}
-          ${p.badge.includes('5g')?'<span class="prod-badge badge-5g">5G</span>':''}
+  <!-- ── FEATURES ── -->
+  <div class="features section">
+    <div class="row g-4 text-center">
+      <div class="col-md-3">
+        <div class="feature-card border p-4 rounded-4">
+          <div class="fs-1 mb-2">🚀</div>
+          <h4 class="fw-bold h6">Latest Tech</h4>
+          <p class="small text-muted">Always first with new releases.</p>
         </div>
-        <button class="prod-wl" onclick="wishlist(${p.id})">🤍</button>
       </div>
-      <div class="prod-body">
-        <div class="prod-brand">${p.brand}</div>
-        <div class="prod-name">${p.name}</div>
-        <div class="prod-spec">${p.spec}</div>
-        <div class="prod-rating">
-          <span class="stars">${'★'.repeat(Math.floor(p.rating))}${'☆'.repeat(5-Math.floor(p.rating))}</span>
-          <span class="rat-count">(${p.rev.toLocaleString()})</span>
+      <div class="col-md-3">
+        <div class="feature-card border p-4 rounded-4">
+          <div class="fs-1 mb-2">🛡️</div>
+          <h4 class="fw-bold h6">Secure Data</h4>
+          <p class="small text-muted">Privacy and security are our priority.</p>
         </div>
-        <div class="prod-foot">
-          <div class="prod-prices">
-            <span class="prod-price">₹${p.price.toLocaleString()}</span>
-            <span><span class="prod-mrp">₹${p.mrp.toLocaleString()}</span><span class="prod-disc">${p.disc}% off</span></span>
+      </div>
+      <div class="col-md-3">
+        <div class="feature-card border p-4 rounded-4">
+          <div class="fs-1 mb-2">🚚</div>
+          <h4 class="fw-bold h6">Fast Delivery</h4>
+          <p class="small text-muted">Get your gadgets quickly and safely.</p>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="feature-card border p-4 rounded-4">
+          <div class="fs-1 mb-2">💡</div>
+          <h4 class="fw-bold h6">Expert Support</h4>
+          <p class="small text-muted">Our team is here to help you choose.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── FOOTER ── -->
+  <footer class="um-footer mt-5">
+    <div class="container">
+      <div class="um-footer-grid">
+        <div class="um-footer-brand">
+          <div class="um-footer-logo">Urban<span>mart</span><span class="um-footer-dot">.</span></div>
+          <p class="um-footer-tagline">Premium products, curated with care.<br>Delivered to your doorstep
+            across India.</p>
+          <div class="um-footer-socials">
+            <a href="#" class="um-social-btn" title="Facebook"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="um-social-btn" title="Instagram"><i class="bi bi-instagram"></i></a>
+            <a href="#" class="um-social-btn" title="Twitter"><i class="bi bi-twitter-x"></i></a>
+            <a href="#" class="um-social-btn" title="YouTube"><i class="bi bi-youtube"></i></a>
+            <a href="#" class="um-social-btn" title="Pinterest"><i class="bi bi-pinterest"></i></a>
           </div>
-          <button class="prod-add" onclick="addToCart(${p.id})" title="Add to cart">+</button>
+        </div>
+        <div class="um-footer-col">
+          <h6 class="um-footer-col-head">Shop</h6>
+          <ul class="um-footer-links">
+            <li><a href="#">Fashion &amp; Clothing</a></li>
+            <li><a href="#">Mobiles &amp; Tablets</a></li>
+            <li><a href="#">Electronics</a></li>
+            <li><a href="#">Home &amp; Furniture</a></li>
+            <li><a href="#">New Arrivals</a></li>
+            <li><a href="#">Sale</a></li>
+          </ul>
+        </div>
+        <div class="um-footer-col">
+          <h6 class="um-footer-col-head">Help</h6>
+          <ul class="um-footer-links">
+            <li><a href="#">Track Order</a></li>
+            <li><a href="#">Returns &amp; Refunds</a></li>
+            <li><a href="#">Shipping Info</a></li>
+            <li><a href="#">Size Guide</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="um-footer-col">
+          <h6 class="um-footer-col-head">Company</h6>
+          <ul class="um-footer-links">
+            <li><a href="about.html">About UrbanMart</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Press</a></li>
+            <li><a href="seller.html">Partner with Us</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms &amp; Conditions</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="um-footer-divider"></div>
+      <div class="um-footer-bottom">
+        <p class="um-footer-copy">© 2026 UrbanMart. All rights reserved. Made with <i class="bi bi-heart-fill"
+            style="color:#e87a7a;font-size:0.75rem;"></i> in India.</p>
+        <div class="um-payment-badges">
+          <span class="um-pay-badge">VISA</span>
+          <span class="um-pay-badge">MC</span>
+          <span class="um-pay-badge">UPI</span>
+          <span class="um-pay-badge">PayTM</span>
+          <span class="um-pay-badge">COD</span>
         </div>
       </div>
     </div>
-  `).join('');
-  observeReveal();
-}
+  </footer>
 
-function filterProd(btn,cat){
-  document.querySelectorAll('.f-tab').forEach(b=>b.classList.remove('on'));
-  btn.classList.add('on');
-  currentFilter=cat;
-  const list=cat==='all'?PRODUCTS:PRODUCTS.filter(p=>p.cat===cat||p.badge.includes(cat));
-  renderProducts(list);
-}
+  <!-- ── FAVOURITES DRAWER ── -->
+  <div class="fav-backdrop" id="favBackdrop" onclick="toggleFavDrawer()"></div>
+  <div class="fav-drawer" id="favDrawer">
+    <div class="fav-drawer-head">
+      <div class="fav-drawer-title">
+        <i class="bi bi-heart-fill" style="color:#e11d48;"></i>
+        Favourites
+        <span class="fav-drawer-count" id="favDrawerCount">0</span>
+      </div>
+      <button class="fav-drawer-close" onclick="toggleFavDrawer()"><i class="bi bi-x-lg"></i></button>
+    </div>
+    <div class="fav-drawer-body" id="favDrawerBody">
+      <div class="fav-empty" id="favEmpty">
+        <div class="fav-empty-icon"><i class="bi bi-heart"></i></div>
+        <h5>Nothing saved yet</h5>
+        <p>Tap the heart on any gadget to save it here.</p>
+      </div>
+      <div class="fav-grid" id="favGrid"></div>
+    </div>
+  </div>
 
-function filterByBrand(brand){
-  document.getElementById('products').scrollIntoView({behavior:'smooth'});
-  setTimeout(()=>{
-    const map={apple:'Apple',samsung:'Samsung',oneplus:'OnePlus',xiaomi:'Xiaomi',vivo:'Vivo',oppo:'OPPO',realme:'Realme',google:'Google'};
-    const list=PRODUCTS.filter(p=>p.brand===map[brand]);
-    renderProducts(list);
-    showToast(`Showing ${map[brand]} phones`);
-  },500);
-}
-
-/* ── CART ──────────────────────────────────────── */
-function addToCart(id){
-  const p=PRODUCTS[id];
-  const existing=cart.find(i=>i.id===id);
-  if(existing){existing.qty++;}else{cart.push({...p,qty:1});}
-  updateCartCount();
-  showToast(`${p.name} added to cart!`);
-  renderCart();
-}
-
-function updateCartCount(){
-  const total=cart.reduce((s,i)=>s+i.qty,0);
-  document.getElementById('cartCount').textContent=total;
-}
-
-function renderCart(){
-  const body=document.getElementById('cartBody');
-  const ftr=document.getElementById('cartFtr');
-  if(!cart.length){
-    body.innerHTML='<div class="cart-empty"><div class="empty-ico">📱</div><p>Your cart is empty.</p><p style="font-size:.78rem;margin-top:8px;color:var(--muted)">Add some phones to get started!</p></div>';
-    ftr.style.display='none';return;
-  }
-  body.innerHTML=cart.map(i=>`
-    <div class="cart-item">
-      <div class="ci-img"><img src="${i.img}" alt="${i.name}" style="width:100%;height:100%;object-fit:cover;border-radius:8px;"></div>
-      <div class="ci-info">
-        <div class="ci-name">${i.brand} ${i.name}</div>
-        <div class="ci-sub">${i.spec}</div>
-        <div class="ci-qty">
-          <button class="qty-btn" onclick="changeQty(${i.id},-1)">−</button>
-          <span class="qty-n">${i.qty}</span>
-          <button class="qty-btn" onclick="changeQty(${i.id},1)">+</button>
-          <button class="ci-rm" onclick="removeItem(${i.id})">🗑</button>
+  <!-- ── LOGIN MODAL ── -->
+  <div class="modal fade" id="userLoginModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content border-0 shadow-lg" style="border-radius: 25px;">
+        <div class="modal-body p-5 text-center">
+          <div class="mb-4">
+            <i class="bi bi-lock-fill display-4" style="color: var(--primary-mobile);"></i>
+            <h3 class="fw-bold mt-2">Login Required</h3>
+            <p class="text-secondary">Sign in to explore the latest gadgets!</p>
+          </div>
+          <form id="modalLoginForm">
+            <input type="email" id="modalEmail" class="form-control mb-3 py-3 rounded-pill" placeholder="Email Address" required>
+            <input type="password" id="modalPass" class="form-control mb-4 py-3 rounded-pill" placeholder="Password" required>
+            <button type="submit" class="btn-primary-mobile w-100 py-3 rounded-pill shadow-sm mb-3">Sign In</button>
+          </form>
+          <p class="small text-muted mb-0">New explorer? <a href="login.html" style="color: var(--primary-mobile);"
+              class="fw-bold text-decoration-none">Create an account</a></p>
         </div>
       </div>
-      <span class="ci-price">₹${(i.price*i.qty).toLocaleString()}</span>
     </div>
-  `).join('');
-  const total=cart.reduce((s,i)=>s+i.price*i.qty,0);
-  document.getElementById('cartTotal').textContent='₹'+total.toLocaleString();
-  ftr.style.display='block';
-}
+  </div>
 
-function changeQty(id,d){
-  const item=cart.find(i=>i.id===id);
-  if(!item)return;
-  item.qty+=d;
-  if(item.qty<=0)cart=cart.filter(i=>i.id!==id);
-  updateCartCount();renderCart();
-}
-function removeItem(id){cart=cart.filter(i=>i.id!==id);updateCartCount();renderCart();}
-function openCart(){document.getElementById('cartPanel').classList.add('open');document.getElementById('cartVeil').classList.add('open');renderCart();}
-function closeCart(){document.getElementById('cartPanel').classList.remove('open');document.getElementById('cartVeil').classList.remove('open');}
-function checkout(){showToast('Redirecting to checkout…');closeCart();}
+  <!-- ── SCRIPTS ── -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
-/* ── SEARCH ────────────────────────────────────── */
-function openSearch(){document.getElementById('searchVeil').classList.add('open');setTimeout(()=>document.getElementById('searchInput').focus(),100);}
-function closeSearch(){document.getElementById('searchVeil').classList.remove('open');document.getElementById('searchInput').value='';}
-function onSearch(v){
-  if(v.length<2)return;
-  const r=PRODUCTS.filter(p=>`${p.brand} ${p.name} ${p.spec}`.toLowerCase().includes(v.toLowerCase()));
-  renderProducts(r);
-  if(r.length)closeSearch();
-}
-function qSearch(q){document.getElementById('searchInput').value=q;onSearch(q);}
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeSearch();closeCart();}});
+  <script>
+    // --- UI Interactions ---
+    let settingsOpen = false;
+    function toggleSettings() {
+      settingsOpen = !settingsOpen;
+      const panel = document.getElementById('settingsPanel');
+      const btn = document.getElementById('settingsBtn');
+      if (panel) panel.classList.toggle('open', settingsOpen);
+      if (btn) btn.classList.toggle('active', settingsOpen);
+      document.getElementById('navBackdrop')?.classList.toggle('active', settingsOpen);
+    }
+    function closeSettings() {
+      settingsOpen = false;
+      document.getElementById('settingsPanel')?.classList.remove('open');
+      document.getElementById('settingsBtn')?.classList.remove('active');
+    }
+    function toggleSetting(id) { document.getElementById('toggle-' + id)?.classList.toggle('on'); }
 
-/* ── TOAST & WISHLIST ──────────────────────────── */
-function showToast(msg){
-  const t=document.getElementById('toast');
-  document.getElementById('toastMsg').textContent=msg;
-  t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'),2800);
-}
-function wishlist(id){
-  const f=document.getElementById('wlFlash');
-  f.classList.add('show');
-  setTimeout(()=>f.classList.remove('show'),2200);
-}
+    let mobileOpen = false;
+    function toggleMobile() {
+      mobileOpen = !mobileOpen;
+      const panel = document.getElementById('mobilePanel');
+      const icon = document.getElementById('hamburgerIcon');
+      if (mobileOpen) {
+        if (panel) { panel.style.display = 'flex'; requestAnimationFrame(() => panel.classList.add('open')); }
+        if (icon) icon.className = 'bi bi-x-lg';
+        document.getElementById('navBackdrop')?.classList.add('active');
+      } else { closeMobile(); }
+    }
+    function closeMobile() {
+      mobileOpen = false;
+      const panel = document.getElementById('mobilePanel');
+      const icon = document.getElementById('hamburgerIcon');
+      if (panel) {
+        panel.classList.remove('open');
+        setTimeout(() => { if (!mobileOpen) panel.style.display = 'none'; }, 350);
+      }
+      if (icon) icon.className = 'bi bi-list';
+    }
+    function closeAll() { closeMobile(); closeSettings(); document.getElementById('navBackdrop')?.classList.remove('active'); }
+    function toggleSearch() {
+      const overlay = document.getElementById('searchOverlay');
+      overlay?.classList.toggle('active');
+      if (overlay?.classList.contains('active')) setTimeout(() => document.getElementById('searchInput')?.focus(), 300);
+    }
+    function clearNavSearch() {
+      const input = document.getElementById('navSearchInput');
+      if (input) input.value = '';
+    }
 
-/* ── SUBSCRIBE ─────────────────────────────────── */
-function subscribe(){
-  const v=document.getElementById('nlEmail').value.trim();
-  if(!v||!v.includes('@')){showToast('Please enter a valid email.');return;}
-  showToast('Subscribed! Welcome to MOBILĒ Insider 📱');
-  document.getElementById('nlEmail').value='';
-}
+    // --- WISHLIST DRAWER TOGGLE ---
+    function toggleFavDrawer() {
+      document.getElementById('favDrawer')?.classList.toggle('open');
+      document.getElementById('favBackdrop')?.classList.toggle('open');
+    }
 
-/* ── SCROLL ────────────────────────────────────── */
-window.addEventListener('scroll',()=>{
-  document.getElementById('mainNav').classList.toggle('scrolled',window.scrollY>60);
-});
+    // --- WISHLIST LOGIC ---
+    let wishlist = JSON.parse(localStorage.getItem('pbssd_wishlist') || '[]');
 
-/* ── REVEAL ────────────────────────────────────── */
-function observeReveal(){
-  const obs=new IntersectionObserver(entries=>{
-    entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in');});
-  },{threshold:.1});
-  document.querySelectorAll('.reveal:not(.in)').forEach(el=>obs.observe(el));
-}
-observeReveal();
+    function toggleWishlist(product) {
+      const index = wishlist.findIndex(item => item.name === product.name);
+      if (index === -1) {
+        wishlist.push(product);
+        Swal.fire({ title: 'Added to Wishlist!', toast: true, position: 'top-end', showConfirmButton: false, timer: 1500, icon: 'success', background: '#FAFAF7', color: '#1A1A1A' });
+      } else {
+        wishlist.splice(index, 1);
+        Swal.fire({ title: 'Removed from Wishlist', toast: true, position: 'top-end', showConfirmButton: false, timer: 1500, icon: 'info', background: '#FAFAF7', color: '#1A1A1A' });
+      }
+      localStorage.setItem('pbssd_wishlist', JSON.stringify(wishlist));
+      updateWishlistUI();
+      syncWishlistButtons();
+    }
 
-/* ── NAV MENU ──────────────────────────────────── */
-function toggleMenu(){document.getElementById('mobMenu').classList.toggle('open');}
+    function updateWishlistUI() {
+      const drawerBody = document.getElementById('favDrawerBody');
+      const badge = document.getElementById('favIconBadge');
+      const drawerCount = document.getElementById('favDrawerCount');
 
-/* ── COUNTDOWN ─────────────────────────────────── */
-let deadline=new Date(Date.now()+2*86400000+14*3600000+30*60000);
-function updateCountdown(){
-  const diff=Math.max(0,deadline-Date.now());
-  const d=Math.floor(diff/86400000);
-  const h=Math.floor((diff%86400000)/3600000);
-  const m=Math.floor((diff%3600000)/60000);
-  const s=Math.floor((diff%60000)/1000);
-  ['cdD','cdH','cdM','cdS'].forEach((id,i)=>{
-    const el=document.getElementById(id);
-    if(el)el.textContent=String([d,h,m,s][i]).padStart(2,'0');
-  });
-}
-setInterval(updateCountdown,1000);updateCountdown();
+      if (!drawerBody || !badge) return;
 
-/* ── LOADER ────────────────────────────────────── */
-window.addEventListener('load',()=>{
-  setTimeout(()=>{
-    document.getElementById('loader').classList.add('hidden');
-    renderProducts(PRODUCTS);
-    observeReveal();
-  },2400);
-});
-</script>
+      badge.innerText = wishlist.length;
+      badge.style.display = wishlist.length > 0 ? 'flex' : 'none';
+      if (drawerCount) drawerCount.innerText = wishlist.length;
+
+      if (wishlist.length === 0) {
+        drawerBody.innerHTML = `
+          <div class="fav-empty">
+            <div class="fav-empty-icon"><i class="bi bi-heart"></i></div>
+            <h5>Nothing saved yet</h5>
+            <p>Tap the heart on any gadget to save it here.</p>
+          </div>
+        `;
+      } else {
+        drawerBody.innerHTML = `
+          <div class="fav-grid">
+            ${wishlist.map((item, idx) => `
+              <div class="fav-item">
+                <img src="${item.img}" class="fav-item-img" alt="${item.name}">
+                <div style="flex:1;">
+                  <h6 style="font-weight:600;margin:0;font-size:0.9rem;">${item.name}</h6>
+                  <p style="color:var(--primary-mobile);font-weight:700;margin:4px 0 0;font-size:0.85rem;">${item.price}</p>
+                </div>
+                <button onclick="removeFromWishlist(${idx})" style="background:none;border:none;color:var(--gray);cursor:pointer;font-size:1.1rem;padding:5px;"><i class="bi bi-trash"></i></button>
+              </div>
+            `).join('')}
+          </div>
+        `;
+      }
+    }
+
+    window.removeFromWishlist = (index) => {
+      wishlist.splice(index, 1);
+      localStorage.setItem('pbssd_wishlist', JSON.stringify(wishlist));
+      updateWishlistUI();
+      syncWishlistButtons();
+    };
+
+    function syncWishlistButtons() {
+      document.querySelectorAll('.wishlist-btn').forEach(btn => {
+        const card = btn.closest('.product-card');
+        const name = card?.querySelector('h3')?.innerText;
+        const isWishlisted = wishlist.some(item => item.name === name);
+        btn.classList.toggle('active', isWishlisted);
+        btn.innerHTML = isWishlisted ? '<i class="bi bi-heart-fill"></i>' : '<i class="bi bi-heart"></i>';
+      });
+    }
+
+    // --- CART STATE LOGIC (IndexedDB) ---
+    let cartDB;
+    const cartRequest = indexedDB.open('PBSSDCartDB', 2);
+    cartRequest.onupgradeneeded = (e) => {
+      const db = e.target.result;
+      if (!db.objectStoreNames.contains('cart_state')) db.createObjectStore('cart_state');
+      if (!db.objectStoreNames.contains('cart_items')) {
+        db.createObjectStore('cart_items', { keyPath: 'id', autoIncrement: true });
+      }
+    };
+    cartRequest.onsuccess = (e) => {
+      cartDB = e.target.result;
+      refreshCartBadge();
+    };
+
+    function refreshCartBadge() {
+      if (!cartDB) return;
+      const tx = cartDB.transaction(['cart_items'], 'readonly');
+      const store = tx.objectStore('cart_items');
+      const getReq = store.getAll();
+      getReq.onsuccess = () => {
+        const items = getReq.result;
+        const total = items.reduce((acc, item) => acc + (item.quantity || 1), 0);
+        const badge = document.getElementById('cart-badge');
+        if (badge) badge.innerText = total;
+
+        const stateTx = cartDB.transaction(['cart_state'], 'readwrite');
+        stateTx.objectStore('cart_state').put(total, 'count');
+      };
+    }
+
+    function checkAuth() {
+      const user = JSON.parse(localStorage.getItem('pbssd_user'));
+      const loginNav = document.getElementById('login-nav-btn');
+      const profileNav = document.getElementById('user-profile-btn');
+      const nameDesktop = document.getElementById('user-nav-name');
+      if (user) {
+        loginNav?.classList.add('d-none');
+        profileNav?.classList.remove('d-none');
+        if (nameDesktop) nameDesktop.innerText = user.name || 'Profile';
+      }
+    }
+
+    function handleAddToCart(name, price, img) {
+      if (!localStorage.getItem('pbssd_user')) {
+        new bootstrap.Modal(document.getElementById('userLoginModal')).show();
+        return;
+      }
+      let lsCart = JSON.parse(localStorage.getItem('pbssd_cart') || '[]');
+      const exLs = lsCart.find(i => i.name === name);
+      if (exLs) exLs.quantity = (exLs.quantity || 1) + 1;
+      else lsCart.push({ id: Date.now(), name, price, image: img, quantity: 1 });
+      localStorage.setItem('pbssd_cart', JSON.stringify(lsCart));
+
+      if (cartDB) {
+        const tx = cartDB.transaction(['cart_items'], 'readwrite');
+        const store = tx.objectStore('cart_items');
+        const getReq = store.getAll();
+        getReq.onsuccess = () => {
+          const items = getReq.result;
+          const existingItem = items.find(i => i.name === name);
+          if (existingItem) { existingItem.quantity = (existingItem.quantity || 1) + 1; store.put(existingItem); }
+          else { store.add({ name, price, img, quantity: 1, timestamp: Date.now() }); }
+        };
+        tx.oncomplete = () => {
+          refreshCartBadge();
+          Swal.fire({ title: 'Added to Bag!', text: `${name} is ready for checkout.`, toast: true, position: 'top-end', showConfirmButton: false, timer: 1500, icon: 'success', background: '#FAFAF7' });
+        };
+      }
+    }
+
+    // --- SLIDER LOGIC ---
+    const track = document.getElementById('slidesTrack');
+    const dotsContainer = document.getElementById('sliderDots');
+    const totalSlides = track.children.length;
+    let current = 0;
+    let autoTimer;
+
+    for (let i = 0; i < totalSlides; i++) {
+      const d = document.createElement('button');
+      d.className = 'dot' + (i === 0 ? ' active' : '');
+      d.addEventListener('click', () => goTo(i));
+      dotsContainer.appendChild(d);
+    }
+
+    function goTo(n) {
+      current = (n + totalSlides) % totalSlides;
+      track.style.transform = `translateX(-${current * 100}%)`;
+      document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === current));
+      resetTimer();
+    }
+
+    function resetTimer() {
+      clearInterval(autoTimer);
+      autoTimer = setInterval(() => goTo(current + 1), 5000);
+    }
+
+    document.getElementById('arrowPrev').addEventListener('click', () => goTo(current - 1));
+    document.getElementById('arrowNext').addEventListener('click', () => goTo(current + 1));
+    resetTimer();
+
+    // --- CATEGORY PILLS ---
+    document.querySelectorAll('.pill').forEach(pill => {
+      pill.addEventListener('click', () => {
+        document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+        const target = pill.getAttribute('data-target');
+        if(target === 'all') window.scrollTo({top:0, behavior: 'smooth'});
+        else document.getElementById(target)?.scrollIntoView({behavior: 'smooth'});
+      });
+    });
+
+    // --- INITIALIZATION ---
+    window.addEventListener('load', () => {
+      const preloader = document.getElementById('preloader');
+      setTimeout(() => { if (preloader) { preloader.style.opacity = '0'; preloader.style.visibility = 'hidden'; } }, 1000);
+      AOS.init({ duration: 900, once: true });
+
+      checkAuth();
+      updateWishlistUI();
+
+      // --- DYNAMICALLY ADD WISHLIST BUTTONS & HANDLERS ---
+      document.querySelectorAll('.product-card').forEach(card => {
+        const imgContainer = card.querySelector('.product-img');
+        if (!imgContainer) return;
+
+        const name = card.querySelector('h3')?.innerText;
+        const price = card.querySelector('.price')?.innerText;
+        const img = card.querySelector('img')?.src;
+        const sub = card.querySelector('.sub')?.innerText;
+        const badge = card.querySelector('.product-badge')?.innerText || '';
+
+        const btn = document.createElement('button');
+        btn.className = 'wishlist-btn';
+        btn.innerHTML = '<i class="bi bi-heart"></i>';
+        btn.onclick = (e) => {
+          e.stopPropagation();
+          toggleWishlist({ name, price, img });
+        };
+        imgContainer.appendChild(btn);
+
+        card.addEventListener('click', (e) => {
+          if (e.target.closest('.wishlist-btn') || e.target.closest('.add-btn')) return;
+          window.location.href = `mobile_productDetails.html?name=${encodeURIComponent(name)}&price=${encodeURIComponent(price)}&img=${encodeURIComponent(img)}&sub=${encodeURIComponent(sub)}&badge=${encodeURIComponent(badge)}`;
+        });
+
+        const addBtn = card.querySelector('.add-btn');
+        if (addBtn) {
+          addBtn.onclick = (e) => {
+            e.stopPropagation();
+            handleAddToCart(name, price, img);
+            const orig = addBtn.textContent;
+            addBtn.textContent = '✓';
+            addBtn.style.background = 'var(--primary-mobile)';
+            setTimeout(() => { addBtn.textContent = orig; addBtn.style.background = ''; }, 1200);
+          };
+        }
+      });
+
+      syncWishlistButtons();
+
+      const nav = document.querySelector('.navbar');
+      const catBar = document.getElementById('categoryNavBar');
+      if (nav && catBar) catBar.style.top = (nav.getBoundingClientRect().height + 4) + 'px';
+      window.addEventListener('scroll', () => {
+        if (nav && catBar) {
+          const navH = nav.getBoundingClientRect().height;
+          if (window.scrollY > 50) {
+            nav.classList.add('scrolled'); catBar.classList.add('scrolled'); catBar.style.top = (navH - 10) + 'px';
+          } else {
+            nav.classList.remove('scrolled'); catBar.classList.remove('scrolled'); catBar.style.top = (navH + 4) + 'px';
+          }
+        }
+      });
+    });
+  </script>
+  <script src="../js/navbar.js" defer></script>
 </body>
 </html>
