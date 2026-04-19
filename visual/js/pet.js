@@ -1,43 +1,27 @@
 
 /* ── PRODUCT DATA ──────────────────────────── */
 const PRODUCTS = [
-  { id:1,  name:'Premium Chicken & Rice',   cat:'food',     gender:'dogs',  tag:'hot',  price:2499, old:3299, desc:'Adult Formula · Real Chicken #1',      img:'https://images.unsplash.com/photo-1606853732446-fd1ac6da8555?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=85', badge:'Hot', icon:'🐕' },
-  { id:2,  name:'Salmon Kitten Formula',    cat:'food',     gender:'cats',  tag:'new',  price:1299, old:1799, desc:'DHA Enriched for Brain Development',   img:'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=85', badge:'New', icon:'🐈' },
-  { id:3,  name:'Puppy Dental Chews',       cat:'treats',   gender:'dogs',  tag:'sale', price:449,  old:699,  desc:'Tartar Control, Minty Fresh Breath',   img:'https://images.unsplash.com/photo-1599169668359-16d2a9c79b26?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=85', badge:'Sale', icon:'🦷' },
-  { id:4,  name:'Gentle Puppy Shampoo',     cat:'grooming', gender:'dogs',  tag:'hot',  price:599,  old:849,  desc:'Tear-Free, Oat & Aloe Formula',       img:'https://images.unsplash.com/photo-1581578731548-64f551ec6c6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=85', badge:'Hot', icon:'🛁' },
-  { id:5,  name:'Bird Seed Premium Mix',    cat:'food',     gender:'birds', tag:'new',  price:349,  old:499,  desc:'15 Varieties, Vitamins Enriched',      img:'https://images.unsplash.com/photo-1627486892754-0a667459910b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=85', badge:'New', icon:'🐦' },
-  { id:6,  name:'Cat Interactive Wand',     cat:'treats',   gender:'cats',  tag:'new',  price:299,  old:449,  desc:'Feather & Bell, Retractable 60cm',    img:'https://images.unsplash.com/photo-1606789597920-1b02792f752b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=85', badge:'New', icon:'🧶' },
-  { id:7,  name:'Grain-Free Dry Dog Food',  cat:'food',     gender:'dogs',  tag:'sale', price:1899, old:2699, desc:'Sweet Potato & Bison, Sensitive Gut', img:'https://images.unsplash.com/photo-1589924691584-abc446982984?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=85', badge:'Sale', icon:'🐕' },
-  { id:8,  name:'Detangling Coat Spray',    cat:'grooming', gender:'cats',  tag:'eco',  price:499,  old:749,  desc:'Argan Oil, Tangle-Free Finish',       img:'https://images.unsplash.com/photo-1606890658317-7d4b09a3a9a6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=85', badge:'Eco', icon:'✨' },
-  { id:9,  name:'Hamster Activity Wheel',   cat:'treats',   gender:'small', tag:'hot',  price:799,  old:1099, desc:'Silent Spinner, 8-inch, BPA-Free',    img:'https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=85', badge:'Hot', icon:'🐹' },
-  { id:10, name:'Anti-Flea Shampoo',        cat:'grooming', gender:'dogs',  tag:'new',  price:549,  old:799,  desc:'Neem & Tea Tree, 3-in-1 Formula',    img:'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=85', badge:'New', icon:'🌿' },
-  { id:11, name:'Tuna & Salmon Cat Treats', cat:'treats',   gender:'cats',  tag:'hot',  price:349,  old:499,  desc:'Freeze-Dried, 100% Single Protein',   img:'https://images.unsplash.com/photo-1587300003388-59208e32825c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=85', badge:'Hot', icon:'🐟' },
-  { id:12, name:'Bamboo Pet Food Bowl Set', cat:'grooming', gender:'dogs',  tag:'sale', price:899,  old:1299, desc:'Non-Slip, Eco-Friendly, 2-Bowl Set',  img:'https://images.unsplash.com/photo-1601001732791-eab72b7e19cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=85', badge:'Sale', icon:'🌱' },
+  { id:1,  name:'Premium Chicken & Rice',   cat:'food',     gender:'dogs',  tag:'hot',  price:2499, old:3299, desc:'Adult Formula · Real Chicken #1',      img:'../assets/pet_chicken_rice.png', badge:'Hot', icon:'🐕' },
+  { id:2,  name:'Salmon Kitten Formula',    cat:'food',     gender:'cats',  tag:'new',  price:1299, old:1799, desc:'DHA Enriched for Brain Development',   img:'../assets/pet_salmon_kitten.png', badge:'New', icon:'🐈' },
+  { id:3,  name:'Puppy Dental Chews',       cat:'treats',   gender:'dogs',  tag:'sale', price:449,  old:699,  desc:'Tartar Control, Minty Fresh Breath',   img:'../assets/pet_dental_chews.png', badge:'Sale', icon:'🦷' },
+  { id:4,  name:'Gentle Puppy Shampoo',     cat:'grooming', gender:'dogs',  tag:'hot',  price:599,  old:849,  desc:'Tear-Free, Oat & Aloe Formula',       img:'../assets/pet_puppy_shampoo.png', badge:'Hot', icon:'🛁' },
+  { id:5,  name:'Bird Seed Premium Mix',    cat:'food',     gender:'birds', tag:'new',  price:349,  old:499,  desc:'15 Varieties, Vitamins Enriched',      img:'../assets/pet_bird_seed.png', badge:'New', icon:'🐦' },
+  { id:6,  name:'Cat Interactive Wand',     cat:'treats',   gender:'cats',  tag:'new',  price:299,  old:449,  desc:'Feather & Bell, Retractable 60cm',    img:'../assets/pet_salmon_kitten.png', badge:'New', icon:'🧶' },
+  { id:7,  name:'Grain-Free Dry Dog Food',  cat:'food',     gender:'dogs',  tag:'sale', price:1899, old:2699, desc:'Sweet Potato & Bison, Sensitive Gut', img:'../assets/pet_chicken_rice.png', badge:'Sale', icon:'🐕' },
+  { id:8,  name:'Detangling Coat Spray',    cat:'grooming', gender:'cats',  tag:'eco',  price:499,  old:749,  desc:'Argan Oil, Tangle-Free Finish',       img:'../assets/pet_puppy_shampoo.png', badge:'Eco', icon:'✨' },
+  { id:9,  name:'Hamster Activity Wheel',   cat:'treats',   gender:'small', tag:'hot',  price:799,  old:1099, desc:'Silent Spinner, 8-inch, BPA-Free',    img:'../assets/pet_bird_seed.png', badge:'Hot', icon:'🐹' },
+  { id:10, name:'Anti-Flea Shampoo',        cat:'grooming', gender:'dogs',  tag:'new',  price:549,  old:799,  desc:'Neem & Tea Tree, 3-in-1 Formula',    img:'../assets/pet_puppy_shampoo.png', badge:'New', icon:'🌿' },
+  { id:11, name:'Tuna & Salmon Cat Treats', cat:'treats',   gender:'cats',  tag:'hot',  price:349,  old:499,  desc:'Freeze-Dried, 100% Single Protein',   img:'../assets/pet_salmon_kitten.png', badge:'Hot', icon:'🐟' },
+  { id:12, name:'Bamboo Pet Food Bowl Set', cat:'grooming', gender:'dogs',  tag:'sale', price:899,  old:1299, desc:'Non-Slip, Eco-Friendly, 2-Bowl Set',  img:'../assets/pet_chicken_rice.png', badge:'Sale', icon:'🌱' },
 ];
 
 
 let cart = [];
 let wishlist = [];
 
-/* ── LOADER ────────────────────────────────── */
-window.addEventListener('load', () => {
-  setTimeout(() => document.getElementById('loader').classList.add('gone'), 2400);
-});
+/* Removed Loader Logic */
 
-/* ── CURSOR ────────────────────────────────── */
-const dot  = document.getElementById('cur-dot');
-const ring = document.getElementById('cur-ring');
-let mx = 0, my = 0, rx = 0, ry = 0;
-document.addEventListener('mousemove', e => {
-  mx = e.clientX; my = e.clientY;
-  dot.style.transform = `translate(${mx - 4}px, ${my - 4}px)`;
-});
-(function animRing() {
-  rx += (mx - rx - 16) * 0.13;
-  ry += (my - ry - 16) * 0.13;
-  ring.style.transform = `translate(${rx}px, ${ry}px)`;
-  requestAnimationFrame(animRing);
-})();
+/* Removed Cursor Logic */
 
 /* ── NAVBAR ────────────────────────────────── */
 window.addEventListener('scroll', () => {
@@ -156,7 +140,9 @@ function updateCartUI() {
   } else {
     body.innerHTML = cart.map(item => `
       <div class="cart-item">
-        <div class="ci-thumb" style="background:linear-gradient(160deg,${item.bg1},${item.bg2});display:flex;align-items:center;justify-content:center;font-size:1.5rem;">${item.icon}</div>
+        <div class="ci-thumb">
+          <img src="${item.img}" alt="${item.name}" style="width:100%;height:100%;object-fit:cover;" />
+        </div>
         <div class="ci-info">
           <div class="ci-name">${item.name}</div>
           <div class="ci-meta">${item.cat} · ${item.gender}</div>
