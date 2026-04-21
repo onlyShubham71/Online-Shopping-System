@@ -7,7 +7,7 @@
 // --- URL Parameters ---
 const urlParams = new URLSearchParams(window.location.search);
 const name = urlParams.get('name') || 'A Great Book';
-const price = urlParams.get('price') || '$14.99';
+const price = urlParams.get('price') || '₹1,199';
 const img = urlParams.get('img') || 'https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=400&h=300&fit=crop';
 const cat = urlParams.get('cat') || 'Books';
 const rating = parseFloat(urlParams.get('rating')) || 4.7;
@@ -145,16 +145,16 @@ galleryImages.forEach((src, idx) => {
 
 // --- Generate 20 Dynamic Related Book Products ---
 const relatedProductsPool = [
-    { name: "The Midnight Library", author: "Matt Haig", price: "$18.99", img: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=400&h=300&fit=crop", rating: 4.9, reviews: 42000 },
-    { name: "Atomic Habits", author: "James Clear", price: "$16.99", img: "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?q=80&w=400&h=300&fit=crop", rating: 4.8, reviews: 85000 },
-    { name: "Sapiens", author: "Yuval Noah Harari", price: "$18.99", img: "https://images.unsplash.com/photo-1516979187457-637abb4f9353?q=80&w=400&h=300&fit=crop", rating: 4.8, reviews: 72000 },
-    { name: "Dune", author: "Frank Herbert", price: "$14.99", img: "https://images.unsplash.com/photo-1532012197267-da84d127e765?q=80&w=400&h=300&fit=crop", rating: 4.9, reviews: 67000 },
-    { name: "Gone Girl", author: "Gillian Flynn", price: "$14.99", img: "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?q=80&w=400&h=300&fit=crop", rating: 4.7, reviews: 89000 },
-    { name: "Becoming", author: "Michelle Obama", price: "$15.99", img: "https://images.unsplash.com/photo-1516979187457-637abb4f9353?q=80&w=400&h=300&fit=crop", rating: 4.9, reviews: 54000 },
-    { name: "Normal People", author: "Sally Rooney", price: "$15.99", img: "https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=400&h=300&fit=crop", rating: 4.6, reviews: 38000 },
-    { name: "It Ends with Us", author: "Colleen Hoover", price: "$15.99", img: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=400&h=300&fit=crop", rating: 4.6, reviews: 120000 },
-    { name: "1984", author: "George Orwell", price: "$11.99", img: "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?q=80&w=400&h=300&fit=crop", rating: 4.8, reviews: 105000 },
-    { name: "The Hobbit", author: "J.R.R. Tolkien", price: "$12.99", img: "https://images.unsplash.com/photo-1532012197267-da84d127e765?q=80&w=400&h=300&fit=crop", rating: 4.9, reviews: 89000 }
+    { name: "The Midnight Library", author: "Matt Haig", price: "₹1,519", img: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=400&h=300&fit=crop", rating: 4.9, reviews: 42000 },
+    { name: "Atomic Habits", author: "James Clear", price: "₹1,359", img: "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?q=80&w=400&h=300&fit=crop", rating: 4.8, reviews: 85000 },
+    { name: "Sapiens", author: "Yuval Noah Harari", price: "₹1,519", img: "https://images.unsplash.com/photo-1516979187457-637abb4f9353?q=80&w=400&h=300&fit=crop", rating: 4.8, reviews: 72000 },
+    { name: "Dune", author: "Frank Herbert", price: "₹1,199", img: "https://images.unsplash.com/photo-1532012197267-da84d127e765?q=80&w=400&h=300&fit=crop", rating: 4.9, reviews: 67000 },
+    { name: "Gone Girl", author: "Gillian Flynn", price: "₹1,199", img: "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?q=80&w=400&h=300&fit=crop", rating: 4.7, reviews: 89000 },
+    { name: "Becoming", author: "Michelle Obama", price: "₹1,279", img: "https://images.unsplash.com/photo-1516979187457-637abb4f9353?q=80&w=400&h=300&fit=crop", rating: 4.9, reviews: 54000 },
+    { name: "Normal People", author: "Sally Rooney", price: "₹1,279", img: "https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=400&h=300&fit=crop", rating: 4.6, reviews: 38000 },
+    { name: "It Ends with Us", author: "Colleen Hoover", price: "₹1,279", img: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=400&h=300&fit=crop", rating: 4.6, reviews: 120000 },
+    { name: "1984", author: "George Orwell", price: "₹959", img: "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?q=80&w=400&h=300&fit=crop", rating: 4.8, reviews: 105000 },
+    { name: "The Hobbit", author: "J.R.R. Tolkien", price: "₹1,039", img: "https://images.unsplash.com/photo-1532012197267-da84d127e765?q=80&w=400&h=300&fit=crop", rating: 4.9, reviews: 89000 }
 ];
 
 const scroll = document.getElementById('related-scroll');

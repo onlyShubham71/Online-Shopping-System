@@ -7,28 +7,28 @@
 const heroProducts = [
     {
         name: "The Midnight Library",
-        price: "$18.99",
+        price: "₹1,519",
         tag: "BESTSELLER",
         img: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=600&h=600&fit=crop",
-        link: "Books_ProductDetails.html?name=The Midnight Library&price=$18.99&img=https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=600&h=600&fit=crop&cat=Fiction&rating=4.9&reviews=42000&originalPrice=$28.99&desc=A dazzling novel about all the choices that go into a life well lived.&badge=Bestseller",
+        link: "Books_ProductDetails.html?name=The Midnight Library&price=₹1,519&img=https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=600&h=600&fit=crop&cat=Fiction&rating=4.9&reviews=42000&originalPrice=₹2,319&desc=A dazzling novel about all the choices that go into a life well lived.&badge=Bestseller",
         bg: "linear-gradient(rgba(26, 10, 28, 0.85), rgba(74, 25, 66, 0.85)), url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?q=80&w=1600&h=900&fit=crop')",
         desc: "Between life and death there is a library. Every book contains a different version of your life. Discover the #1 bestselling phenomenon."
     },
     {
         name: "Atomic Habits",
-        price: "$16.99",
+        price: "₹1,359",
         tag: "SELF-IMPROVEMENT",
         img: "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?q=80&w=600&h=600&fit=crop",
-        link: "Books_ProductDetails.html?name=Atomic Habits&price=$16.99&img=https://images.unsplash.com/photo-1589829085413-56de8ae18c73?q=80&w=600&h=600&fit=crop&cat=Self-Help&rating=4.8&reviews=85000&originalPrice=$27.99&desc=The life-changing million-copy bestseller. Build good habits, break bad ones.&badge=Phenomenon",
+        link: "Books_ProductDetails.html?name=Atomic Habits&price=₹1,359&img=https://images.unsplash.com/photo-1589829085413-56de8ae18c73?q=80&w=600&h=600&fit=crop&cat=Self-Help&rating=4.8&reviews=85000&originalPrice=₹2,239&desc=The life-changing million-copy bestseller. Build good habits, break bad ones.&badge=Phenomenon",
         bg: "linear-gradient(rgba(26, 10, 28, 0.85), rgba(74, 25, 66, 0.85)), url('https://images.unsplash.com/photo-1481627834876-b7833e8f5570?q=80&w=1600&h=900&fit=crop')",
         desc: "Tiny changes, remarkable results. Learn the proven system that millions have used to transform their daily routines forever."
     },
     {
         name: "Dune",
-        price: "$14.99",
+        price: "₹1,199",
         tag: "SCI-FI EPIC",
         img: "https://images.unsplash.com/photo-1532012197267-da84d127e765?q=80&w=600&h=600&fit=crop",
-        link: "Books_ProductDetails.html?name=Dune&price=$14.99&img=https://images.unsplash.com/photo-1532012197267-da84d127e765?q=80&w=600&h=600&fit=crop&cat=Sci-Fi&rating=4.9&reviews=67000&originalPrice=$24.99&desc=The monumental sci-fi saga. A stunning blend of adventure and mysticism.&badge=Legendary",
+        link: "Books_ProductDetails.html?name=Dune&price=₹1,199&img=https://images.unsplash.com/photo-1532012197267-da84d127e765?q=80&w=600&h=600&fit=crop&cat=Sci-Fi&rating=4.9&reviews=67000&originalPrice=₹1,999&desc=The monumental sci-fi saga. A stunning blend of adventure and mysticism.&badge=Legendary",
         bg: "linear-gradient(rgba(26, 10, 28, 0.85), rgba(74, 25, 66, 0.85)), url('https://images.unsplash.com/photo-1495446815901-a7297e633e8d?q=80&w=1600&h=900&fit=crop')",
         desc: "The greatest science fiction novel of all time. A masterwork of imagination set on the desert planet Arrakis."
     }
@@ -272,100 +272,100 @@ const genreData = {
         tagline: "SPINE-CHILLING READS",
         title: "Horror & Thrillers",
         products: [
-            { name: "It", author: "Stephen King", price: "$14.99", img: "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?q=80&w=400&h=300&fit=crop" },
-            { name: "The Shining", author: "Stephen King", price: "$13.99", img: "https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=400&h=300&fit=crop" },
-            { name: "Bird Box", author: "Josh Malerman", price: "$12.99", img: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=400&h=300&fit=crop" },
-            { name: "Mexican Gothic", author: "Silvia Moreno-Garcia", price: "$15.99", img: "https://images.unsplash.com/photo-1532012197267-da84d127e765?q=80&w=400&h=300&fit=crop" }
+            { name: "It", author: "Stephen King", price: "₹1,199", img: "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?q=80&w=400&h=300&fit=crop" },
+            { name: "The Shining", author: "Stephen King", price: "₹1,119", img: "https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=400&h=300&fit=crop" },
+            { name: "Bird Box", author: "Josh Malerman", price: "₹1,039", img: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=400&h=300&fit=crop" },
+            { name: "Mexican Gothic", author: "Silvia Moreno-Garcia", price: "₹1,279", img: "https://images.unsplash.com/photo-1532012197267-da84d127e765?q=80&w=400&h=300&fit=crop" }
         ]
     },
     autobiography: {
         tagline: "REAL STORIES, REAL LIVES",
         title: "Autobiography & Memoir",
         products: [
-            { name: "Becoming", author: "Michelle Obama", price: "$15.99", img: "https://images.unsplash.com/photo-1516979187457-637abb4f9353?q=80&w=400&h=300&fit=crop" },
-            { name: "Educated", author: "Tara Westover", price: "$14.99", img: "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?q=80&w=400&h=300&fit=crop" },
-            { name: "Born a Crime", author: "Trevor Noah", price: "$13.99", img: "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?q=80&w=400&h=300&fit=crop" },
-            { name: "Long Walk to Freedom", author: "Nelson Mandela", price: "$16.99", img: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=400&h=300&fit=crop" }
+            { name: "Becoming", author: "Michelle Obama", price: "₹1,279", img: "https://images.unsplash.com/photo-1516979187457-637abb4f9353?q=80&w=400&h=300&fit=crop" },
+            { name: "Educated", author: "Tara Westover", price: "₹1,199", img: "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?q=80&w=400&h=300&fit=crop" },
+            { name: "Born a Crime", author: "Trevor Noah", price: "₹1,119", img: "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?q=80&w=400&h=300&fit=crop" },
+            { name: "Long Walk to Freedom", author: "Nelson Mandela", price: "₹1,359", img: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=400&h=300&fit=crop" }
         ]
     },
     drama: {
         tagline: "STORIES THAT MOVE YOU",
         title: "Drama & Literary Fiction",
         products: [
-            { name: "Normal People", author: "Sally Rooney", price: "$15.99", img: "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?q=80&w=400&h=300&fit=crop" },
-            { name: "A Little Life", author: "Hanya Yanagihara", price: "$17.99", img: "https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=400&h=300&fit=crop" },
-            { name: "The Kite Runner", author: "Khaled Hosseini", price: "$14.99", img: "https://images.unsplash.com/photo-1532012197267-da84d127e765?q=80&w=400&h=300&fit=crop" },
-            { name: "Beautiful World", author: "Sally Rooney", price: "$16.99", img: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=400&h=300&fit=crop" }
+            { name: "Normal People", author: "Sally Rooney", price: "₹1,279", img: "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?q=80&w=400&h=300&fit=crop" },
+            { name: "A Little Life", author: "Hanya Yanagihara", price: "₹1,439", img: "https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=400&h=300&fit=crop" },
+            { name: "The Kite Runner", author: "Khaled Hosseini", price: "₹1,199", img: "https://images.unsplash.com/photo-1532012197267-da84d127e765?q=80&w=400&h=300&fit=crop" },
+            { name: "Beautiful World", author: "Sally Rooney", price: "₹1,359", img: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=400&h=300&fit=crop" }
         ]
     },
     scifi: {
         tagline: "BEYOND IMAGINATION",
         title: "Sci-Fi & Fantasy",
         products: [
-            { name: "Project Hail Mary", author: "Andy Weir", price: "$22.99", img: "https://images.unsplash.com/photo-1532012197267-da84d127e765?q=80&w=400&h=300&fit=crop" },
-            { name: "Dune", author: "Frank Herbert", price: "$14.99", img: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=400&h=300&fit=crop" },
-            { name: "The Name of the Wind", author: "Patrick Rothfuss", price: "$16.99", img: "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?q=80&w=400&h=300&fit=crop" },
-            { name: "Neuromancer", author: "William Gibson", price: "$13.99", img: "https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=400&h=300&fit=crop" }
+            { name: "Project Hail Mary", author: "Andy Weir", price: "₹1,839", img: "https://images.unsplash.com/photo-1532012197267-da84d127e765?q=80&w=400&h=300&fit=crop" },
+            { name: "Dune", author: "Frank Herbert", price: "₹1,199", img: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=400&h=300&fit=crop" },
+            { name: "The Name of the Wind", author: "Patrick Rothfuss", price: "₹1,359", img: "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?q=80&w=400&h=300&fit=crop" },
+            { name: "Neuromancer", author: "William Gibson", price: "₹1,119", img: "https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=400&h=300&fit=crop" }
         ]
     },
     romance: {
         tagline: "LOVE IN EVERY PAGE",
         title: "Romance",
         products: [
-            { name: "It Ends with Us", author: "Colleen Hoover", price: "$15.99", img: "https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=400&h=300&fit=crop" },
-            { name: "The Notebook", author: "Nicholas Sparks", price: "$12.99", img: "https://images.unsplash.com/photo-1516979187457-637abb4f9353?q=80&w=400&h=300&fit=crop" },
-            { name: "Beach Read", author: "Emily Henry", price: "$14.99", img: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=400&h=300&fit=crop" },
-            { name: "People We Meet", author: "Emily Henry", price: "$15.99", img: "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?q=80&w=400&h=300&fit=crop" }
+            { name: "It Ends with Us", author: "Colleen Hoover", price: "₹1,279", img: "https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=400&h=300&fit=crop" },
+            { name: "The Notebook", author: "Nicholas Sparks", price: "₹1,039", img: "https://images.unsplash.com/photo-1516979187457-637abb4f9353?q=80&w=400&h=300&fit=crop" },
+            { name: "Beach Read", author: "Emily Henry", price: "₹1,199", img: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=400&h=300&fit=crop" },
+            { name: "People We Meet", author: "Emily Henry", price: "₹1,279", img: "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?q=80&w=400&h=300&fit=crop" }
         ]
     },
     mystery: {
         tagline: "UNRAVEL THE TRUTH",
         title: "Mystery & Crime",
         products: [
-            { name: "Gone Girl", author: "Gillian Flynn", price: "$14.99", img: "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?q=80&w=400&h=300&fit=crop" },
-            { name: "The Girl on the Train", author: "Paula Hawkins", price: "$13.99", img: "https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=400&h=300&fit=crop" },
-            { name: "Big Little Lies", author: "Liane Moriarty", price: "$14.99", img: "https://images.unsplash.com/photo-1532012197267-da84d127e765?q=80&w=400&h=300&fit=crop" },
-            { name: "The Da Vinci Code", author: "Dan Brown", price: "$12.99", img: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=400&h=300&fit=crop" }
+            { name: "Gone Girl", author: "Gillian Flynn", price: "₹1,199", img: "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?q=80&w=400&h=300&fit=crop" },
+            { name: "The Girl on the Train", author: "Paula Hawkins", price: "₹1,119", img: "https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=400&h=300&fit=crop" },
+            { name: "Big Little Lies", author: "Liane Moriarty", price: "₹1,199", img: "https://images.unsplash.com/photo-1532012197267-da84d127e765?q=80&w=400&h=300&fit=crop" },
+            { name: "The Da Vinci Code", author: "Dan Brown", price: "₹1,039", img: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=400&h=300&fit=crop" }
         ]
     },
     selfhelp: {
         tagline: "TRANSFORM YOUR LIFE",
         title: "Self-Help & Growth",
         products: [
-            { name: "Atomic Habits", author: "James Clear", price: "$16.99", img: "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?q=80&w=400&h=300&fit=crop" },
-            { name: "The Power of Now", author: "Eckhart Tolle", price: "$14.99", img: "https://images.unsplash.com/photo-1516979187457-637abb4f9353?q=80&w=400&h=300&fit=crop" },
-            { name: "Think and Grow Rich", author: "Napoleon Hill", price: "$11.99", img: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=400&h=300&fit=crop" },
-            { name: "The 7 Habits", author: "Stephen Covey", price: "$15.99", img: "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?q=80&w=400&h=300&fit=crop" }
+            { name: "Atomic Habits", author: "James Clear", price: "₹1,359", img: "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?q=80&w=400&h=300&fit=crop" },
+            { name: "The Power of Now", author: "Eckhart Tolle", price: "₹1,199", img: "https://images.unsplash.com/photo-1516979187457-637abb4f9353?q=80&w=400&h=300&fit=crop" },
+            { name: "Think and Grow Rich", author: "Napoleon Hill", price: "₹959", img: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=400&h=300&fit=crop" },
+            { name: "The 7 Habits", author: "Stephen Covey", price: "₹1,279", img: "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?q=80&w=400&h=300&fit=crop" }
         ]
     },
     history: {
         tagline: "LESSONS FROM THE PAST",
         title: "History & Politics",
         products: [
-            { name: "Sapiens", author: "Yuval Noah Harari", price: "$18.99", img: "https://images.unsplash.com/photo-1516979187457-637abb4f9353?q=80&w=400&h=300&fit=crop" },
-            { name: "Guns, Germs, and Steel", author: "Jared Diamond", price: "$16.99", img: "https://images.unsplash.com/photo-1532012197267-da84d127e765?q=80&w=400&h=300&fit=crop" },
-            { name: "The Silk Roads", author: "Peter Frankopan", price: "$17.99", img: "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?q=80&w=400&h=300&fit=crop" },
-            { name: "SPQR", author: "Mary Beard", price: "$15.99", img: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=400&h=300&fit=crop" }
+            { name: "Sapiens", author: "Yuval Noah Harari", price: "₹1,519", img: "https://images.unsplash.com/photo-1516979187457-637abb4f9353?q=80&w=400&h=300&fit=crop" },
+            { name: "Guns, Germs, and Steel", author: "Jared Diamond", price: "₹1,359", img: "https://images.unsplash.com/photo-1532012197267-da84d127e765?q=80&w=400&h=300&fit=crop" },
+            { name: "The Silk Roads", author: "Peter Frankopan", price: "₹1,439", img: "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?q=80&w=400&h=300&fit=crop" },
+            { name: "SPQR", author: "Mary Beard", price: "₹1,279", img: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=400&h=300&fit=crop" }
         ]
     },
     children: {
         tagline: "IMAGINATION UNLIMITED",
         title: "Young Adult & Children",
         products: [
-            { name: "Harry Potter Box Set", author: "J.K. Rowling", price: "$49.99", img: "https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=400&h=300&fit=crop" },
-            { name: "Percy Jackson", author: "Rick Riordan", price: "$12.99", img: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=400&h=300&fit=crop" },
-            { name: "The Hunger Games", author: "Suzanne Collins", price: "$14.99", img: "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?q=80&w=400&h=300&fit=crop" },
-            { name: "Matilda", author: "Roald Dahl", price: "$9.99", img: "https://images.unsplash.com/photo-1532012197267-da84d127e765?q=80&w=400&h=300&fit=crop" }
+            { name: "Harry Potter Box Set", author: "J.K. Rowling", price: "₹3,999", img: "https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=400&h=300&fit=crop" },
+            { name: "Percy Jackson", author: "Rick Riordan", price: "₹1,039", img: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=400&h=300&fit=crop" },
+            { name: "The Hunger Games", author: "Suzanne Collins", price: "₹1,199", img: "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?q=80&w=400&h=300&fit=crop" },
+            { name: "Matilda", author: "Roald Dahl", price: "₹799", img: "https://images.unsplash.com/photo-1532012197267-da84d127e765?q=80&w=400&h=300&fit=crop" }
         ]
     },
     poetry: {
         tagline: "WORDS THAT RESONATE",
         title: "Poetry & Verse",
         products: [
-            { name: "Milk and Honey", author: "Rupi Kaur", price: "$10.99", img: "https://images.unsplash.com/photo-1516979187457-637abb4f9353?q=80&w=400&h=300&fit=crop" },
-            { name: "The Sun and Her Flowers", author: "Rupi Kaur", price: "$12.99", img: "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?q=80&w=400&h=300&fit=crop" },
-            { name: "Leaves of Grass", author: "Walt Whitman", price: "$8.99", img: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=400&h=300&fit=crop" },
-            { name: "The Waste Land", author: "T.S. Eliot", price: "$9.99", img: "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?q=80&w=400&h=300&fit=crop" }
+            { name: "Milk and Honey", author: "Rupi Kaur", price: "₹879", img: "https://images.unsplash.com/photo-1516979187457-637abb4f9353?q=80&w=400&h=300&fit=crop" },
+            { name: "The Sun and Her Flowers", author: "Rupi Kaur", price: "₹1,039", img: "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?q=80&w=400&h=300&fit=crop" },
+            { name: "Leaves of Grass", author: "Walt Whitman", price: "₹719", img: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=400&h=300&fit=crop" },
+            { name: "The Waste Land", author: "T.S. Eliot", price: "₹799", img: "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?q=80&w=400&h=300&fit=crop" }
         ]
     }
 };

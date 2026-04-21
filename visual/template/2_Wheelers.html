@@ -196,7 +196,8 @@
                             class="bi bi-trophy"></i> Sports</a></div>
                 <div class="cat-pill " data-cat="Medicines" onclick="window.location.href='Medicine_&_Nutrients.html'">
                     <a href="Medicine_&_Nutrients.html" style="text-decoration: none; color: inherit;"><i
-                            class="bi bi-capsule"></i> Medicines</a></div>
+                            class="bi bi-capsule"></i> Medicines</a>
+                </div>
                 <div class="cat-pill travel-pill " data-cat="Travel"
                     onclick="window.location.href='travel_landing.html'">
                     <span class="travel-badge">NEW</span>
@@ -309,35 +310,61 @@
             </div>
             <div class="product-scroll-container">
                 <div class="product-card"
-                    onclick="window.location.href='2_Wheelers_ProductDetails.html?name=Apex Mountain Pro X9&price=$1,299&img=../assets/hero_bike_1.png&cat=Deals&rating=4.8&reviews=2450&originalPrice=$2,199&desc=Full suspension carbon fiber frame with 29-inch wheels. Built for the toughest terrain.&badge=40%25 OFF'">
+                    onclick="window.location.href='2_Wheelers_ProductDetails.html?name=Apex Mountain Pro X9&price=₹1,03,920&img=../assets/hero_bike_1.png&cat=Deals&rating=4.8&reviews=2450&originalPrice=₹1,75,920&desc=Full suspension carbon fiber frame with 29-inch wheels. Built for the toughest terrain.&badge=40%25 OFF'">
                     <div class="image-wrapper">
                         <img src="../assets/hero_bike_1.png" class="product-image" alt="Apex Mountain Pro X9">
                         <span class="product-badge badge-deal">40% OFF</span>
                     </div>
                     <div class="product-info">
                         <h3>Apex Mountain Pro X9</h3>
-                        <p class="product-price"><span
-                                style="text-decoration: line-through; font-size: 0.9rem; color: #94a3b8;">$2,199</span>
-                            $1,299</p>
-                        <button class="add-to-cart" onclick="event.stopPropagation();">Add to Cart</button>
+                        <div class="rating">
+                            <i class="fas fa-star"></i> 4.8 <span>(2,450)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="price-original">₹1,75,920</span>
+                            <span class="price-current">₹1,03,920</span>
+                        </div>
+                        <div class="action-buttons">
+                            <button class="btn-add-cart"
+                                onclick="event.stopPropagation(); addToCart('Apex Mountain Pro X9', '₹1,03,920', '../assets/hero_bike_1.png')">
+                                <i class="fas fa-shopping-cart"></i> Add
+                            </button>
+                            <button class="btn-buy-now"
+                                onclick="event.stopPropagation(); buyNow('Apex Mountain Pro X9', '₹1,03,920', '../assets/hero_bike_1.png')">
+                                <i class="fas fa-bolt"></i> Buy
+                            </button>
+                        </div>
                     </div>
                 </div>
                 <div class="product-card"
-                    onclick="window.location.href='2_Wheelers_ProductDetails.html?name=Velocity Road Racer&price=$899&img=../assets/hero_bike_2.png&cat=Deals&rating=4.7&reviews=1890&originalPrice=$1,299&desc=Aerodynamic alloy frame with Shimano 22-speed drivetrain.&badge=30%25 OFF'">
+                    onclick="window.location.href='2_Wheelers_ProductDetails.html?name=Velocity Road Racer&price=₹71,920&img=../assets/hero_bike_2.png&cat=Deals&rating=4.7&reviews=1890&originalPrice=₹1,03,920&desc=Aerodynamic alloy frame with Shimano 22-speed drivetrain.&badge=30%25 OFF'">
                     <div class="image-wrapper">
                         <img src="../assets/hero_bike_2.png" class="product-image" alt="Velocity Road Racer">
                         <span class="product-badge badge-deal">30% OFF</span>
                     </div>
                     <div class="product-info">
                         <h3>Velocity Road Racer</h3>
-                        <p class="product-price"><span
-                                style="text-decoration: line-through; font-size: 0.9rem; color: #94a3b8;">$1,299</span>
-                            $899</p>
-                        <button class="add-to-cart" onclick="event.stopPropagation();">Add to Cart</button>
+                        <div class="rating">
+                            <i class="fas fa-star"></i> 4.7 <span>(1,890)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="price-original">₹1,03,920</span>
+                            <span class="price-current">₹71,920</span>
+                        </div>
+                        <div class="action-buttons">
+                            <button class="btn-add-cart"
+                                onclick="event.stopPropagation(); addToCart('Velocity Road Racer', '₹71,920', '../assets/hero_bike_2.png')">
+                                <i class="fas fa-shopping-cart"></i> Add
+                            </button>
+                            <button class="btn-buy-now"
+                                onclick="event.stopPropagation(); buyNow('Velocity Road Racer', '₹71,920', '../assets/hero_bike_2.png')">
+                                <i class="fas fa-bolt"></i> Buy
+                            </button>
+                        </div>
                     </div>
                 </div>
                 <div class="product-card"
-                    onclick="window.location.href='2_Wheelers_ProductDetails.html?name=Pro Cycling Helmet&price=$79&img=https://images.unsplash.com/photo-1557803175-2b3156c31fc8?q=80&w=400&h=300&fit=crop&cat=Deals&rating=4.8&reviews=3200&originalPrice=$159&desc=MIPS protection system with 18 ventilation channels.&badge=50%25 OFF'">
+                    onclick="window.location.href='2_Wheelers_ProductDetails.html?name=Pro Cycling Helmet&price=₹6,320&img=https://images.unsplash.com/photo-1557803175-2b3156c31fc8?q=80&w=400&h=300&fit=crop&cat=Deals&rating=4.8&reviews=3200&originalPrice=₹12,720&desc=MIPS protection system with 18 ventilation channels.&badge=50%25 OFF'">
                     <div class="image-wrapper">
                         <img src="https://images.unsplash.com/photo-1557803175-2b3156c31fc8?q=80&w=400&h=300&fit=crop"
                             class="product-image" alt="Pro Cycling Helmet">
@@ -345,24 +372,50 @@
                     </div>
                     <div class="product-info">
                         <h3>Pro Cycling Helmet</h3>
-                        <p class="product-price"><span
-                                style="text-decoration: line-through; font-size: 0.9rem; color: #94a3b8;">$159</span>
-                            $79</p>
-                        <button class="add-to-cart" onclick="event.stopPropagation();">Add to Cart</button>
+                        <div class="rating">
+                            <i class="fas fa-star"></i> 4.8 <span>(3,200)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="price-original">₹12,720</span>
+                            <span class="price-current">₹6,320</span>
+                        </div>
+                        <div class="action-buttons">
+                            <button class="btn-add-cart"
+                                onclick="event.stopPropagation(); addToCart('Pro Cycling Helmet', '₹6,320', 'https://images.unsplash.com/photo-1557803175-2b3156c31fc8?q=80&w=400&h=300&fit=crop')">
+                                <i class="fas fa-shopping-cart"></i> Add
+                            </button>
+                            <button class="btn-buy-now"
+                                onclick="event.stopPropagation(); buyNow('Pro Cycling Helmet', '₹6,320', 'https://images.unsplash.com/photo-1557803175-2b3156c31fc8?q=80&w=400&h=300&fit=crop')">
+                                <i class="fas fa-bolt"></i> Buy
+                            </button>
+                        </div>
                     </div>
                 </div>
                 <div class="product-card"
-                    onclick="window.location.href='2_Wheelers_ProductDetails.html?name=EcoVolt E-Bike 500&price=$1,649&img=../assets/hero_ebike.png&cat=Deals&rating=4.9&reviews=3120&originalPrice=$2,199&desc=500W motor, 80km range, regenerative braking.&badge=25%25 OFF'">
+                    onclick="window.location.href='2_Wheelers_ProductDetails.html?name=EcoVolt E-Bike 500&price=₹1,31,920&img=../assets/hero_ebike.png&cat=Deals&rating=4.9&reviews=3120&originalPrice=₹1,75,920&desc=500W motor, 80km range, regenerative braking.&badge=25%25 OFF'">
                     <div class="image-wrapper">
                         <img src="../assets/hero_ebike.png" class="product-image" alt="EcoVolt E-Bike 500">
                         <span class="product-badge badge-deal">25% OFF</span>
                     </div>
                     <div class="product-info">
                         <h3>EcoVolt E-Bike 500</h3>
-                        <p class="product-price"><span
-                                style="text-decoration: line-through; font-size: 0.9rem; color: #94a3b8;">$2,199</span>
-                            $1,649</p>
-                        <button class="add-to-cart" onclick="event.stopPropagation();">Add to Cart</button>
+                        <div class="rating">
+                            <i class="fas fa-star"></i> 4.9 <span>(3,120)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="price-original">₹1,75,920</span>
+                            <span class="price-current">₹1,31,920</span>
+                        </div>
+                        <div class="action-buttons">
+                            <button class="btn-add-cart"
+                                onclick="event.stopPropagation(); addToCart('EcoVolt E-Bike 500', '₹1,31,920', '../assets/hero_ebike.png')">
+                                <i class="fas fa-shopping-cart"></i> Add
+                            </button>
+                            <button class="btn-buy-now"
+                                onclick="event.stopPropagation(); buyNow('EcoVolt E-Bike 500', '₹1,31,920', '../assets/hero_ebike.png')">
+                                <i class="fas fa-bolt"></i> Buy
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -380,7 +433,7 @@
             </div>
             <div class="product-scroll-container">
                 <div class="product-card"
-                    onclick="window.location.href='2_Wheelers_ProductDetails.html?name=CityGlide Hybrid 7&price=$549&img=https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?q=80&w=400&h=300&fit=crop&cat=Best Sellers&rating=4.5&reviews=1560&badge=%231 Seller'">
+                    onclick="window.location.href='2_Wheelers_ProductDetails.html?name=CityGlide Hybrid 7&price=₹43,920&img=https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?q=80&w=400&h=300&fit=crop&cat=Best Sellers&rating=4.5&reviews=1560&badge=%231 Seller'">
                     <div class="image-wrapper">
                         <img src="https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?q=80&w=400&h=300&fit=crop"
                             class="product-image" alt="CityGlide Hybrid 7">
@@ -388,12 +441,26 @@
                     </div>
                     <div class="product-info">
                         <h3>CityGlide Hybrid 7</h3>
-                        <p class="product-price">$549</p>
-                        <button class="add-to-cart" onclick="event.stopPropagation();">Add to Cart</button>
+                        <div class="rating">
+                            <i class="fas fa-star"></i> 4.5 <span>(1,560)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="price-current">₹43,920</span>
+                        </div>
+                        <div class="action-buttons">
+                            <button class="btn-add-cart"
+                                onclick="event.stopPropagation(); addToCart('CityGlide Hybrid 7', '₹43,920', 'https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?q=80&w=400&h=300&fit=crop')">
+                                <i class="fas fa-shopping-cart"></i> Add
+                            </button>
+                            <button class="btn-buy-now"
+                                onclick="event.stopPropagation(); buyNow('CityGlide Hybrid 7', '₹43,920', 'https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?q=80&w=400&h=300&fit=crop')">
+                                <i class="fas fa-bolt"></i> Buy
+                            </button>
+                        </div>
                     </div>
                 </div>
                 <div class="product-card"
-                    onclick="window.location.href='2_Wheelers_ProductDetails.html?name=TrailBlazer Fat Tire&price=$989&img=https://images.unsplash.com/photo-1571068316344-75bc76f77890?q=80&w=400&h=300&fit=crop&cat=Best Sellers&rating=4.7&reviews=1240&badge=Trending'">
+                    onclick="window.location.href='2_Wheelers_ProductDetails.html?name=TrailBlazer Fat Tire&price=₹79,120&img=https://images.unsplash.com/photo-1571068316344-75bc76f77890?q=80&w=400&h=300&fit=crop&cat=Best Sellers&rating=4.7&reviews=1240&badge=Trending'">
                     <div class="image-wrapper">
                         <img src="https://images.unsplash.com/photo-1571068316344-75bc76f77890?q=80&w=400&h=300&fit=crop"
                             class="product-image" alt="TrailBlazer Fat Tire">
@@ -401,12 +468,26 @@
                     </div>
                     <div class="product-info">
                         <h3>TrailBlazer Fat Tire</h3>
-                        <p class="product-price">$989</p>
-                        <button class="add-to-cart" onclick="event.stopPropagation();">Add to Cart</button>
+                        <div class="rating">
+                            <i class="fas fa-star"></i> 4.7 <span>(1,240)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="price-current">₹79,120</span>
+                        </div>
+                        <div class="action-buttons">
+                            <button class="btn-add-cart"
+                                onclick="event.stopPropagation(); addToCart('TrailBlazer Fat Tire', '₹79,120', 'https://images.unsplash.com/photo-1571068316344-75bc76f77890?q=80&w=400&h=300&fit=crop')">
+                                <i class="fas fa-shopping-cart"></i> Add
+                            </button>
+                            <button class="btn-buy-now"
+                                onclick="event.stopPropagation(); buyNow('TrailBlazer Fat Tire', '₹79,120', 'https://images.unsplash.com/photo-1571068316344-75bc76f77890?q=80&w=400&h=300&fit=crop')">
+                                <i class="fas fa-bolt"></i> Buy
+                            </button>
+                        </div>
                     </div>
                 </div>
                 <div class="product-card"
-                    onclick="window.location.href='2_Wheelers_ProductDetails.html?name=KidStar BMX Blaze&price=$279&img=https://images.unsplash.com/photo-1507035895480-2b3156c31fc8?q=80&w=400&h=300&fit=crop&cat=Best Sellers&rating=4.6&reviews=980&badge=Kids Fav'">
+                    onclick="window.location.href='2_Wheelers_ProductDetails.html?name=KidStar BMX Blaze&price=₹22,320&img=https://images.unsplash.com/photo-1507035895480-2b3156c31fc8?q=80&w=400&h=300&fit=crop&cat=Best Sellers&rating=4.6&reviews=980&badge=Kids Fav'">
                     <div class="image-wrapper">
                         <img src="https://images.unsplash.com/photo-1507035895480-2b3156c31fc8?q=80&w=400&h=300&fit=crop"
                             class="product-image" alt="KidStar BMX Blaze">
@@ -414,12 +495,26 @@
                     </div>
                     <div class="product-info">
                         <h3>KidStar BMX Blaze</h3>
-                        <p class="product-price">$279</p>
-                        <button class="add-to-cart" onclick="event.stopPropagation();">Add to Cart</button>
+                        <div class="rating">
+                            <i class="fas fa-star"></i> 4.6 <span>(980)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="price-current">₹22,320</span>
+                        </div>
+                        <div class="action-buttons">
+                            <button class="btn-add-cart"
+                                onclick="event.stopPropagation(); addToCart('KidStar BMX Blaze', '₹22,320', 'https://images.unsplash.com/photo-1507035895480-2b3156c31fc8?q=80&w=400&h=300&fit=crop')">
+                                <i class="fas fa-shopping-cart"></i> Add
+                            </button>
+                            <button class="btn-buy-now"
+                                onclick="event.stopPropagation(); buyNow('KidStar BMX Blaze', '₹22,320', 'https://images.unsplash.com/photo-1507035895480-2b3156c31fc8?q=80&w=400&h=300&fit=crop')">
+                                <i class="fas fa-bolt"></i> Buy
+                            </button>
+                        </div>
                     </div>
                 </div>
                 <div class="product-card"
-                    onclick="window.location.href='2_Wheelers_ProductDetails.html?name=Cycling Gloves Pro&price=$34&img=https://images.unsplash.com/photo-1558618666-fcd25c85f82e?q=80&w=400&h=300&fit=crop&cat=Best Sellers&rating=4.5&reviews=2340&badge=Hot'">
+                    onclick="window.location.href='2_Wheelers_ProductDetails.html?name=Cycling Gloves Pro&price=₹2,720&img=https://images.unsplash.com/photo-1558618666-fcd25c85f82e?q=80&w=400&h=300&fit=crop&cat=Best Sellers&rating=4.5&reviews=2340&badge=Hot'">
                     <div class="image-wrapper">
                         <img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?q=80&w=400&h=300&fit=crop"
                             class="product-image" alt="Cycling Gloves Pro">
@@ -427,8 +522,22 @@
                     </div>
                     <div class="product-info">
                         <h3>Cycling Gloves Pro</h3>
-                        <p class="product-price">$34</p>
-                        <button class="add-to-cart" onclick="event.stopPropagation();">Add to Cart</button>
+                        <div class="rating">
+                            <i class="fas fa-star"></i> 4.5 <span>(2,340)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="price-current">₹2,720</span>
+                        </div>
+                        <div class="action-buttons">
+                            <button class="btn-add-cart"
+                                onclick="event.stopPropagation(); addToCart('Cycling Gloves Pro', '₹2,720', 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?q=80&w=400&h=300&fit=crop')">
+                                <i class="fas fa-shopping-cart"></i> Add
+                            </button>
+                            <button class="btn-buy-now"
+                                onclick="event.stopPropagation(); buyNow('Cycling Gloves Pro', '₹2,720', 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?q=80&w=400&h=300&fit=crop')">
+                                <i class="fas fa-bolt"></i> Buy
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -445,39 +554,81 @@
             </div>
             <div class="product-scroll-container">
                 <div class="product-card"
-                    onclick="window.location.href='2_Wheelers_ProductDetails.html?name=Apex Mountain Pro X9&price=$1,299&img=../assets/hero_bike_1.png&cat=Premium&rating=4.8&reviews=2450&badge=Signature'">
+                    onclick="window.location.href='2_Wheelers_ProductDetails.html?name=Apex Mountain Pro X9&price=₹1,03,920&img=../assets/hero_bike_1.png&cat=Premium&rating=4.8&reviews=2450&badge=Signature'">
                     <div class="image-wrapper">
                         <img src="../assets/hero_bike_1.png" alt="Apex Mountain Pro X9" class="product-image">
                         <span class="product-badge badge-new">Signature</span>
                     </div>
                     <div class="product-info">
                         <h3>Apex Mountain Pro X9</h3>
-                        <p class="product-price">$1,299</p>
-                        <button class="add-to-cart" onclick="event.stopPropagation();">Add to Cart</button>
+                        <div class="rating">
+                            <i class="fas fa-star"></i> 4.8 <span>(2,450)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="price-current">₹1,03,920</span>
+                        </div>
+                        <div class="action-buttons">
+                            <button class="btn-add-cart"
+                                onclick="event.stopPropagation(); addToCart('Apex Mountain Pro X9', '₹1,03,920', '../assets/hero_bike_1.png')">
+                                <i class="fas fa-shopping-cart"></i> Add
+                            </button>
+                            <button class="btn-buy-now"
+                                onclick="event.stopPropagation(); buyNow('Apex Mountain Pro X9', '₹1,03,920', '../assets/hero_bike_1.png')">
+                                <i class="fas fa-bolt"></i> Buy
+                            </button>
+                        </div>
                     </div>
                 </div>
                 <div class="product-card"
-                    onclick="window.location.href='2_Wheelers_ProductDetails.html?name=Velocity Road Racer&price=$899&img=../assets/hero_bike_2.png&cat=Premium&rating=4.7&reviews=1890&badge=New Arrival'">
+                    onclick="window.location.href='2_Wheelers_ProductDetails.html?name=Velocity Road Racer&price=₹71,920&img=../assets/hero_bike_2.png&cat=Premium&rating=4.7&reviews=1890&badge=New Arrival'">
                     <div class="image-wrapper">
                         <img src="../assets/hero_bike_2.png" alt="Velocity Road Racer" class="product-image">
                         <span class="product-badge badge-new">New Arrival</span>
                     </div>
                     <div class="product-info">
                         <h3>Velocity Road Racer</h3>
-                        <p class="product-price">$899</p>
-                        <button class="add-to-cart" onclick="event.stopPropagation();">Add to Cart</button>
+                        <div class="rating">
+                            <i class="fas fa-star"></i> 4.7 <span>(1,890)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="price-current">₹71,920</span>
+                        </div>
+                        <div class="action-buttons">
+                            <button class="btn-add-cart"
+                                onclick="event.stopPropagation(); addToCart('Velocity Road Racer', '₹71,920', '../assets/hero_bike_2.png')">
+                                <i class="fas fa-shopping-cart"></i> Add
+                            </button>
+                            <button class="btn-buy-now"
+                                onclick="event.stopPropagation(); buyNow('Velocity Road Racer', '₹71,920', '../assets/hero_bike_2.png')">
+                                <i class="fas fa-bolt"></i> Buy
+                            </button>
+                        </div>
                     </div>
                 </div>
                 <div class="product-card"
-                    onclick="window.location.href='2_Wheelers_ProductDetails.html?name=EcoVolt E-Bike 500&price=$1,649&img=../assets/hero_ebike.png&cat=Premium&rating=4.9&reviews=3120&badge=Electric'">
+                    onclick="window.location.href='2_Wheelers_ProductDetails.html?name=EcoVolt E-Bike 500&price=₹1,31,920&img=../assets/hero_ebike.png&cat=Premium&rating=4.9&reviews=3120&badge=Electric'">
                     <div class="image-wrapper">
                         <img src="../assets/hero_ebike.png" alt="EcoVolt E-Bike 500" class="product-image">
                         <span class="product-badge badge-new">Electric</span>
                     </div>
                     <div class="product-info">
                         <h3>EcoVolt E-Bike 500</h3>
-                        <p class="product-price">$1,649</p>
-                        <button class="add-to-cart" onclick="event.stopPropagation();">Add to Cart</button>
+                        <div class="rating">
+                            <i class="fas fa-star"></i> 4.9 <span>(3,120)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="price-current">₹1,31,920</span>
+                        </div>
+                        <div class="action-buttons">
+                            <button class="btn-add-cart"
+                                onclick="event.stopPropagation(); addToCart('EcoVolt E-Bike 500', '₹1,31,920', '../assets/hero_ebike.png')">
+                                <i class="fas fa-shopping-cart"></i> Add
+                            </button>
+                            <button class="btn-buy-now"
+                                onclick="event.stopPropagation(); buyNow('EcoVolt E-Bike 500', '₹1,31,920', '../assets/hero_ebike.png')">
+                                <i class="fas fa-bolt"></i> Buy
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>

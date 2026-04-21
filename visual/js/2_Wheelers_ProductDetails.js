@@ -7,7 +7,7 @@
 // --- URL Parameters ---
 const urlParams = new URLSearchParams(window.location.search);
 const name = urlParams.get('name') || 'Premium Bike';
-const price = urlParams.get('price') || '$999.00';
+const price = urlParams.get('price') || '₹79,920';
 const img = urlParams.get('img') || 'https://images.unsplash.com/photo-1485965120184-e220f721d03e?q=80&w=400&h=300&fit=crop';
 const cat = urlParams.get('cat') || '2 Wheelers';
 const rating = parseFloat(urlParams.get('rating')) || 4.7;
@@ -140,16 +140,16 @@ galleryImages.forEach((src, idx) => {
 
 // --- Generate 20 Dynamic Related Bike Products ---
 const relatedProductsPool = [
-    { name: "Apex Mountain Pro X9", price: "$1,299", img: "https://images.unsplash.com/photo-1485965120184-e220f721d03e?q=80&w=400&h=300&fit=crop", rating: 4.8, reviews: 2450 },
-    { name: "Velocity Road Racer", price: "$899", img: "https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?q=80&w=400&h=300&fit=crop", rating: 4.7, reviews: 1890 },
-    { name: "CityGlide Hybrid 7", price: "$549", img: "https://images.unsplash.com/photo-1507035895480-2b3156c31fc8?q=80&w=400&h=300&fit=crop", rating: 4.5, reviews: 1560 },
-    { name: "TrailBlazer Fat Tire", price: "$989", img: "https://images.unsplash.com/photo-1571068316344-75bc76f77890?q=80&w=400&h=300&fit=crop", rating: 4.7, reviews: 1240 },
-    { name: "Pro Cycling Helmet", price: "$79", img: "https://images.unsplash.com/photo-1557803175-2b3156c31fc8?q=80&w=400&h=300&fit=crop", rating: 4.8, reviews: 3200 },
-    { name: "Cycling Gloves Pro", price: "$34", img: "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?q=80&w=400&h=300&fit=crop", rating: 4.5, reviews: 2340 },
-    { name: "Carbon Frame Racer", price: "$1,499", img: "https://images.unsplash.com/photo-1485965120184-e220f721d03e?q=80&w=400&h=300&fit=crop", rating: 4.9, reviews: 890 },
-    { name: "KidStar BMX Blaze", price: "$279", img: "https://images.unsplash.com/photo-1507035895480-2b3156c31fc8?q=80&w=400&h=300&fit=crop", rating: 4.6, reviews: 980 },
-    { name: "LED Bike Light Set", price: "$25", img: "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?q=80&w=400&h=300&fit=crop", rating: 4.4, reviews: 3450 },
-    { name: "Titanium Bike Lock", price: "$45", img: "https://images.unsplash.com/photo-1571068316344-75bc76f77890?q=80&w=400&h=300&fit=crop", rating: 4.6, reviews: 2100 }
+    { name: "Apex Mountain Pro X9", price: "₹1,03,920", img: "https://images.unsplash.com/photo-1485965120184-e220f721d03e?q=80&w=400&h=300&fit=crop", rating: 4.8, reviews: 2450 },
+    { name: "Velocity Road Racer", price: "₹71,920", img: "https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?q=80&w=400&h=300&fit=crop", rating: 4.7, reviews: 1890 },
+    { name: "CityGlide Hybrid 7", price: "₹43,920", img: "https://images.unsplash.com/photo-1507035895480-2b3156c31fc8?q=80&w=400&h=300&fit=crop", rating: 4.5, reviews: 1560 },
+    { name: "TrailBlazer Fat Tire", price: "₹79,120", img: "https://images.unsplash.com/photo-1571068316344-75bc76f77890?q=80&w=400&h=300&fit=crop", rating: 4.7, reviews: 1240 },
+    { name: "Pro Cycling Helmet", price: "₹6,320", img: "https://images.unsplash.com/photo-1557803175-2b3156c31fc8?q=80&w=400&h=300&fit=crop", rating: 4.8, reviews: 3200 },
+    { name: "Cycling Gloves Pro", price: "₹2,720", img: "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?q=80&w=400&h=300&fit=crop", rating: 4.5, reviews: 2340 },
+    { name: "Carbon Frame Racer", price: "₹1,19,920", img: "https://images.unsplash.com/photo-1485965120184-e220f721d03e?q=80&w=400&h=300&fit=crop", rating: 4.9, reviews: 890 },
+    { name: "KidStar BMX Blaze", price: "₹22,320", img: "https://images.unsplash.com/photo-1507035895480-2b3156c31fc8?q=80&w=400&h=300&fit=crop", rating: 4.6, reviews: 980 },
+    { name: "LED Bike Light Set", price: "₹2,000", img: "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?q=80&w=400&h=300&fit=crop", rating: 4.4, reviews: 3450 },
+    { name: "Titanium Bike Lock", price: "₹3,600", img: "https://images.unsplash.com/photo-1571068316344-75bc76f77890?q=80&w=400&h=300&fit=crop", rating: 4.6, reviews: 2100 }
 ];
 
 const scroll = document.getElementById('related-scroll');
@@ -181,3 +181,23 @@ for (let i = 0; i < 20; i++) {
     scroll.appendChild(card);
     
 }
+
+// --- Buy Now Functionality ---
+function buyNow(pName, pPrice, pImg) {
+    const numericPrice = parseInt(pPrice.replace(/[^0-9]/g, ''));
+    const product = {
+        name: pName,
+        price: numericPrice,
+        image: pImg
+    };
+    sessionStorage.setItem('um_cart', JSON.stringify([product]));
+    window.location.href = '../../templates/payment_gateway.html';
+}
+
+// Wire the main Buy Now button if it exists
+document.addEventListener('DOMContentLoaded', () => {
+    const buyBtn = document.querySelector('.btn-buy');
+    if (buyBtn) {
+        buyBtn.onclick = () => buyNow(name, price, img);
+    }
+});

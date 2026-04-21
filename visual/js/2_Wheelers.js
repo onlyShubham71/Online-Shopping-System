@@ -7,55 +7,55 @@
 const heroProducts = [
     {
         name: "Apex Mountain Pro X9",
-        price: "$1,299",
+        price: "₹1,03,920",
         tag: "BEST SELLER",
         img: "../assets/hero_bike_1.png",
-        link: "2_Wheelers_ProductDetails.html?name=Apex%20Mountain%20Pro%20X9&price=$1,299&img=../assets/hero_bike_1.png&cat=Mountain%20Bikes&rating=4.8&reviews=2450&originalPrice=$2,199&desc=Full%20suspension%20carbon%20fiber%20frame%20with%2029-inch%20wheels.&badge=Best%20Seller",
+        link: "2_Wheelers_ProductDetails.html?name=Apex%20Mountain%20Pro%20X9&price=₹1,03,920&img=../assets/hero_bike_1.png&cat=Mountain%20Bikes&rating=4.8&reviews=2450&originalPrice=₹1,75,920&desc=Full%20suspension%20carbon%20fiber%20frame%20with%2029-inch%20wheels.&badge=Best%20Seller",
         bg: "linear-gradient(135deg, rgba(9, 18, 9, 0.92), rgba(13, 38, 13, 0.88)), url('../assets/hero_bike_1.png')",
         desc: "Conquer every trail with the Apex Mountain Pro X9. Full suspension, carbon fiber frame, and 29-inch wheels built for the toughest terrain."
     },
     {
         name: "Velocity Road Racer",
-        price: "$899",
+        price: "₹71,920",
         tag: "TRENDING NOW",
         img: "../assets/hero_bike_2.png",
-        link: "../template/2_Wheelers_ProductDetails.html?name=Velocity%20Road%20Racer&price=$899&img=../assets/hero_bike_2.png&cat=Road%20Bikes&rating=4.7&reviews=1890&originalPrice=$1,299&badge=Trending",
+        link: "../template/2_Wheelers_ProductDetails.html?name=Velocity%20Road%20Racer&price=₹71,920&img=../assets/hero_bike_2.png&cat=Road%20Bikes&rating=4.7&reviews=1890&originalPrice=₹1,03,920&badge=Trending",
         bg: "linear-gradient(135deg, rgba(7, 15, 7, 0.9), rgba(20, 40, 20, 0.85)), url('../assets/hero_bike_2.png')",
         desc: "Aerodynamic design meets lightweight engineering. Dominate every road with precision Shimano gears and a featherweight alloy frame."
     },
     {
         name: "EcoVolt E-Bike 500",
-        price: "$1,649",
+        price: "₹1,31,920",
         tag: "NEW ARRIVAL",
         img: "../assets/hero_ebike.png",
-        link: "../template/2_Wheelers_ProductDetails.html?name=EcoVolt%20E-Bike%20500&price=$1,649&img=../assets/hero_ebike.png&cat=Electric%20Bikes&rating=4.9&reviews=3120&originalPrice=$2,199&badge=New%20Arrival",
+        link: "../template/2_Wheelers_ProductDetails.html?name=EcoVolt%20E-Bike%20500&price=₹1,31,920&img=../assets/hero_ebike.png&cat=Electric%20Bikes&rating=4.9&reviews=3120&originalPrice=₹1,75,920&badge=New%20Arrival",
         bg: "linear-gradient(135deg, rgba(5, 12, 5, 0.92), rgba(15, 35, 15, 0.88)), url('../assets/hero_ebike.png')",
         desc: "Go farther, go greener. 500W motor, 80km range, and regenerative braking — the future of urban commuting is electric."
     },
     {
         name: "CityGlide Hybrid 7",
-        price: "$549",
+        price: "₹43,920",
         tag: "BEST DEAL",
         img: "https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?q=80&w=600&h=600&fit=crop",
-        link: "../template/2_Wheelers_ProductDetails.html?name=CityGlide%20Hybrid%207&price=$549&img=https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?q=80&w=400&h=300&fit=crop&cat=Hybrid%20Bikes&rating=4.5&reviews=1560&originalPrice=$749&badge=Best%20Deal",
+        link: "../template/2_Wheelers_ProductDetails.html?name=CityGlide%20Hybrid%207&price=₹43,920&img=https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?q=80&w=400&h=300&fit=crop&cat=Hybrid%20Bikes&rating=4.5&reviews=1560&originalPrice=₹59,920&badge=Best%20Deal",
         bg: "linear-gradient(135deg, rgba(10, 20, 10, 0.88), rgba(25, 50, 25, 0.82))",
         desc: "The perfect blend of comfort and speed. 21-speed drivetrain, ergonomic saddle, and puncture-resistant tires for everyday adventures."
     },
     {
         name: "KidStar BMX Blaze",
-        price: "$279",
+        price: "₹22,320",
         tag: "KIDS FAVORITE",
         img: "https://images.unsplash.com/photo-1507035895480-2b3156c31fc8?q=80&w=600&h=600&fit=crop",
-        link: "../template/2_Wheelers_ProductDetails.html?name=KidStar%20BMX%20Blaze&price=$279&img=https://images.unsplash.com/photo-1507035895480-2b3156c31fc8?q=80&w=400&h=300&fit=crop&cat=BMX%20Bikes&rating=4.6&reviews=980&originalPrice=$399&badge=Kids%20Favorite",
+        link: "../template/2_Wheelers_ProductDetails.html?name=KidStar%20BMX%20Blaze&price=₹22,320&img=https://images.unsplash.com/photo-1507035895480-2b3156c31fc8?q=80&w=400&h=300&fit=crop&cat=BMX%20Bikes&rating=4.6&reviews=980&originalPrice=₹31,920&badge=Kids%20Favorite",
         bg: "linear-gradient(135deg, rgba(8, 16, 8, 0.9), rgba(18, 36, 18, 0.85))",
         desc: "Built tough for young riders. Reinforced steel frame, trick-ready pegs, and vibrant green graphics that pop on the skatepark."
     },
     {
         name: "TrailBlazer Fat Tire",
-        price: "$989",
+        price: "₹79,120",
         tag: "ADVENTURE READY",
         img: "https://images.unsplash.com/photo-1571068316344-75bc76f77890?q=80&w=600&h=600&fit=crop",
-        link: "../template/2_Wheelers_ProductDetails.html?name=TrailBlazer%20Fat%20Tire&price=$989&img=https://images.unsplash.com/photo-1571068316344-75bc76f77890?q=80&w=400&h=300&fit=crop&cat=Fat%20Tire%20Bikes&rating=4.7&reviews=1240&originalPrice=$1,299&badge=Adventure%20Ready",
+        link: "../template/2_Wheelers_ProductDetails.html?name=TrailBlazer%20Fat%20Tire&price=₹79,120&img=https://images.unsplash.com/photo-1571068316344-75bc76f77890?q=80&w=400&h=300&fit=crop&cat=Fat%20Tire%20Bikes&rating=4.7&reviews=1240&originalPrice=₹1,03,920&badge=Adventure%20Ready",
         bg: "linear-gradient(135deg, rgba(6, 14, 6, 0.9), rgba(22, 44, 22, 0.86))",
         desc: "4.8-inch fat tires crush sand, snow, and mud. Hydro disc brakes and a dropper post make this beast unstoppable anywhere."
     }
@@ -312,10 +312,10 @@ const categories = [
 ];
 
 const products = [
-    { name: "Pro Edition", price: "$149.99", img: "https://images.unsplash.com/photo-1485965120184-e220f721d03e?q=80&w=400&h=300&fit=crop" },
-    { name: "Trail Master", price: "$89.00", img: "https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?q=80&w=400&h=300&fit=crop" },
-    { name: "Urban Cruiser", price: "$199.00", img: "https://images.unsplash.com/photo-1507035895480-2b3156c31fc8?q=80&w=400&h=300&fit=crop" },
-    { name: "Speed Elite", price: "$249.50", img: "https://images.unsplash.com/photo-1571068316344-75bc76f77890?q=80&w=400&h=300&fit=crop" }
+    { name: "Pro Edition", price: "₹11,999", img: "https://images.unsplash.com/photo-1485965120184-e220f721d03e?q=80&w=400&h=300&fit=crop" },
+    { name: "Trail Master", price: "₹7,120", img: "https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?q=80&w=400&h=300&fit=crop" },
+    { name: "Urban Cruiser", price: "₹15,920", img: "https://images.unsplash.com/photo-1507035895480-2b3156c31fc8?q=80&w=400&h=300&fit=crop" },
+    { name: "Speed Elite", price: "₹19,960", img: "https://images.unsplash.com/photo-1571068316344-75bc76f77890?q=80&w=400&h=300&fit=crop" }
 ];
 
 const badges = [
@@ -346,16 +346,30 @@ function renderDynamicCategories() {
             <div class="product-scroll-container">
                 ${products.map(p => {
             const b = badges[Math.floor(Math.random() * badges.length)];
+            const rating = (4 + Math.random()).toFixed(1);
+            const reviews = Math.floor(Math.random() * 2000) + 500;
             return `
-                    <div class="product-card" onclick="window.location.href='2_Wheelers_ProductDetails.html?name=${encodeURIComponent(catObj.name + ' ' + p.name)}&price=${encodeURIComponent(p.price)}&img=${encodeURIComponent(p.img)}&cat=${encodeURIComponent(catObj.name)}&badge=${encodeURIComponent(b.text)}'">
+                    <div class="product-card" onclick="window.location.href='2_Wheelers_ProductDetails.html?name=${encodeURIComponent(catObj.name + ' ' + p.name)}&price=${encodeURIComponent(p.price)}&img=${encodeURIComponent(p.img)}&cat=${encodeURIComponent(catObj.name)}&badge=${encodeURIComponent(b.text)}&rating=${rating}&reviews=${reviews}'">
                         <div class="image-wrapper">
                             <img src="${p.img}" class="product-image" alt="${p.name}">
                             <span class="product-badge ${b.class}">${b.text}</span>
                         </div>
                         <div class="product-info">
                             <h3>${p.name}</h3>
-                            <p class="product-price">${p.price}</p>
-                            <button class="add-to-cart" onclick="event.stopPropagation();">Add to Cart</button>
+                            <div class="rating">
+                                <i class="fas fa-star"></i> ${rating} <span>(${reviews})</span>
+                            </div>
+                            <div class="product-price">
+                                <span class="price-current">${p.price}</span>
+                            </div>
+                            <div class="action-buttons">
+                                <button class="btn-add-cart" onclick="event.stopPropagation(); addToCart('${p.name}', '${p.price}', '${p.img}')">
+                                    <i class="fas fa-shopping-cart"></i> Add
+                                </button>
+                                <button class="btn-buy-now" onclick="event.stopPropagation(); buyNow('${p.name}', '${p.price}', '${p.img}')">
+                                    <i class="fas fa-bolt"></i> Buy
+                                </button>
+                            </div>
                         </div>
                     </div>
                     `;
@@ -365,6 +379,65 @@ function renderDynamicCategories() {
         container.appendChild(section);
     });
 }
+
+function buyNow(pName, pPrice, pImg) {
+    const numericPrice = parseInt(pPrice.replace(/[^0-9]/g, ''));
+    const product = {
+        name: pName,
+        price: numericPrice,
+        image: pImg
+    };
+    sessionStorage.setItem('um_cart', JSON.stringify([product]));
+    window.location.href = '../../templates/payment_gateway.html';
+}
+
+function addToCart(pName, pPrice, pImg) {
+    const numericPrice = parseInt(pPrice.replace(/[^0-9]/g, ''));
+    let cart = JSON.parse(sessionStorage.getItem('um_cart') || '[]');
+    cart.push({
+        name: pName,
+        price: numericPrice,
+        image: pImg
+    });
+    sessionStorage.setItem('um_cart', JSON.stringify(cart));
+    if (window.updateCartBadge) window.updateCartBadge();
+    
+    // Simple toast notification
+    const toast = document.createElement('div');
+    toast.style.cssText = `
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: var(--primary-green);
+        color: white;
+        padding: 1rem 2rem;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        z-index: 10000;
+        animation: slideIn 0.3s ease-out;
+    `;
+    toast.innerHTML = `<i class="fas fa-check-circle"></i> ${pName} added to cart!`;
+    document.body.appendChild(toast);
+    
+    setTimeout(() => {
+        toast.style.animation = 'slideOut 0.3s ease-in forwards';
+        setTimeout(() => toast.remove(), 300);
+    }, 3000);
+}
+
+// Add animations for toast
+const style = document.createElement('style');
+style.innerHTML = `
+    @keyframes slideIn {
+        from { transform: translateX(100%); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+    }
+    @keyframes slideOut {
+        from { transform: translateX(0); opacity: 1; }
+        to { transform: translateX(100%); opacity: 0; }
+    }
+`;
+document.head.appendChild(style);
 
 // Initialize on DOM ready
 document.addEventListener('DOMContentLoaded', () => {

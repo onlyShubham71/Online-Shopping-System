@@ -159,4 +159,22 @@ window.addEventListener('DOMContentLoaded', () => {
         catBar.style.top = `${nav.getBoundingClientRect().height + 4}px`;
     }
     document.getElementById('navSearchInput')?.addEventListener('input', updateSearchClear);
+    updateCartBadge();
 });
+
+function updateCartBadge() {
+    const cart = JSON.parse(sessionStorage.getItem('um_cart') || '[]');
+    const badge = document.getElementById('cart-badge');
+    const badgeMobile = document.getElementById('cart-badge-mobile');
+    if (badge) {
+        badge.innerText = cart.length;
+        badge.style.display = cart.length > 0 ? 'flex' : 'none';
+    }
+    if (badgeMobile) {
+        badgeMobile.innerText = cart.length;
+        badgeMobile.style.display = cart.length > 0 ? 'flex' : 'none';
+    }
+}
+
+// Global exposure for updates
+window.updateCartBadge = updateCartBadge;
