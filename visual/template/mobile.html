@@ -450,6 +450,120 @@
       .slide-products { display: none; }
       .banner { flex-direction: column; text-align: center; gap: 1.5rem; padding: 2rem; }
     }
+
+    /* ── FAVOURITES DRAWER (SYNCED WITH INDEX.HTML) ── */
+    .fav-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 1900;
+      background: rgba(0, 0, 0, 0.35);
+      backdrop-filter: blur(4px);
+    }
+    .fav-backdrop.open { display: block; }
+
+    .fav-drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 420px;
+      max-width: 96vw;
+      background: var(--ivory);
+      z-index: 2000;
+      display: flex;
+      flex-direction: column;
+      transform: translateX(100%);
+      transition: transform 0.42s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: -12px 0 48px rgba(0, 0, 0, 0.14);
+    }
+    .fav-drawer.open { transform: translateX(0); }
+
+    .fav-drawer-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 22px 18px;
+      border-bottom: 0.5px solid var(--border);
+      flex-shrink: 0;
+    }
+    .fav-drawer-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+    .fav-drawer-count {
+      font-family: var(--body-font);
+      font-size: 0.72rem;
+      font-weight: 800;
+      background: #e11d48;
+      color: white;
+      border-radius: 50px;
+      padding: 2px 8px;
+    }
+    .fav-drawer-close {
+      width: 36px; height: 36px;
+      border: 0.5px solid var(--border);
+      border-radius: 10px;
+      background: white;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; font-size: 1rem; color: var(--gray);
+    }
+    .fav-drawer-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 18px;
+      scrollbar-width: thin;
+    }
+    .fav-empty {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 60px 24px; text-align: center;
+    }
+    .fav-empty-icon {
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      background: #fff0f2;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.8rem; color: #e11d48;
+      margin-bottom: 18px;
+    }
+    .fav-grid { display: flex; flex-direction: column; gap: 12px; }
+    .fav-item {
+      display: flex; align-items: center; gap: 14px;
+      background: white; border: 0.5px solid var(--border);
+      border-radius: 14px; padding: 12px; transition: all 0.3s ease;
+    }
+    .fav-item:hover {
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+      transform: translateY(-2px);
+    }
+    .fav-item-img {
+      width: 72px; height: 72px;
+      border-radius: 10px; object-fit: cover; flex-shrink: 0;
+    }
+    .fav-item-info { flex: 1; min-width: 0; }
+    .fav-item-name { font-weight: 600; font-size: 0.88rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 3px; }
+    .fav-item-price { font-size: 0.92rem; font-weight: 700; color: var(--primary-mobile); }
+    .fav-item-actions { display: flex; gap: 6px; margin-top: 8px; }
+    .fav-add-btn {
+      font-size: 0.74rem; font-weight: 700;
+      background: var(--primary-mobile); color: white;
+      border: none; border-radius: 8px; padding: 5px 12px; cursor: pointer; transition: all 0.2s;
+    }
+    .fav-add-btn:hover { filter: brightness(0.9); }
+    .fav-remove-btn {
+      width: 28px; height: 28px;
+      border: 0.5px solid var(--border);
+      border-radius: 8px; background: white;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; font-size: 0.78rem; color: var(--gray);
+      transition: all 0.2s;
+    }
+    .fav-remove-btn:hover {
+      background: #fff0f2; color: #e11d48; border-color: #fecdd3;
+    }
   </style>
 </head>
 
@@ -588,17 +702,67 @@
     <div class="category-nav-overflow-wrap" id="catOverflowWrap">
       <div class="category-nav-scroll" id="category-filters">
         <div class="cat-pill" data-cat="For You" onclick="window.location.href='../../index.html#shop'"><i
-            class="bi bi-grid-fill"></i> For You</div>
-        <div class="cat-pill" data-cat="Grocery" onclick="window.location.href='grocery.html'"><i
-            class="bi bi-cart"></i> Grocery</div>
-        <div class="cat-pill" data-cat="Fashion" onclick="window.location.href='fashion.html'"><i
-            class="bi bi-bag-heart"></i> Fashion</div>
-        <div class="cat-pill active" data-cat="Mobiles" onclick="window.location.href='mobile.html'"><i
-            class="bi bi-phone"></i> Mobiles</div>
-        <div class="cat-pill" data-cat="Beauty" onclick="window.location.href='beauty.html'"><i
-            class="bi bi-stars"></i> Beauty</div>
-        <div class="cat-pill" data-cat="Electronics" onclick="window.location.href='electronic.html'"><i
-            class="bi bi-cpu"></i> Electronics</div>
+                class="bi bi-grid-fill"></i> For You</div>
+
+        <a style="text-decoration: none; color: inherit; "
+                href="grocery.html"><div class="cat-pill" data-cat="Grocery"><i
+                class="bi bi-cart"></i> Grocery</div></a>
+
+        <a style="text-decoration: none; color: inherit; "
+                href="fashion.html"><div class="cat-pill" data-cat="Fashion"><i
+                class="bi bi-bag-heart"></i> Fashion</div></a>
+
+        <a style="text-decoration: none; color: inherit; "
+                href="mobile.html"><div class="cat-pill active" data-cat="Mobiles"><i
+                class="bi bi-phone"></i> Mobiles </div></a>
+
+        <a style="text-decoration: none; color: inherit; "
+                href="beauty.html"><div class="cat-pill" data-cat="Beauty"><i
+                class="bi bi-stars"></i>Beauty</div></a>
+
+        <a style="text-decoration: none; color: inherit; "
+                href="pet.html"><div class="cat-pill" data-cat="pet"><i
+                class="bi bi-tencent-qq"></i>Pet</div></a>
+
+        <a href="electronic.html"
+                style="text-decoration: none; color: inherit;"> <div class="cat-pill" data-cat="Electronics"><i
+                class="bi bi-cpu"></i>Electronics</div></a>
+
+        <a href="Homesmart.html"
+                style="text-decoration: none; color: inherit;"> <div class="cat-pill" data-cat="Home"><i
+                class="bi bi-house"></i> Home </div></a>
+
+        <a href="Homesmart.html"
+                style="text-decoration: none; color: inherit;"> <div class="cat-pill" data-cat="Appliances"><i
+                class="bi bi-lightning-charge"></i> Appliances</div></a>
+
+        <a href="Toys.html"
+                style="text-decoration: none; color: inherit;"><div class="cat-pill" data-cat="Toys"><i
+                class="bi bi-controller"></i>Toys</div></a>
+
+        <a href="Food.html"
+                style="text-decoration: none; color: inherit;"><div class="cat-pill" data-cat="Food"><i
+                class="bi bi-basket"></i> Food</div></a>
+
+        <a href="car.html"
+                style="text-decoration: none; color: inherit;"><div class="cat-pill" data-cat="Auto"><i class="bi bi-car-front"></i> Auto</div></a>
+                
+        <a href="2_Wheelers.html"
+                style="text-decoration: none; color: inherit;"><div class="cat-pill" data-cat="2 Wheelers"><i class="bi bi-bicycle"></i> 2 Wheeler </div></a>
+
+        <a href="Books.html" style="text-decoration: none; color: inherit;"><div class="cat-pill" data-cat="Books"><i class="bi bi-book"></i> Books </div></a>
+
+        <a href="Homesmart.html" style="text-decoration: none; color: inherit;"><div class="cat-pill" data-cat="Furniture">
+                <i class="bi bi-lamp"></i> Furniture</div></a>
+                
+        <a href="Fitness_&_Sports.html"
+                style="text-decoration: none; color: inherit;"><div class="cat-pill" data-cat="Sports"><i class="bi bi-trophy"></i> Sports</div></a>
+
+        <a href="Medicine_&_Nutrients.html"
+                style="text-decoration: none; color: inherit;"><div class="cat-pill" data-cat="Medicines"><i class="bi bi-capsule"></i> Medicines</div></a>
+
+         <a href="travel_landing.html" style="text-decoration: none; color: inherit;"><div class="cat-pill travel-pill" data-cat="Travel">
+            <span class="travel-badge">NEW</span> <i class="bi bi-airplane-fill"></i> Travel </div></a>
       </div>
     </div>
   </div>
@@ -609,8 +773,11 @@
     <a class="mobile-nav-link" href="../../index.html#shop" onclick="closeAll()"><i class="bi bi-bag"></i> Shop</a>
     <a class="mobile-nav-link" href="seller.html"><i class="bi bi-shop"></i> Partner with us</a>
     <div class="mobile-nav-divider"></div>
-    <a id="login-nav-btn-mobile" class="mobile-fab-btn login" href="login.html" style="border-radius:12px;"><i
-        class="bi bi-person-circle"></i> Login</a>
+    <a id="login-nav-btn-mobile" class="mobile-fab-btn login" href="login.html"
+        style="border-radius:12px;"><i class="bi bi-person-circle"></i> Login</a>
+    <a id="user-profile-btn-mobile" class="mobile-fab-btn login d-none" href="account.html"
+        style="border-radius:12px;"><i class="bi bi-person-circle"></i> <span
+            id="user-nav-name-mobile">Profile</span></a>
   </div>
 
   <!-- ── ANNOUNCEMENT ── -->
@@ -987,198 +1154,231 @@
     // --- UI Interactions ---
     let settingsOpen = false;
     function toggleSettings() {
-      settingsOpen = !settingsOpen;
-      const panel = document.getElementById('settingsPanel');
-      const btn = document.getElementById('settingsBtn');
-      if (panel) panel.classList.toggle('open', settingsOpen);
-      if (btn) btn.classList.toggle('active', settingsOpen);
-      document.getElementById('navBackdrop')?.classList.toggle('active', settingsOpen);
+        settingsOpen = !settingsOpen;
+        const panel = document.getElementById('settingsPanel');
+        const btn = document.getElementById('settingsBtn');
+        if (panel) panel.classList.toggle('open', settingsOpen);
+        if (btn) btn.classList.toggle('active', settingsOpen);
+        document.getElementById('navBackdrop')?.classList.toggle('active', settingsOpen);
+        if (mobileOpen) closeMobile();
     }
     function closeSettings() {
-      settingsOpen = false;
-      document.getElementById('settingsPanel')?.classList.remove('open');
-      document.getElementById('settingsBtn')?.classList.remove('active');
+        settingsOpen = false;
+        document.getElementById('settingsPanel')?.classList.remove('open');
+        document.getElementById('settingsBtn')?.classList.remove('active');
     }
     function toggleSetting(id) { document.getElementById('toggle-' + id)?.classList.toggle('on'); }
 
-    let mobileOpen = false;
+    let mobileOpen = false, searchOpen = false;
     function toggleMobile() {
-      mobileOpen = !mobileOpen;
-      const panel = document.getElementById('mobilePanel');
-      const icon = document.getElementById('hamburgerIcon');
-      if (mobileOpen) {
-        if (panel) { panel.style.display = 'flex'; requestAnimationFrame(() => panel.classList.add('open')); }
-        if (icon) icon.className = 'bi bi-x-lg';
-        document.getElementById('navBackdrop')?.classList.add('active');
-      } else { closeMobile(); }
+        mobileOpen = !mobileOpen;
+        const panel = document.getElementById('mobilePanel');
+        const icon = document.getElementById('hamburgerIcon');
+        const backdrop = document.getElementById('navBackdrop');
+        if (mobileOpen) {
+            if (panel) { panel.style.display = 'flex'; requestAnimationFrame(() => panel.classList.add('open')); }
+            if (icon) icon.className = 'bi bi-x-lg';
+            backdrop?.classList.add('active');
+        } else { closeMobile(); }
     }
     function closeMobile() {
-      mobileOpen = false;
-      const panel = document.getElementById('mobilePanel');
-      const icon = document.getElementById('hamburgerIcon');
-      if (panel) {
-        panel.classList.remove('open');
-        setTimeout(() => { if (!mobileOpen) panel.style.display = 'none'; }, 350);
-      }
-      if (icon) icon.className = 'bi bi-list';
+        mobileOpen = false;
+        const panel = document.getElementById('mobilePanel');
+        const icon = document.getElementById('hamburgerIcon');
+        if (panel) {
+            panel.classList.remove('open');
+            setTimeout(() => { if (!mobileOpen) panel.style.display = 'none'; }, 350);
+        }
+        if (icon) icon.className = 'bi bi-list';
     }
     function closeAll() { closeMobile(); closeSettings(); document.getElementById('navBackdrop')?.classList.remove('active'); }
     function toggleSearch() {
-      const overlay = document.getElementById('searchOverlay');
-      overlay?.classList.toggle('active');
-      if (overlay?.classList.contains('active')) setTimeout(() => document.getElementById('searchInput')?.focus(), 300);
+        searchOpen = !searchOpen;
+        const overlay = document.getElementById('searchOverlay');
+        if (overlay) overlay.classList.toggle('active', searchOpen);
+        if (searchOpen) setTimeout(() => document.getElementById('searchInput')?.focus(), 300);
     }
     function clearNavSearch() {
-      const input = document.getElementById('navSearchInput');
-      if (input) input.value = '';
-    }
-
-    // --- WISHLIST DRAWER TOGGLE ---
-    function toggleFavDrawer() {
-      document.getElementById('favDrawer')?.classList.toggle('open');
-      document.getElementById('favBackdrop')?.classList.toggle('open');
+        const input = document.getElementById('navSearchInput');
+        const clear = document.getElementById('navSearchClear');
+        if (input) input.value = '';
+        clear?.classList.remove('visible');
+        input?.focus();
     }
 
     // --- WISHLIST LOGIC ---
-    let wishlist = JSON.parse(localStorage.getItem('pbssd_wishlist') || '[]');
+    let favourites = JSON.parse(localStorage.getItem('pbssd_mobile_favs') || '[]');
+    let favDrawerOpen = false;
 
-    function toggleWishlist(product) {
-      const index = wishlist.findIndex(item => item.name === product.name);
-      if (index === -1) {
-        wishlist.push(product);
-        Swal.fire({ title: 'Added to Wishlist!', toast: true, position: 'top-end', showConfirmButton: false, timer: 1500, icon: 'success', background: '#FAFAF7', color: '#1A1A1A' });
-      } else {
-        wishlist.splice(index, 1);
-        Swal.fire({ title: 'Removed from Wishlist', toast: true, position: 'top-end', showConfirmButton: false, timer: 1500, icon: 'info', background: '#FAFAF7', color: '#1A1A1A' });
-      }
-      localStorage.setItem('pbssd_wishlist', JSON.stringify(wishlist));
-      updateWishlistUI();
-      syncWishlistButtons();
+    function toggleFavDrawer() {
+        favDrawerOpen = !favDrawerOpen;
+        document.getElementById('favDrawer')?.classList.toggle('open', favDrawerOpen);
+        document.getElementById('favBackdrop')?.classList.toggle('open', favDrawerOpen);
     }
 
-    function updateWishlistUI() {
-      const drawerBody = document.getElementById('favDrawerBody');
-      const badge = document.getElementById('favIconBadge');
-      const drawerCount = document.getElementById('favDrawerCount');
+    function toggleFavourite(productId, btn) {
+        const isFav = favourites.includes(productId);
+        if (isFav) {
+            favourites = favourites.filter(id => id !== productId);
+            if (btn) {
+                btn.classList.remove('active');
+                const icon = btn.querySelector('i');
+                if (icon) icon.className = 'bi bi-heart';
+            }
+            const iconBadge = document.getElementById('favIconBadge');
+            if (iconBadge) {
+                iconBadge.textContent = favourites.length;
+                iconBadge.style.display = favourites.length === 0 ? 'none' : 'flex';
+            }
+            localStorage.setItem('pbssd_mobile_favs', JSON.stringify(favourites));
+            renderFavDrawer();
+            Swal.fire({ title: 'Removed from Favourites', toast: true, position: 'top-end', showConfirmButton: false, timer: 1200, icon: 'info', background: '#FAFAF7', color: '#1A1A1A' });
+        } else {
+            favourites.push(productId);
+            if (btn) {
+                btn.classList.add('active');
+                const icon = btn.querySelector('i');
+                if (icon) icon.className = 'bi bi-heart-fill';
+            }
+            const iconBadge = document.getElementById('favIconBadge');
+            if (iconBadge) {
+                iconBadge.textContent = favourites.length;
+                iconBadge.style.display = 'flex';
+            }
+            localStorage.setItem('pbssd_mobile_favs', JSON.stringify(favourites));
+            renderFavDrawer();
+            Swal.fire({ title: 'Saved to Favourites!', toast: true, position: 'top-end', showConfirmButton: false, timer: 1400, icon: 'success', background: '#FAFAF7', color: '#1A1A1A' });
+        }
+    }
 
-      if (!drawerBody || !badge) return;
+    function removeFromFavourites(productId) {
+        favourites = favourites.filter(id => id !== productId);
+        localStorage.setItem('pbssd_mobile_favs', JSON.stringify(favourites));
+        const iconBadge = document.getElementById('favIconBadge');
+        if (iconBadge) {
+            iconBadge.textContent = favourites.length;
+            iconBadge.style.display = favourites.length === 0 ? 'none' : 'flex';
+        }
+        renderFavDrawer();
+        syncWishlistButtons();
+    }
 
-      badge.innerText = wishlist.length;
-      badge.style.display = wishlist.length > 0 ? 'flex' : 'none';
-      if (drawerCount) drawerCount.innerText = wishlist.length;
-
-      if (wishlist.length === 0) {
-        drawerBody.innerHTML = `
-          <div class="fav-empty">
-            <div class="fav-empty-icon"><i class="bi bi-heart"></i></div>
-            <h5>Nothing saved yet</h5>
-            <p>Tap the heart on any gadget to save it here.</p>
-          </div>
-        `;
-      } else {
-        drawerBody.innerHTML = `
-          <div class="fav-grid">
-            ${wishlist.map((item, idx) => `
-              <div class="fav-item">
-                <img src="${item.img}" class="fav-item-img" alt="${item.name}">
-                <div style="flex:1;">
-                  <h6 style="font-weight:600;margin:0;font-size:0.9rem;">${item.name}</h6>
-                  <p style="color:var(--primary-mobile);font-weight:700;margin:4px 0 0;font-size:0.85rem;">${item.price}</p>
+    function renderFavDrawer() {
+        const grid = document.getElementById('favGrid');
+        const empty = document.getElementById('favEmpty');
+        const count = document.getElementById('favDrawerCount');
+        if (!grid || !empty || !count) return;
+        count.textContent = favourites.length;
+        if (favourites.length === 0) {
+            empty.style.display = 'flex';
+            grid.innerHTML = '';
+            return;
+        }
+        empty.style.display = 'none';
+        grid.innerHTML = favourites.map(id => {
+            const p = mobileProducts.find(x => x.id === id);
+            if (!p) return '';
+            return `
+            <div class="fav-item" id="fav-item-${id}">
+                <img src="${p.image}" class="fav-item-img" alt="${p.name}" style="width:72px;height:72px;border-radius:10px;object-fit:cover;">
+                <div class="fav-item-info" style="flex:1;margin-left:12px;">
+                    <div class="fav-item-name" style="font-weight:600;font-size:0.9rem;">${p.name}</div>
+                    <div><span class="fav-item-price" style="color:var(--primary-mobile);font-weight:700;">${p.price}</span></div>
+                    <div class="fav-item-actions" style="display:flex;gap:8px;margin-top:8px;">
+                        <button class="fav-add-btn" onclick="handleAddToCart('${p.name.replace(/'/g, "\\'")}', '${p.price}', '${p.image}')" style="font-size:0.75rem;padding:4px 10px;background:var(--primary-mobile);color:white;border:none;border-radius:6px;">Add</button>
+                        <button class="fav-remove-btn" onclick="removeFromFavourites(${id})" style="background:none;border:none;color:var(--gray);"><i class="bi bi-trash3"></i></button>
+                    </div>
                 </div>
-                <button onclick="removeFromWishlist(${idx})" style="background:none;border:none;color:var(--gray);cursor:pointer;font-size:1.1rem;padding:5px;"><i class="bi bi-trash"></i></button>
-              </div>
-            `).join('')}
-          </div>
-        `;
-      }
+            </div>`;
+        }).join('');
     }
-
-    window.removeFromWishlist = (index) => {
-      wishlist.splice(index, 1);
-      localStorage.setItem('pbssd_wishlist', JSON.stringify(wishlist));
-      updateWishlistUI();
-      syncWishlistButtons();
-    };
 
     function syncWishlistButtons() {
-      document.querySelectorAll('.wishlist-btn').forEach(btn => {
-        const card = btn.closest('.product-card');
-        const name = card?.querySelector('h3')?.innerText;
-        const isWishlisted = wishlist.some(item => item.name === name);
-        btn.classList.toggle('active', isWishlisted);
-        btn.innerHTML = isWishlisted ? '<i class="bi bi-heart-fill"></i>' : '<i class="bi bi-heart"></i>';
-      });
+        document.querySelectorAll('.wishlist-btn').forEach(btn => {
+            const card = btn.closest('.product-card');
+            const id = parseInt(card?.dataset.id);
+            const isFav = favourites.includes(id);
+            btn.classList.toggle('active', isFav);
+            btn.innerHTML = isFav ? '<i class="bi bi-heart-fill"></i>' : '<i class="bi bi-heart"></i>';
+        });
     }
 
     // --- CART STATE LOGIC (IndexedDB) ---
     let cartDB;
-    const cartRequest = indexedDB.open('PBSSDCartDB', 2);
+    const cartRequest = indexedDB.open('PBSSDCartDB', 1);
     cartRequest.onupgradeneeded = (e) => {
-      const db = e.target.result;
-      if (!db.objectStoreNames.contains('cart_state')) db.createObjectStore('cart_state');
-      if (!db.objectStoreNames.contains('cart_items')) {
-        db.createObjectStore('cart_items', { keyPath: 'id', autoIncrement: true });
-      }
+        const db = e.target.result;
+        if (!db.objectStoreNames.contains('cart_state')) db.createObjectStore('cart_state');
     };
     cartRequest.onsuccess = (e) => {
-      cartDB = e.target.result;
-      refreshCartBadge();
+        cartDB = e.target.result;
+        refreshCartBadge();
     };
 
+    function getCartBadgeEl() {
+        return document.getElementById('cart-badge') || document.getElementById('cartBadge');
+    }
     function refreshCartBadge() {
-      if (!cartDB) return;
-      const tx = cartDB.transaction(['cart_items'], 'readonly');
-      const store = tx.objectStore('cart_items');
-      const getReq = store.getAll();
-      getReq.onsuccess = () => {
-        const items = getReq.result;
-        const total = items.reduce((acc, item) => acc + (item.quantity || 1), 0);
-        const badge = document.getElementById('cart-badge');
-        if (badge) badge.innerText = total;
-
-        const stateTx = cartDB.transaction(['cart_state'], 'readwrite');
-        stateTx.objectStore('cart_state').put(total, 'count');
-      };
+        if (!cartDB) return;
+        const tx = cartDB.transaction(['cart_state'], 'readonly');
+        const store = tx.objectStore('cart_state');
+        const getReq = store.get('count');
+        getReq.onsuccess = () => {
+            const badge = getCartBadgeEl();
+            if (badge) badge.innerText = getReq.result || 0;
+        };
     }
 
     function checkAuth() {
-      const user = JSON.parse(localStorage.getItem('pbssd_user'));
-      const loginNav = document.getElementById('login-nav-btn');
-      const profileNav = document.getElementById('user-profile-btn');
-      const nameDesktop = document.getElementById('user-nav-name');
-      if (user) {
-        loginNav?.classList.add('d-none');
-        profileNav?.classList.remove('d-none');
-        if (nameDesktop) nameDesktop.innerText = user.name || 'Profile';
-      }
+        const user = JSON.parse(localStorage.getItem('pbssd_user'));
+        const loginNav = document.getElementById('login-nav-btn');
+        const profileNav = document.getElementById('user-profile-btn');
+        const loginNavMobile = document.getElementById('login-nav-btn-mobile');
+        const profileNavMobile = document.getElementById('user-profile-btn-mobile');
+        const nameDesktop = document.getElementById('user-nav-name');
+        const nameMobile = document.getElementById('user-nav-name-mobile');
+
+        if (user) {
+            loginNav?.classList.add('d-none');
+            loginNavMobile?.classList.add('d-none');
+            profileNav?.classList.remove('d-none');
+            profileNavMobile?.classList.remove('d-none');
+            if (nameDesktop) nameDesktop.innerText = user.name || 'Profile';
+            if (nameMobile) nameMobile.innerText = user.name || 'Profile';
+        } else {
+            loginNav?.classList.remove('d-none');
+            loginNavMobile?.classList.remove('d-none');
+            profileNav?.classList.add('d-none');
+            profileNavMobile?.classList.add('d-none');
+        }
+    }
+
+    function handleLogout() {
+        localStorage.removeItem('pbssd_user');
+        window.location.reload();
     }
 
     function handleAddToCart(name, price, img) {
-      if (!localStorage.getItem('pbssd_user')) {
-        new bootstrap.Modal(document.getElementById('userLoginModal')).show();
-        return;
-      }
-      let lsCart = JSON.parse(localStorage.getItem('pbssd_cart') || '[]');
-      const exLs = lsCart.find(i => i.name === name);
-      if (exLs) exLs.quantity = (exLs.quantity || 1) + 1;
-      else lsCart.push({ id: Date.now(), name, price, image: img, quantity: 1 });
-      localStorage.setItem('pbssd_cart', JSON.stringify(lsCart));
+        if (!localStorage.getItem('pbssd_user')) {
+            new bootstrap.Modal(document.getElementById('userLoginModal')).show();
+            return;
+        }
+        let lsCart = JSON.parse(localStorage.getItem('pbssd_cart') || '[]');
+        const exLs = lsCart.find(i => i.name === name);
+        if (exLs) exLs.quantity = (exLs.quantity || 1) + 1;
+        else lsCart.push({ id: Date.now(), name, price, image: img, quantity: 1 });
+        localStorage.setItem('pbssd_cart', JSON.stringify(lsCart));
 
-      if (cartDB) {
-        const tx = cartDB.transaction(['cart_items'], 'readwrite');
-        const store = tx.objectStore('cart_items');
-        const getReq = store.getAll();
-        getReq.onsuccess = () => {
-          const items = getReq.result;
-          const existingItem = items.find(i => i.name === name);
-          if (existingItem) { existingItem.quantity = (existingItem.quantity || 1) + 1; store.put(existingItem); }
-          else { store.add({ name, price, img, quantity: 1, timestamp: Date.now() }); }
-        };
-        tx.oncomplete = () => {
-          refreshCartBadge();
-          Swal.fire({ title: 'Added to Bag!', text: `${name} is ready for checkout.`, toast: true, position: 'top-end', showConfirmButton: false, timer: 1500, icon: 'success', background: '#FAFAF7' });
-        };
-      }
+        const count = lsCart.reduce((sum, item) => sum + item.quantity, 0);
+        const badge = getCartBadgeEl();
+        if (badge) badge.innerText = count;
+
+        if (cartDB) {
+            const tx = cartDB.transaction(['cart_state'], 'readwrite');
+            tx.objectStore('cart_state').put(count, 'count');
+        }
+        
+        Swal.fire({ title: 'Added to Bag!', text: `${name} is ready for checkout.`, toast: true, position: 'top-end', showConfirmButton: false, timer: 1500, icon: 'success', background: '#FAFAF7' });
     }
 
     // --- SLIDER LOGIC ---
@@ -1189,101 +1389,119 @@
     let autoTimer;
 
     for (let i = 0; i < totalSlides; i++) {
-      const d = document.createElement('button');
-      d.className = 'dot' + (i === 0 ? ' active' : '');
-      d.addEventListener('click', () => goTo(i));
-      dotsContainer.appendChild(d);
+        const d = document.createElement('button');
+        d.className = 'dot' + (i === 0 ? ' active' : '');
+        d.addEventListener('click', () => goTo(i));
+        dotsContainer.appendChild(d);
     }
 
     function goTo(n) {
-      current = (n + totalSlides) % totalSlides;
-      track.style.transform = `translateX(-${current * 100}%)`;
-      document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === current));
-      resetTimer();
+        current = (n + totalSlides) % totalSlides;
+        track.style.transform = `translateX(-${current * 100}%)`;
+        document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === current));
+        resetTimer();
     }
 
     function resetTimer() {
-      clearInterval(autoTimer);
-      autoTimer = setInterval(() => goTo(current + 1), 5000);
+        clearInterval(autoTimer);
+        autoTimer = setInterval(() => goTo(current + 1), 5000);
     }
 
     document.getElementById('arrowPrev').addEventListener('click', () => goTo(current - 1));
     document.getElementById('arrowNext').addEventListener('click', () => goTo(current + 1));
     resetTimer();
 
+    // --- MOBILE PRODUCTS DATA (FOR WISHLIST) ---
+    const mobileProducts = [];
+
     // --- CATEGORY PILLS ---
     document.querySelectorAll('.pill').forEach(pill => {
-      pill.addEventListener('click', () => {
-        document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
-        pill.classList.add('active');
-        const target = pill.getAttribute('data-target');
-        if(target === 'all') window.scrollTo({top:0, behavior: 'smooth'});
-        else document.getElementById(target)?.scrollIntoView({behavior: 'smooth'});
-      });
+        pill.addEventListener('click', () => {
+            document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+            pill.classList.add('active');
+            const target = pill.getAttribute('data-target');
+            if(target === 'all') window.scrollTo({top:0, behavior: 'smooth'});
+            else document.getElementById(target)?.scrollIntoView({behavior: 'smooth'});
+        });
     });
 
     // --- INITIALIZATION ---
     window.addEventListener('load', () => {
-      const preloader = document.getElementById('preloader');
-      setTimeout(() => { if (preloader) { preloader.style.opacity = '0'; preloader.style.visibility = 'hidden'; } }, 1000);
-      AOS.init({ duration: 900, once: true });
+        const preloader = document.getElementById('preloader');
+        setTimeout(() => { if (preloader) { preloader.style.opacity = '0'; preloader.style.visibility = 'hidden'; } }, 1000);
+        AOS.init({ duration: 900, once: true });
 
-      checkAuth();
-      updateWishlistUI();
+        checkAuth();
 
-      // --- DYNAMICALLY ADD WISHLIST BUTTONS & HANDLERS ---
-      document.querySelectorAll('.product-card').forEach(card => {
-        const imgContainer = card.querySelector('.product-img');
-        if (!imgContainer) return;
+        // --- DYNAMICALLY ADD WISHLIST BUTTONS & HANDLERS ---
+        document.querySelectorAll('.product-card').forEach((card, idx) => {
+            const imgContainer = card.querySelector('.product-img');
+            if (!imgContainer) return;
+            
+            const id = idx + 1001; // unique internal IDs for this page
+            card.dataset.id = id;
 
-        const name = card.querySelector('h3')?.innerText;
-        const price = card.querySelector('.price')?.innerText;
-        const img = card.querySelector('img')?.src;
-        const sub = card.querySelector('.sub')?.innerText;
-        const badge = card.querySelector('.product-badge')?.innerText || '';
+            const name = card.querySelector('h3')?.innerText;
+            const price = card.querySelector('.price')?.innerText;
+            const img = card.querySelector('img')?.src;
+            const sub = card.querySelector('.sub')?.innerText;
+            const badge = card.querySelector('.product-badge')?.innerText || '';
 
-        const btn = document.createElement('button');
-        btn.className = 'wishlist-btn';
-        btn.innerHTML = '<i class="bi bi-heart"></i>';
-        btn.onclick = (e) => {
-          e.stopPropagation();
-          toggleWishlist({ name, price, img });
-        };
-        imgContainer.appendChild(btn);
+            mobileProducts.push({ id, name, price, image: img });
 
-        card.addEventListener('click', (e) => {
-          if (e.target.closest('.wishlist-btn') || e.target.closest('.add-btn')) return;
-          window.location.href = `mobile_productDetails.html?name=${encodeURIComponent(name)}&price=${encodeURIComponent(price)}&img=${encodeURIComponent(img)}&sub=${encodeURIComponent(sub)}&badge=${encodeURIComponent(badge)}`;
+            const btn = document.createElement('button');
+            btn.className = 'wishlist-btn';
+            btn.innerHTML = '<i class="bi bi-heart"></i>';
+            btn.onclick = (e) => {
+                e.stopPropagation();
+                toggleFavourite(id, btn);
+            };
+            imgContainer.appendChild(btn);
+
+            card.addEventListener('click', (e) => {
+                if (e.target.closest('.wishlist-btn') || e.target.closest('.add-btn')) return;
+                window.location.href = `mobile_productDetails.html?name=${encodeURIComponent(name)}&price=${encodeURIComponent(price)}&img=${encodeURIComponent(img)}&sub=${encodeURIComponent(sub)}&badge=${encodeURIComponent(badge)}`;
+            });
+
+            const addBtn = card.querySelector('.add-btn');
+            if (addBtn) {
+                addBtn.onclick = (e) => {
+                    e.stopPropagation();
+                    handleAddToCart(name, price, img);
+                    const orig = addBtn.textContent;
+                    addBtn.textContent = '✓';
+                    addBtn.style.background = 'var(--primary-mobile)';
+                    setTimeout(() => { addBtn.textContent = orig; addBtn.style.background = ''; }, 1200);
+                };
+            }
         });
 
-        const addBtn = card.querySelector('.add-btn');
-        if (addBtn) {
-          addBtn.onclick = (e) => {
-            e.stopPropagation();
-            handleAddToCart(name, price, img);
-            const orig = addBtn.textContent;
-            addBtn.textContent = '✓';
-            addBtn.style.background = 'var(--primary-mobile)';
-            setTimeout(() => { addBtn.textContent = orig; addBtn.style.background = ''; }, 1200);
-          };
+        const iconBadge = document.getElementById('favIconBadge');
+        if (iconBadge) {
+            iconBadge.textContent = favourites.length;
+            iconBadge.style.display = favourites.length === 0 ? 'none' : 'flex';
         }
-      });
 
-      syncWishlistButtons();
+        renderFavDrawer();
+        syncWishlistButtons();
 
-      const nav = document.querySelector('.navbar');
-      const catBar = document.getElementById('categoryNavBar');
-      if (nav && catBar) catBar.style.top = (nav.getBoundingClientRect().height + 4) + 'px';
-      window.addEventListener('scroll', () => {
-        if (nav && catBar) {
-          const navH = nav.getBoundingClientRect().height;
-          if (window.scrollY > 50) {
-            nav.classList.add('scrolled'); catBar.classList.add('scrolled'); catBar.style.top = (navH - 10) + 'px';
-          } else {
-            nav.classList.remove('scrolled'); catBar.classList.remove('scrolled'); catBar.style.top = (navH + 4) + 'px';
-          }
-        }
-      });
+        const cart = JSON.parse(localStorage.getItem('pbssd_cart') || '[]');
+        const badge = getCartBadgeEl();
+        if (badge) badge.innerText = cart.reduce((s, i) => s + i.quantity, 0);
+
+        const nav = document.querySelector('.navbar');
+        const catBar = document.getElementById('categoryNavBar');
+        if (nav && catBar) catBar.style.top = (nav.getBoundingClientRect().height + 4) + 'px';
+        window.addEventListener('scroll', () => {
+            if (nav && catBar) {
+                const navH = nav.getBoundingClientRect().height;
+                if (window.scrollY > 50) {
+                    nav.classList.add('scrolled'); catBar.classList.add('scrolled'); catBar.style.top = (navH - 10) + 'px';
+                } else {
+                    nav.classList.remove('scrolled'); catBar.classList.remove('scrolled'); catBar.style.top = (navH + 4) + 'px';
+                }
+            }
+        });
     });
   </script>
   <script src="../js/navbar.js" defer></script>

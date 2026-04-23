@@ -104,14 +104,23 @@ function updateWishlistUI() {
                 <div style="flex:1;">
                   <h6 style="font-weight:600;margin:0;font-size:0.9rem;">${item.name}</h6>
                   <p style="color:var(--sage);font-weight:700;margin:4px 0 0;font-size:0.85rem;">${item.price}</p>
+                  <div style="display:flex;gap:8px;margin-top:8px;">
+                    <button onclick="handleWishlistAddToCart('${item.name.replace(/'/g, "\\'")}', '${item.price}', '${item.img}')" 
+                            style="font-size:0.72rem;padding:4px 10px;background:#5A8A5A;color:white;border:none;border-radius:6px;cursor:pointer;">Add</button>
+                    <button onclick="removeFromWishlist(${idx})" 
+                            style="background:none;border:none;color:var(--gray);cursor:pointer;font-size:1.1rem;padding:5px;"><i class="bi bi-trash"></i></button>
+                  </div>
                 </div>
-                <button onclick="removeFromWishlist(${idx})" style="background:none;border:none;color:var(--gray);cursor:pointer;font-size:1.1rem;padding:5px;"><i class="bi bi-trash"></i></button>
               </div>
             `).join('')}
           </div>
         `;
     }
 }
+
+window.handleWishlistAddToCart = (name, price, img) => {
+    handleAddToCartLogic(name, price, img);
+};
 
 window.removeFromWishlist = (index) => {
     wishlist.splice(index, 1);
@@ -132,13 +141,10 @@ function syncWishlistButtons() {
 
 // --- CART STATE LOGIC (IndexedDB) ---
 let cartDB;
-const cartRequest = indexedDB.open('PBSSDCartDB', 2);
+const cartRequest = indexedDB.open('PBSSDCartDB', 1);
 cartRequest.onupgradeneeded = (e) => {
     const db = e.target.result;
     if (!db.objectStoreNames.contains('cart_state')) db.createObjectStore('cart_state');
-    if (!db.objectStoreNames.contains('cart_items')) {
-        db.createObjectStore('cart_items', { keyPath: 'id', autoIncrement: true });
-    }
 };
 cartRequest.onsuccess = (e) => {
     cartDB = e.target.result;
@@ -150,19 +156,40 @@ function getCartBadgeEl() {
 }
 function refreshCartBadge() {
     if (!cartDB) return;
-    const tx = cartDB.transaction(['cart_items'], 'readonly');
-    const store = tx.objectStore('cart_items');
-    const getReq = store.getAll();
+    const tx = cartDB.transaction(['cart_state'], 'readonly');
+    const store = tx.objectStore('cart_state');
+    const getReq = store.get('count');
     getReq.onsuccess = () => {
-        const items = getReq.result;
-        const total = items.reduce((acc, item) => acc + (item.quantity || 1), 0);
         const badge = getCartBadgeEl();
-        if (badge) badge.innerText = total;
-
-        // Sync legacy counter for other site components
-        const stateTx = cartDB.transaction(['cart_state'], 'readwrite');
-        stateTx.objectStore('cart_state').put(total, 'count');
+        if (badge) badge.innerText = getReq.result || 0;
     };
+}
+
+function handleAddToCartLogic(name, price, img) {
+    if (!localStorage.getItem('pbssd_user')) {
+        new bootstrap.Modal(document.getElementById('userLoginModal')).show();
+        return;
+    }
+
+    let lsCart = JSON.parse(localStorage.getItem('pbssd_cart') || '[]');
+    const exLs = lsCart.find(i => i.name === name);
+    if (exLs) exLs.quantity = (exLs.quantity || 1) + 1;
+    else lsCart.push({ id: Date.now(), name, price, image: img, quantity: 1 });
+    localStorage.setItem('pbssd_cart', JSON.stringify(lsCart));
+
+    const count = lsCart.reduce((sum, item) => sum + item.quantity, 0);
+    const badge = getCartBadgeEl();
+    if (badge) badge.innerText = count;
+
+    if (cartDB) {
+        const tx = cartDB.transaction(['cart_state'], 'readwrite');
+        tx.objectStore('cart_state').put(count, 'count');
+    }
+
+    Swal.fire({
+        title: 'Added to Bag!', text: `${name} is ready for checkout.`, toast: true, position: 'top-end',
+        showConfirmButton: false, timer: 1500, icon: 'success', background: '#FAFAF7'
+    });
 }
 
 function checkAuth() {
@@ -228,6 +255,10 @@ window.addEventListener('load', () => {
 
     updateWishlistUI();
     syncWishlistButtons();
+
+    const cartData = JSON.parse(localStorage.getItem('pbssd_cart') || '[]');
+    const badge = getCartBadgeEl();
+    if (badge) badge.innerText = cartData.reduce((s, i) => s + i.quantity, 0);
 
     const nav = document.querySelector('.navbar');
     const catBar = document.getElementById('categoryNavBar');
@@ -337,55 +368,17 @@ document.querySelectorAll('.add-btn').forEach(btn => {
             img = card.querySelector('.sp-emoji img')?.src;
         }
 
-        if (cartDB) {
-            const tx = cartDB.transaction(['cart_items'], 'readwrite');
-            const store = tx.objectStore('cart_items');
-            const getReq = store.getAll();
+        handleAddToCartLogic(name, price, img);
 
-            getReq.onsuccess = () => {
-                const items = getReq.result;
-                const existingItem = items.find(i => i.name === name);
-
-                if (existingItem) {
-                    existingItem.quantity = (existingItem.quantity || 1) + 1;
-                    store.put(existingItem);
-                } else {
-                    store.add({ name, price, img, quantity: 1, timestamp: Date.now() });
-                }
-            };
-
-            tx.oncomplete = () => {
-                refreshCartBadge();
-
-                // Dual-storage sync for broad compatibility
-                let lsCart = JSON.parse(localStorage.getItem('pbssd_cart') || '[]');
-                const exLs = lsCart.find(i => i.name === name);
-                if (exLs) exLs.quantity = (exLs.quantity || 1) + 1;
-                else lsCart.push({ id: Date.now(), name, price, image: img, quantity: 1 });
-                localStorage.setItem('pbssd_cart', JSON.stringify(lsCart));
-
-                const orig = btn.textContent;
-                btn.textContent = '✓';
-                btn.style.background = 'var(--sage)';
-                btn.style.color = '#fff';
-                setTimeout(() => {
-                    btn.textContent = orig;
-                    btn.style.background = '';
-                    btn.style.color = '';
-                }, 1200);
-
-                Swal.fire({
-                    title: 'Added to Bag!',
-                    text: `${name} is ready for checkout.`,
-                    toast: true,
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    timer: 1500,
-                    icon: 'success',
-                    background: '#FAFAF7'
-                });
-            };
-        }
+        const orig = btn.textContent;
+        btn.textContent = '✓';
+        btn.style.background = 'var(--sage)';
+        btn.style.color = '#fff';
+        setTimeout(() => {
+            btn.textContent = orig;
+            btn.style.background = '';
+            btn.style.color = '';
+        }, 1200);
     });
 });
 
